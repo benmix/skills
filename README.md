@@ -6,8 +6,10 @@ This repository stores my custom agent skills.
 
 ```text
 .
-├── skills/                # Actual skills live here
-│   └── <skill-name>/
+├── skills/
+│   ├── .system/           # Imported or system-level skills
+│   │   └── <skill-name>/
+│   └── <skill-name>/      # Project or custom skills
 │       ├── SKILL.md
 │       └── agents/
 │           └── openai.yaml
@@ -29,9 +31,9 @@ This repository stores my custom agent skills.
 | Skill | Purpose | Source |
 | --- | --- | --- |
 | [`document-writer-skills`](skills/document-writer-skills/SKILL.md) | Writing and rewriting aid for prose that should avoid common AI writing tics and templated cadence. | Local custom skill |
-| [`find-skills`](skills/find-skills/SKILL.md) | Helps discover and install skills when a user asks for capabilities or workflow support. | https://github.com/vercel-labs/skills/blob/main/skills/find-skills/SKILL.md |
-| [`skill-creator`](skills/skill-creator/SKILL.md) | Guide and tooling reference for creating or updating skills. | https://github.com/openai/skills/blob/main/skills/.system/skill-creator/SKILL.md |
-| [`skill-installer`](skills/skill-installer/SKILL.md) | Guide and helper scripts for installing skills from curated sources or GitHub paths. | https://github.com/openai/skills/blob/main/skills/.system/skill-installer/SKILL.md |
+| [`find-skills`](skills/.system/find-skills/SKILL.md) | Helps discover and install skills when a user asks for capabilities or workflow support. | https://github.com/vercel-labs/skills/blob/main/skills/find-skills/SKILL.md |
+| [`skill-creator`](skills/.system/skill-creator/SKILL.md) | Guide and tooling reference for creating or updating skills. | https://github.com/openai/skills/blob/main/skills/.system/skill-creator/SKILL.md |
+| [`skill-installer`](skills/.system/skill-installer/SKILL.md) | Guide and helper scripts for installing skills from curated sources or GitHub paths. | https://github.com/openai/skills/blob/main/skills/.system/skill-installer/SKILL.md |
 | [`vercel-composition-patterns`](skills/vercel-composition-patterns/SKILL.md) | React composition patterns for component architecture, compound components, and scalable APIs. | https://github.com/vercel-labs/agent-skills/blob/main/skills/composition-patterns/README.md |
 | [`vercel-react-best-practices`](skills/vercel-react-best-practices/SKILL.md) | React and Next.js performance optimization guidance from Vercel Engineering. | https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/README.md |
 | [`web-design-guidelines`](skills/web-design-guidelines/SKILL.md) | UI and accessibility review guidance for checking web interfaces against design standards. | https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md |
