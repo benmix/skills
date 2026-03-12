@@ -1,0 +1,159 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+repo_root="$(cd "$(dirname "$0")/.." && pwd)"
+source_dir="$repo_root/skills"
+dry_run=0
+mode="copy"
+dest_override=0
+default_agents_dir="${AGENTS_HOME:-$HOME/.agents}/skills"
+
+skill_names=()
+dest_dirs=()
+
+usage() {
+  cat <<EOF
+Usage: ./scripts/install-skills.sh [--dry-run] [--mode copy|link] [--dest PATH] [skill-name ...]
+
+Install local skills from this repository into the local agents skills directory.
+
+Options:
+  --dry-run         Show what would be installed without writing files
+  --mode MODE       Install mode: copy (default) or link
+  --dest PATH       Install into a custom destination. Can be repeated
+  -h, --help        Show this help
+EOF
+}
+
+add_dest() {
+  local candidate="$1"
+  local existing
+
+  [[ -n "$candidate" ]] || return 0
+
+  for existing in "${dest_dirs[@]:-}"; do
+    if [[ "$existing" == "$candidate" ]]; then
+      return 0
+    fi
+  done
+
+  dest_dirs+=("$candidate")
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --dry-run)
+      dry_run=1
+      shift
+      ;;
+    --mode)
+      mode="$2"
+      shift 2
+      ;;
+    --dest)
+      if [[ "$dest_override" -eq 0 ]]; then
+        dest_dirs=()
+        dest_override=1
+      fi
+      add_dest "$2"
+      shift 2
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    --*)
+      echo "Unknown option: $1" >&2
+      usage >&2
+      exit 1
+      ;;
+    *)
+      skill_names+=("$1")
+      shift
+      ;;
+  esac
+done
+
+if [[ "$mode" != "copy" && "$mode" != "link" ]]; then
+  echo "Mode must be one of: copy, link" >&2
+  exit 1
+fi
+
+if [[ ! -d "$source_dir" ]]; then
+  echo "Skills directory not found: $source_dir" >&2
+  exit 1
+fi
+
+if [[ ${#dest_dirs[@]} -eq 0 ]]; then
+  add_dest "$default_agents_dir"
+fi
+
+collect_skills() {
+  if [[ ${#skill_names[@]} -gt 0 ]]; then
+    printf '%s\n' "${skill_names[@]}"
+    return
+  fi
+
+  find "$source_dir" -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | sort
+}
+
+install_skill_to_dest() {
+  local skill_name="$1"
+  local dest_dir="$2"
+  local src="$source_dir/$skill_name"
+  local dest="$dest_dir/$skill_name"
+
+  if [[ ! -d "$src" ]]; then
+    echo "Missing skill: $skill_name" >&2
+    return 1
+  fi
+
+  if [[ ! -f "$src/SKILL.md" ]]; then
+    echo "Skipping $skill_name: SKILL.md not found" >&2
+    return 1
+  fi
+
+  if [[ -z "$dest_dir" || "$dest_dir" == "/" ]]; then
+    echo "Refusing to install into unsafe destination: $dest_dir" >&2
+    return 1
+  fi
+
+  if [[ "$dry_run" -eq 1 ]]; then
+    echo "Would install $skill_name -> $dest ($mode)"
+    return 0
+  fi
+
+  mkdir -p "$dest_dir"
+  rm -rf "$dest"
+
+  if [[ "$mode" == "copy" ]]; then
+    cp -R "$src" "$dest"
+  else
+    ln -s "$src" "$dest"
+  fi
+
+  echo "Installed $skill_name -> $dest"
+}
+
+resolved_skills=()
+while IFS= read -r skill_name; do
+  [[ -n "$skill_name" ]] || continue
+  resolved_skills+=("$skill_name")
+done < <(collect_skills)
+
+if [[ ${#resolved_skills[@]} -eq 0 ]]; then
+  echo "No skills found in $source_dir" >&2
+  exit 1
+fi
+
+status=0
+for dest_dir in "${dest_dirs[@]}"; do
+  for skill_name in "${resolved_skills[@]}"; do
+    if ! install_skill_to_dest "$skill_name" "$dest_dir"; then
+      status=1
+    fi
+  done
+done
+
+exit "$status"
