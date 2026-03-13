@@ -30,7 +30,7 @@ This repository stores my custom agent skills.
 
 | Skill | Purpose | Source |
 | --- | --- | --- |
-| [`document-writer-skills`](skills/document-writer-skills/SKILL.md) | Writing and rewriting aid for prose that should avoid common AI writing tics and templated cadence. | Local custom skill |
+| [`writing-like-a-writer`](skills/writing-like-a-writer/SKILL.md) | Two-pass writing skill: remove AI writing tropes, then enforce clear and concise style rules (concise or detailed mode based on writing quality requirements). | Local custom skill |
 | [`advanced-engineer`](skills/advanced-engineer/SKILL.md) | Systematic engineering workflow for debugging, root-cause analysis, minimal patches, and verified resolution of production issues. | Local custom skill |
 | [`find-skills`](skills/.system/find-skills/SKILL.md) | Helps discover and install skills when a user asks for capabilities or workflow support. | https://github.com/vercel-labs/skills/blob/main/skills/find-skills/SKILL.md |
 | [`skill-creator`](skills/.system/skill-creator/SKILL.md) | Guide and tooling reference for creating or updating skills. | https://github.com/openai/skills/blob/main/skills/.system/skill-creator/SKILL.md |
