@@ -31,6 +31,7 @@ This repository stores my custom agent skills.
 | Skill | Purpose | Source |
 | --- | --- | --- |
 | [`document-writer-skills`](skills/document-writer-skills/SKILL.md) | Writing and rewriting aid for prose that should avoid common AI writing tics and templated cadence. | Local custom skill |
+| [`advanced-engineer`](skills/advanced-engineer/SKILL.md) | Systematic engineering workflow for debugging, root-cause analysis, minimal patches, and verified resolution of production issues. | Local custom skill |
 | [`find-skills`](skills/.system/find-skills/SKILL.md) | Helps discover and install skills when a user asks for capabilities or workflow support. | https://github.com/vercel-labs/skills/blob/main/skills/find-skills/SKILL.md |
 | [`skill-creator`](skills/.system/skill-creator/SKILL.md) | Guide and tooling reference for creating or updating skills. | https://github.com/openai/skills/blob/main/skills/.system/skill-creator/SKILL.md |
 | [`skill-installer`](skills/.system/skill-installer/SKILL.md) | Guide and helper scripts for installing skills from curated sources or GitHub paths. | https://github.com/openai/skills/blob/main/skills/.system/skill-installer/SKILL.md |
@@ -61,7 +62,7 @@ Then fill in the workflow, references, scripts, or assets that the skill needs.
 
 ## Install Skills
 
-Install all local skills into `~/.agents/skills`:
+Install all local skills into `~/.agents/skills`, including `.system/` skills:
 
 ```bash
 ./scripts/install-skills.sh
@@ -71,6 +72,13 @@ Install one skill only:
 
 ```bash
 ./scripts/install-skills.sh my-skill
+```
+
+Install a system skill by short name or path:
+
+```bash
+./scripts/install-skills.sh skill-installer
+./scripts/install-skills.sh .system/skill-installer
 ```
 
 Preview changes without writing files:

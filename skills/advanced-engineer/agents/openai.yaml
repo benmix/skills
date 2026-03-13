@@ -1,0 +1,3 @@
+display_name: Advanced Engineer
+short_description: Systematic workflow for debugging, root-cause analysis, minimal fixes, and verification in production codebases.
+default_prompt: Use the advanced-engineer skill to investigate failures, implement the smallest correct fix, and verify the result end to end.

@@ -90,12 +90,57 @@ if [[ ${#dest_dirs[@]} -eq 0 ]]; then
 fi
 
 collect_skills() {
+  local skill_name
+
   if [[ ${#skill_names[@]} -gt 0 ]]; then
-    printf '%s\n' "${skill_names[@]}"
+    for skill_name in "${skill_names[@]}"; do
+      if ! resolve_skill_name "$skill_name"; then
+        return 1
+      fi
+    done
     return
   fi
 
-  find "$source_dir" -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | sort
+  list_all_skills
+}
+
+list_all_skills() {
+  find "$source_dir" -type f -name SKILL.md -print \
+    | sed "s#^$source_dir/##; s#/SKILL\\.md\$##" \
+    | sort
+}
+
+resolve_skill_name() {
+  local requested="$1"
+  local candidate
+  local matches=()
+
+  if [[ -f "$source_dir/$requested/SKILL.md" ]]; then
+    printf '%s\n' "$requested"
+    return 0
+  fi
+
+  while IFS= read -r candidate; do
+    [[ -n "$candidate" ]] || continue
+    if [[ "$(basename "$candidate")" == "$requested" ]]; then
+      matches+=("$candidate")
+    fi
+  done < <(list_all_skills)
+
+  if [[ ${#matches[@]} -eq 1 ]]; then
+    printf '%s\n' "${matches[0]}"
+    return 0
+  fi
+
+  if [[ ${#matches[@]} -gt 1 ]]; then
+    echo "Ambiguous skill name: $requested" >&2
+    printf 'Matches:\n' >&2
+    printf '  %s\n' "${matches[@]}" >&2
+    return 1
+  fi
+
+  echo "Missing skill: $requested" >&2
+  return 1
 }
 
 install_skill_to_dest() {
@@ -103,6 +148,7 @@ install_skill_to_dest() {
   local dest_dir="$2"
   local src="$source_dir/$skill_name"
   local dest="$dest_dir/$skill_name"
+  local dest_parent
 
   if [[ ! -d "$src" ]]; then
     echo "Missing skill: $skill_name" >&2
@@ -124,7 +170,8 @@ install_skill_to_dest() {
     return 0
   fi
 
-  mkdir -p "$dest_dir"
+  dest_parent="$(dirname "$dest")"
+  mkdir -p "$dest_parent"
   rm -rf "$dest"
 
   if [[ "$mode" == "copy" ]]; then

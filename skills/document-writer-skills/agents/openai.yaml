@@ -1,3 +1,0 @@
-display_name: Document Writer
-short_description: Improve prose by removing common AI writing tics and templated structure.
-default_prompt: Use the document-writer-skills skill to draft or revise prose that should sound specific, controlled, and human.

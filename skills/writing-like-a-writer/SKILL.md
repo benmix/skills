@@ -1,9 +1,9 @@
 ---
-name: document-writer-skills
+name: writing-as-a-writer
 description: Use when writing or rewriting articles, essays, documentation, prompts, long-form answers, or polished copy where the output should avoid common AI writing tics, inflated rhetoric, repetitive cadence, and templated markdown style.
 ---
 
-# Document Writer Skills
+# Writing as a Writer
 
 Use this skill when the task is to write, rewrite, edit, or polish prose and the output quality depends on sounding human, specific, and controlled.
 
