@@ -113,6 +113,22 @@ Install into a custom skills directory:
 ./scripts/install-skills.sh --dest /path/to/skills
 ```
 
+## Verify skills install
+
+This repository includes a manual GitHub Actions workflow that validates selected skills can be installed through the public `skills` CLI.
+
+Workflow file:
+
+- `.github/workflows/verify-skills-install.yml`
+
+Behavior:
+
+- Leave the `skills` input empty to verify all top-level skills under `skills/`
+- Provide a comma-separated or newline-separated list such as `writing-maestro,advanced-engineer` to verify only those skills
+- The workflow calls `npx skills add -y -g <owner>/<repo> --skill <skill-name>` once per selected skill
+
+This checks the same public install path a user would run manually, but treats it as CI verification rather than publication.
+
 ## Suggested Workflow
 
 1. Create the skill with the bootstrap script.

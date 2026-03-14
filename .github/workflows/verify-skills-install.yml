@@ -1,0 +1,104 @@
+name: Verify skills install with skills CLI
+
+on:
+  workflow_dispatch:
+    inputs:
+      skills:
+        description: "Optional comma or newline separated skill names. Leave empty to verify all top-level skills."
+        required: false
+        type: string
+
+jobs:
+  verify-install:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Resolve skill list
+        id: resolve
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          mapfile -t available_skills < <(
+            find skills -mindepth 1 -maxdepth 2 -name SKILL.md -print \
+              | sed 's#^skills/##; s#/SKILL\.md$##' \
+              | grep -v '^\.system/' \
+              | sort
+          )
+
+          if [[ "${#available_skills[@]}" -eq 0 ]]; then
+            echo "No installable skills found." >&2
+            exit 1
+          fi
+
+          input_skills="${{ github.event.inputs.skills }}"
+          selected_skills=()
+
+          if [[ -n "${input_skills//[$'\t\r\n ,']/}" ]]; then
+            while IFS= read -r skill || [[ -n "$skill" ]]; do
+              skill="$(printf '%s' "$skill" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')"
+              [[ -n "$skill" ]] || continue
+              selected_skills+=("$skill")
+            done < <(printf '%s\n' "$input_skills" | tr ',' '\n')
+          else
+            selected_skills=("${available_skills[@]}")
+          fi
+
+          validated_skills=()
+          for skill in "${selected_skills[@]}"; do
+            if [[ ! -f "skills/$skill/SKILL.md" ]]; then
+              echo "Unknown skill: $skill" >&2
+              exit 1
+            fi
+
+            if [[ "$skill" == .system/* ]]; then
+              echo "System skill install verification is not supported via this workflow: $skill" >&2
+              exit 1
+            fi
+
+            skip=0
+            for existing in "${validated_skills[@]}"; do
+              if [[ "$existing" == "$skill" ]]; then
+                skip=1
+                break
+              fi
+            done
+
+            if [[ "$skip" -eq 0 ]]; then
+              validated_skills+=("$skill")
+            fi
+          done
+
+          {
+            echo "repo=${{ github.repository }}"
+            echo "skills<<EOF"
+            printf '%s\n' "${validated_skills[@]}"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+          printf 'Verifying skills install from %s:\n' "${{ github.repository }}"
+          printf '  %s\n' "${validated_skills[@]}"
+
+      - name: Verify selected skills install
+        shell: bash
+        env:
+          REPOSITORY: ${{ steps.resolve.outputs.repo }}
+          SKILLS: ${{ steps.resolve.outputs.skills }}
+        run: |
+          set -euo pipefail
+
+          while IFS= read -r skill; do
+            [[ -n "$skill" ]] || continue
+            echo "Verifying install for $skill"
+            npx skills add -y -g "$REPOSITORY" --skill "$skill"
+          done <<< "$SKILLS"
