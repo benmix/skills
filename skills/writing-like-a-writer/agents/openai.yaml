@@ -1,3 +1,0 @@
-display_name: Writing Like a Writer
-short_description: Draft or revise clear, concise prose by combining anti-AI pattern cleanup with practical style rules.
-default_prompt: Use the writing-as-a-writer skill to produce natural, specific prose, then run a clarity and concision editing pass before finalizing.

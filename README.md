@@ -30,7 +30,7 @@ This repository stores my custom agent skills.
 
 | Skill | Purpose | Source |
 | --- | --- | --- |
-| [`writing-like-a-writer`](skills/writing-like-a-writer/SKILL.md) | Two-pass writing skill: remove AI writing tropes, then enforce clear and concise style rules (concise or detailed mode based on writing quality requirements). | Local custom skill |
+| [`writing-maestro`](skills/writing-maestro/SKILL.md) | Two-pass writing skill: remove AI writing tropes, then enforce clear and concise style rules (concise or detailed mode based on writing quality requirements). | Local custom skill |
 | [`advanced-engineer`](skills/advanced-engineer/SKILL.md) | Systematic engineering workflow for debugging, root-cause analysis, minimal patches, and verified resolution of production issues. | Local custom skill |
 | [`verification-before-completion`](skills/verification-before-completion/SKILL.md) | Verification gate skill used before claiming completion, fixes, or passing status; requires fresh command evidence before any success claim. | [obra/superpowers](https://github.com/obra/superpowers/blob/main/skills/verification-before-completion/SKILL.md) |
 | [`systematic-debugging`](skills/systematic-debugging/SKILL.md) | Root-cause-first debugging workflow for bugs, test failures, and unexpected behavior; prevents proposing fixes before investigation. | [obra/superpowers](https://github.com/obra/superpowers/blob/main/skills/systematic-debugging/SKILL.md) |

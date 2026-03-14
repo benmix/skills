@@ -1,9 +1,9 @@
 ---
-name: writing-like-a-writer
+name: writing-maestro
 description: Use when drafting or revising human-facing prose such as docs, essays, prompts, UI copy, reports, commit messages, PR text, or polished long-form writing. Combines anti-AI-trope editing with clear and concise style rules for stronger, more natural prose.
 ---
 
-# Writing Like a Writer
+# Writing Maestro
 
 Use this skill when the task is to write, rewrite, edit, or polish prose that humans will read.
 
