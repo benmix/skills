@@ -89,6 +89,18 @@ Preview changes without writing files:
 ./scripts/install-skills.sh --dry-run
 ```
 
+Clear the destination skills directory before reinstalling everything:
+
+```bash
+./scripts/install-skills.sh --clean-dest
+```
+
+Preview a clean reinstall without writing files:
+
+```bash
+./scripts/install-skills.sh --dry-run --clean-dest
+```
+
 Use symlinks instead of copies:
 
 ```bash

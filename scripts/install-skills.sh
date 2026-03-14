@@ -6,6 +6,7 @@ repo_root="$(cd "$(dirname "$0")/.." && pwd)"
 source_dir="$repo_root/skills"
 dry_run=0
 mode="copy"
+clean_dest=0
 dest_override=0
 default_agents_dir="${AGENTS_HOME:-$HOME/.agents}/skills"
 
@@ -14,12 +15,13 @@ dest_dirs=()
 
 usage() {
   cat <<EOF
-Usage: ./scripts/install-skills.sh [--dry-run] [--mode copy|link] [--dest PATH] [skill-name ...]
+Usage: ./scripts/install-skills.sh [--dry-run] [--clean-dest] [--mode copy|link] [--dest PATH] [skill-name ...]
 
 Install local skills from this repository into the local agents skills directory.
 
 Options:
   --dry-run         Show what would be installed without writing files
+  --clean-dest      Remove the destination skills directory before installing
   --mode MODE       Install mode: copy (default) or link
   --dest PATH       Install into a custom destination. Can be repeated
   -h, --help        Show this help
@@ -41,10 +43,41 @@ add_dest() {
   dest_dirs+=("$candidate")
 }
 
+validate_dest_dir() {
+  local dest_dir="$1"
+
+  if [[ -z "$dest_dir" || "$dest_dir" == "/" ]]; then
+    echo "Refusing to install into unsafe destination: $dest_dir" >&2
+    return 1
+  fi
+
+  return 0
+}
+
+clean_dest_dir() {
+  local dest_dir="$1"
+
+  if ! validate_dest_dir "$dest_dir"; then
+    return 1
+  fi
+
+  if [[ "$dry_run" -eq 1 ]]; then
+    echo "Would remove destination directory: $dest_dir"
+    return 0
+  fi
+
+  rm -rf "$dest_dir"
+  echo "Removed destination directory: $dest_dir"
+}
+
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --dry-run)
       dry_run=1
+      shift
+      ;;
+    --clean-dest)
+      clean_dest=1
       shift
       ;;
     --mode)
@@ -160,8 +193,7 @@ install_skill_to_dest() {
     return 1
   fi
 
-  if [[ -z "$dest_dir" || "$dest_dir" == "/" ]]; then
-    echo "Refusing to install into unsafe destination: $dest_dir" >&2
+  if ! validate_dest_dir "$dest_dir"; then
     return 1
   fi
 
@@ -196,6 +228,13 @@ fi
 
 status=0
 for dest_dir in "${dest_dirs[@]}"; do
+  if [[ "$clean_dest" -eq 1 ]]; then
+    if ! clean_dest_dir "$dest_dir"; then
+      status=1
+      continue
+    fi
+  fi
+
   for skill_name in "${resolved_skills[@]}"; do
     if ! install_skill_to_dest "$skill_name" "$dest_dir"; then
       status=1
