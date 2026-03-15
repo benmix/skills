@@ -118,8 +118,15 @@ jobs:
         run: |
           set -euo pipefail
 
+          verified_skills=()
+
           while IFS= read -r skill; do
             [[ -n "$skill" ]] || continue
             echo "Verifying install for $skill"
-            npx skills add -y -g "$REPOSITORY" --skill "$skill"
+            npx skills add -y -g "$REPOSITORY" --skill "$skill" </dev/null
+            verified_skills+=("$skill")
+            echo "SUCCESS: $skill"
           done <<< "$SKILLS"
+
+          echo "Verified skills:"
+          printf '  %s\n' "${verified_skills[@]}"
