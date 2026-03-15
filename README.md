@@ -115,7 +115,7 @@ Install into a custom skills directory:
 
 ## Verify skills install
 
-This repository includes a manual GitHub Actions workflow that validates selected skills can be installed through the public `skills` CLI.
+This repository includes a GitHub Actions workflow that automatically validates whitelisted skills can be installed through the public `skills` CLI.
 
 Workflow file:
 
@@ -123,8 +123,10 @@ Workflow file:
 
 Behavior:
 
-- Leave the `skills` input empty to verify all top-level skills under `skills/`
-- Provide a comma-separated or newline-separated list such as `writing-maestro,advanced-engineer` to verify only those skills
+- Runs automatically on pushes to `main` and on pull requests that touch `skills/**` or the workflow file
+- Uses a fixed whitelist in the workflow, so only explicitly approved skills are verified
+- Leave the `skills` input empty when running manually to verify all whitelisted skills
+- Provide a comma-separated or newline-separated list such as `writing-maestro,advanced-engineer` to verify only those whitelisted skills
 - The workflow calls `npx skills add -y -g <owner>/<repo> --skill <skill-name>` once per selected skill
 
 This checks the same public install path a user would run manually, but treats it as CI verification rather than publication.

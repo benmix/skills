@@ -1,10 +1,20 @@
 name: Verify skills install with skills CLI
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/verify-skills-install.yml"
+      - "skills/**"
+  pull_request:
+    paths:
+      - ".github/workflows/verify-skills-install.yml"
+      - "skills/**"
   workflow_dispatch:
     inputs:
       skills:
-        description: "Optional comma or newline separated skill names. Leave empty to verify all top-level skills."
+        description: "Optional comma or newline separated skill names from the whitelist. Leave empty to verify all whitelisted skills."
         required: false
         type: string
 
@@ -13,6 +23,10 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    env:
+      ALLOWED_SKILLS: |
+        advanced-engineer
+        writing-maestro
 
     steps:
       - name: Check out repository
@@ -29,15 +43,14 @@ jobs:
         run: |
           set -euo pipefail
 
-          mapfile -t available_skills < <(
-            find skills -mindepth 1 -maxdepth 2 -name SKILL.md -print \
-              | sed 's#^skills/##; s#/SKILL\.md$##' \
-              | grep -v '^\.system/' \
-              | sort
-          )
+          allowed_skills=()
+          while IFS= read -r skill || [[ -n "$skill" ]]; do
+            [[ -n "${skill//[[:space:]]/}" ]] || continue
+            allowed_skills+=("$skill")
+          done < <(printf '%s\n' "$ALLOWED_SKILLS")
 
-          if [[ "${#available_skills[@]}" -eq 0 ]]; then
-            echo "No installable skills found." >&2
+          if [[ "${#allowed_skills[@]}" -eq 0 ]]; then
+            echo "No whitelisted skills configured." >&2
             exit 1
           fi
 
@@ -51,18 +64,26 @@ jobs:
               selected_skills+=("$skill")
             done < <(printf '%s\n' "$input_skills" | tr ',' '\n')
           else
-            selected_skills=("${available_skills[@]}")
+            selected_skills=("${allowed_skills[@]}")
           fi
 
           validated_skills=()
           for skill in "${selected_skills[@]}"; do
-            if [[ ! -f "skills/$skill/SKILL.md" ]]; then
-              echo "Unknown skill: $skill" >&2
+            allowed=0
+            for allowed_skill in "${allowed_skills[@]}"; do
+              if [[ "$allowed_skill" == "$skill" ]]; then
+                allowed=1
+                break
+              fi
+            done
+
+            if [[ "$allowed" -ne 1 ]]; then
+              echo "Skill is not in the verification whitelist: $skill" >&2
               exit 1
             fi
 
-            if [[ "$skill" == .system/* ]]; then
-              echo "System skill install verification is not supported via this workflow: $skill" >&2
+            if [[ ! -f "skills/$skill/SKILL.md" ]]; then
+              echo "Whitelisted skill is missing from the repository: $skill" >&2
               exit 1
             fi
 
