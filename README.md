@@ -14,8 +14,9 @@ This repository stores my custom agent skills.
 │       └── agents/
 │           └── openai.yaml
 └── scripts/
-    ├── install-skills.sh  # Install local skills into ~/.agents/skills
-    └── new-skill.sh       # Bootstrap a new skill
+    ├── install-skills.sh      # Install local skills into ~/.agents/skills
+    ├── new-skill.sh           # Bootstrap a new skill
+    └── sync-remote-skills.sh  # Sync imported skills from upstream repos
 ```
 
 ## Conventions
@@ -25,6 +26,7 @@ This repository stores my custom agent skills.
 - Keep each skill self-contained
 - Put only reusable instructions and assets into a skill
 - Keep `SKILL.md` concise and move large references into `references/` when needed
+- Track non-local skills in `skills/.remote-sources.yaml` so they can be synced from upstream
 
 ## Skills
 
@@ -92,13 +94,13 @@ Preview changes without writing files:
 Clear the destination skills directory before reinstalling everything:
 
 ```bash
-./scripts/install-skills.sh --clean-dest
+./scripts/install-skills.sh --clean-install-dir
 ```
 
 Preview a clean reinstall without writing files:
 
 ```bash
-./scripts/install-skills.sh --dry-run --clean-dest
+./scripts/install-skills.sh --dry-run --clean-install-dir
 ```
 
 Use symlinks instead of copies:
@@ -110,8 +112,51 @@ Use symlinks instead of copies:
 Install into a custom skills directory:
 
 ```bash
-./scripts/install-skills.sh --dest /path/to/skills
+./scripts/install-skills.sh --install-dir /path/to/skills
 ```
+
+## Sync Remote Skills
+
+Sync all non-local skills from their source repositories:
+
+```bash
+./scripts/sync-remote-skills.sh
+```
+
+Sync one skill only:
+
+```bash
+./scripts/sync-remote-skills.sh verification-before-completion
+./scripts/sync-remote-skills.sh .system/skill-installer
+```
+
+Preview what would be synced without any network or file writes:
+
+```bash
+./scripts/sync-remote-skills.sh --dry-run
+```
+
+Temporarily sync from a different branch or tag:
+
+```bash
+./scripts/sync-remote-skills.sh --ref main web-design-guidelines
+```
+
+The source manifest lives at `skills/.remote-sources.yaml`:
+
+```yaml
+skills:
+  - skill_name: verification-before-completion
+    local_path: verification-before-completion
+    repo: obra/superpowers
+    ref: main
+    source_path: skills/verification-before-completion
+    last_synced_commit: 0123456789abcdef0123456789abcdef01234567
+```
+
+`last_synced_commit` is maintained by the sync script and records the exact upstream commit last copied into this repo.
+
+Add an entry there for any imported skill that should support upstream sync.
 
 ## Verify skills install
 

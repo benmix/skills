@@ -6,8 +6,8 @@ repo_root="$(cd "$(dirname "$0")/.." && pwd)"
 source_dir="$repo_root/skills"
 dry_run=0
 mode="copy"
-clean_dest=0
-dest_override=0
+clean_install_dir=0
+install_dir_override=0
 default_agents_dir="${AGENTS_HOME:-$HOME/.agents}/skills"
 
 skill_names=()
@@ -15,15 +15,15 @@ dest_dirs=()
 
 usage() {
   cat <<EOF
-Usage: ./scripts/install-skills.sh [--dry-run] [--clean-dest] [--mode copy|link] [--dest PATH] [skill-name ...]
+Usage: ./scripts/install-skills.sh [--dry-run] [--clean-install-dir] [--mode copy|link] [--install-dir PATH] [skill-name ...]
 
 Install local skills from this repository into the local agents skills directory.
 
 Options:
   --dry-run         Show what would be installed without writing files
-  --clean-dest      Remove the destination skills directory before installing
+  --clean-install-dir Remove the install directory before installing
   --mode MODE       Install mode: copy (default) or link
-  --dest PATH       Install into a custom destination. Can be repeated
+  --install-dir PATH Install into a custom destination. Can be repeated
   -h, --help        Show this help
 EOF
 }
@@ -47,7 +47,7 @@ validate_dest_dir() {
   local dest_dir="$1"
 
   if [[ -z "$dest_dir" || "$dest_dir" == "/" ]]; then
-    echo "Refusing to install into unsafe destination: $dest_dir" >&2
+    echo "Refusing to install into unsafe install directory: $dest_dir" >&2
     return 1
   fi
 
@@ -62,12 +62,12 @@ clean_dest_dir() {
   fi
 
   if [[ "$dry_run" -eq 1 ]]; then
-    echo "Would remove destination directory: $dest_dir"
+    echo "Would remove install directory: $dest_dir"
     return 0
   fi
 
   rm -rf "$dest_dir"
-  echo "Removed destination directory: $dest_dir"
+  echo "Removed install directory: $dest_dir"
 }
 
 while [[ $# -gt 0 ]]; do
@@ -76,18 +76,22 @@ while [[ $# -gt 0 ]]; do
       dry_run=1
       shift
       ;;
-    --clean-dest)
-      clean_dest=1
+    --clean-install-dir)
+      clean_install_dir=1
       shift
       ;;
     --mode)
       mode="$2"
       shift 2
       ;;
-    --dest)
-      if [[ "$dest_override" -eq 0 ]]; then
+    --install-dir)
+      if [[ $# -lt 2 || -z "${2:-}" ]]; then
+        echo "--install-dir requires a value" >&2
+        exit 1
+      fi
+      if [[ "$install_dir_override" -eq 0 ]]; then
         dest_dirs=()
-        dest_override=1
+        install_dir_override=1
       fi
       add_dest "$2"
       shift 2
@@ -228,7 +232,7 @@ fi
 
 status=0
 for dest_dir in "${dest_dirs[@]}"; do
-  if [[ "$clean_dest" -eq 1 ]]; then
+  if [[ "$clean_install_dir" -eq 1 ]]; then
     if ! clean_dest_dir "$dest_dir"; then
       status=1
       continue

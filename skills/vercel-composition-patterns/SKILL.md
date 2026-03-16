@@ -14,8 +14,6 @@ metadata:
 
 # React Composition Patterns
 
-## Source
-
 Composition patterns for building flexible, maintainable React components. Avoid
 boolean prop proliferation by using compound components, lifting state, and
 composing internals. These patterns make codebases easier for both humans and AI

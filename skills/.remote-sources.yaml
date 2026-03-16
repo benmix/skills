@@ -1,0 +1,56 @@
+skills:
+  - skill_name: verification-before-completion
+    local_path: verification-before-completion
+    repo: obra/superpowers
+    ref: main
+    source_path: skills/verification-before-completion
+    last_synced_commit: 363923f74aa9cd7b470c0aaa73dee629a8bfdc90
+
+  - skill_name: systematic-debugging
+    local_path: systematic-debugging
+    repo: obra/superpowers
+    ref: main
+    source_path: skills/systematic-debugging
+    last_synced_commit: 363923f74aa9cd7b470c0aaa73dee629a8bfdc90
+
+  - skill_name: find-skills
+    local_path: .system/find-skills
+    repo: vercel-labs/skills
+    ref: main
+    source_path: skills/find-skills
+    last_synced_commit: c9fb03ec0c7b4f864163b6e3abdfe961cb15928f
+
+  - skill_name: skill-creator
+    local_path: .system/skill-creator
+    repo: openai/skills
+    ref: main
+    source_path: skills/.system/skill-creator
+    last_synced_commit: ecc1fb8bc0b82f1d3c7a92a82167ae8e8e613a67
+
+  - skill_name: skill-installer
+    local_path: .system/skill-installer
+    repo: openai/skills
+    ref: main
+    source_path: skills/.system/skill-installer
+    last_synced_commit: ecc1fb8bc0b82f1d3c7a92a82167ae8e8e613a67
+
+  - skill_name: vercel-composition-patterns
+    local_path: vercel-composition-patterns
+    repo: vercel-labs/agent-skills
+    ref: main
+    source_path: skills/composition-patterns
+    last_synced_commit: 5847a7c7e79bab3e400cf47800b83449d7aea2d4
+
+  - skill_name: vercel-react-best-practices
+    local_path: vercel-react-best-practices
+    repo: vercel-labs/agent-skills
+    ref: main
+    source_path: skills/react-best-practices
+    last_synced_commit: 5847a7c7e79bab3e400cf47800b83449d7aea2d4
+
+  - skill_name: web-design-guidelines
+    local_path: web-design-guidelines
+    repo: vercel-labs/agent-skills
+    ref: main
+    source_path: skills/web-design-guidelines
+    last_synced_commit: 5847a7c7e79bab3e400cf47800b83449d7aea2d4

@@ -9,8 +9,6 @@ metadata:
 
 # Web Interface Guidelines
 
-## Source
-
 Review files for compliance with Web Interface Guidelines.
 
 ## How It Works
