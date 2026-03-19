@@ -187,6 +187,78 @@ done < "$manifest_file"
 
 flush_manifest_entry
 
+color_reset=""
+color_bold=""
+color_dim=""
+color_blue=""
+color_cyan=""
+color_green=""
+color_red=""
+color_yellow=""
+
+if [[ -t 1 && -z "${NO_COLOR:-}" && "${TERM:-}" != "dumb" ]]; then
+  color_reset=$'\033[0m'
+  color_bold=$'\033[1m'
+  color_dim=$'\033[2m'
+  color_blue=$'\033[34m'
+  color_cyan=$'\033[36m'
+  color_green=$'\033[32m'
+  color_red=$'\033[31m'
+  color_yellow=$'\033[33m'
+fi
+
+color_text() {
+  local color="$1"
+  local text="$2"
+  printf '%b%s%b' "$color" "$text" "$color_reset"
+}
+
+heading_text() {
+  color_text "${color_bold}${color_cyan}" "$1"
+}
+
+status_text() {
+  local status="$1"
+
+  case "$status" in
+    CHECK)
+      color_text "${color_bold}${color_blue}" "$status"
+      ;;
+    UPDATED)
+      color_text "${color_bold}${color_green}" "$status"
+      ;;
+    UNCHANGED)
+      color_text "${color_bold}${color_yellow}" "$status"
+      ;;
+    ERROR)
+      color_text "${color_bold}${color_red}" "$status"
+      ;;
+    *)
+      printf '%s' "$status"
+      ;;
+  esac
+}
+
+label_text() {
+  color_text "${color_bold}${color_dim}" "$1"
+}
+
+display_commit() {
+  local commit="${1:-}"
+
+  if [[ -z "$commit" ]]; then
+    printf '<none>'
+    return 0
+  fi
+
+  if [[ "$commit" =~ ^[0-9a-f]{40}$ ]]; then
+    printf '%.12s' "$commit"
+    return 0
+  fi
+
+  printf '%s' "$commit"
+}
+
 resolve_requested_skill() {
   local requested="$1"
   local line
@@ -240,12 +312,14 @@ if [[ ${#selected_lines[@]} -eq 0 ]]; then
 fi
 
 if [[ "$dry_run" -eq 1 ]]; then
+  printf '%s (%d skill%s)\n' "$(heading_text "Sync preview")" "${#selected_lines[@]}" "$([[ ${#selected_lines[@]} -eq 1 ]] && printf '' || printf 's')"
   for line in "${selected_lines[@]}"; do
     IFS=$'\t' read -r skill_name local_path repo ref source_path _ <<< "$line"
     if [[ -n "$ref_override" ]]; then
       ref="$ref_override"
     fi
-    echo "Would sync $skill_name ($local_path) <- $repo:$ref/$source_path"
+    printf '  - %s (%s)\n' "$skill_name" "$local_path"
+    printf '    %s %s:%s/%s\n' "$(label_text "source:")" "$repo" "$ref" "$source_path"
   done
   exit 0
 fi
@@ -260,6 +334,11 @@ cleanup() {
   rm -rf "$tmp_root"
 }
 trap cleanup EXIT
+
+declare -a updated_skills=()
+declare -a unchanged_skills=()
+
+printf '%s %d skill%s\n' "$(heading_text "Syncing")" "${#selected_lines[@]}" "$([[ ${#selected_lines[@]} -eq 1 ]] && printf '' || printf 's')"
 
 for line in "${selected_lines[@]}"; do
   IFS=$'\t' read -r skill_name local_path repo ref source_path last_synced_commit <<< "$line"
@@ -281,17 +360,56 @@ for line in "${selected_lines[@]}"; do
   git -C "$repo_dir" sparse-checkout set "$source_path" >/dev/null
   git -C "$repo_dir" fetch --depth 1 origin "$ref" >/dev/null
   git -C "$repo_dir" -c advice.detachedHead=false checkout FETCH_HEAD >/dev/null
-  last_synced_commit="$(git -C "$repo_dir" rev-parse HEAD)"
+  fetched_commit="$(git -C "$repo_dir" rev-parse HEAD)"
+
+  printf '\n[%s] %s (%s)\n' "$(status_text "CHECK")" "$skill_name" "$local_path"
+  printf '  %s %s:%s/%s\n' "$(label_text "source:")" "$repo" "$ref" "$source_path"
 
   if [[ ! -d "$source_dir" ]]; then
     echo "Upstream path not found: $repo:$ref/$source_path" >&2
     exit 1
   fi
 
+  if [[ -n "$last_synced_commit" && "$last_synced_commit" == "$fetched_commit" ]]; then
+    unchanged_skills+=("$skill_name"$'\t'"$local_path"$'\t'"$fetched_commit")
+    printf '  %s %s (%s)\n' "$(label_text "result:")" "$(status_text "UNCHANGED")" "$(display_commit "$fetched_commit")"
+    continue
+  fi
+
   mkdir -p "$target_parent"
   rm -rf "$target_dir"
   cp -R "$source_dir" "$target_dir"
-  update_manifest_commit "$skill_name" "$local_path" "$last_synced_commit"
+  update_manifest_commit "$skill_name" "$local_path" "$fetched_commit"
 
-  echo "Synced $skill_name ($local_path) <- $repo:$ref/$source_path @ $last_synced_commit"
+  updated_skills+=("$skill_name"$'\t'"$local_path"$'\t'"$last_synced_commit"$'\t'"$fetched_commit")
+  printf '  %s %s (%s -> %s)\n' "$(label_text "result:")" "$(status_text "UPDATED")" "$(display_commit "$last_synced_commit")" "$(display_commit "$fetched_commit")"
 done
+
+echo
+
+printf '%s\n' "$(heading_text "Summary")"
+printf '  %s %s\n' "$(label_text "checked:")" "$(color_text "$color_blue" "${#selected_lines[@]}")"
+printf '  %s %s\n' "$(label_text "updated:")" "$(color_text "$color_green" "${#updated_skills[@]}")"
+printf '  %s %s\n' "$(label_text "unchanged:")" "$(color_text "$color_yellow" "${#unchanged_skills[@]}")"
+
+if [[ ${#updated_skills[@]} -gt 0 ]]; then
+  echo
+  printf '%s\n' "$(heading_text "Updated skills")"
+  for entry in "${updated_skills[@]}"; do
+    IFS=$'\t' read -r skill_name local_path previous_commit fetched_commit <<< "$entry"
+    printf '  - %s (%s): %s -> %s\n' \
+      "$skill_name" \
+      "$local_path" \
+      "$(display_commit "$previous_commit")" \
+      "$(display_commit "$fetched_commit")"
+  done
+fi
+
+if [[ ${#unchanged_skills[@]} -gt 0 ]]; then
+  echo
+  printf '%s\n' "$(heading_text "Unchanged skills")"
+  for entry in "${unchanged_skills[@]}"; do
+    IFS=$'\t' read -r skill_name local_path fetched_commit <<< "$entry"
+    printf '  - %s (%s): %s\n' "$skill_name" "$local_path" "$(display_commit "$fetched_commit")"
+  done
+fi

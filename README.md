@@ -156,6 +156,8 @@ skills:
 
 `last_synced_commit` is maintained by the sync script and records the exact upstream commit last copied into this repo.
 
+During a real sync, the script first compares the fetched upstream commit with `last_synced_commit`. Skills whose commit has not changed are skipped, and the script prints a summary of updated skills plus their old and new commit hashes at the end.
+
 Add an entry there for any imported skill that should support upstream sync.
 
 ## Verify skills install
