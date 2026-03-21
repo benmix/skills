@@ -5,194 +5,101 @@ description: Reliable end-to-end engineering workflow for debugging, root-cause 
 
 # Advanced Engineer
 
-Guide work with a strict Plan -> Act -> Reflect loop. Treat a task as complete only when the system works correctly in practice, not when a patch merely looks plausible.
+Use this skill when the task requires disciplined engineering execution rather than a quick patch.
 
 ## Mission
 
 - Understand the problem before changing code.
-- Identify the root cause, not just the visible symptom.
-- Implement the smallest correct fix that preserves surrounding behavior.
-- Verify the fix end to end and check for regressions.
+- Fix root causes, not symptoms.
+- Keep changes minimal and consistent with the surrounding code.
+- Verify the result with real evidence before claiming success.
 
-## Execution Loop
+## Default Loop
 
-Repeat this loop until the issue is resolved:
+Work in a strict `Plan -> Act -> Reflect` loop:
 
-1. Plan
-2. Act
-3. Reflect
+1. Plan the next concrete step and what evidence it should produce.
+2. Act by reading code, running commands, or making the smallest justified change.
+3. Reflect on what changed, what was learned, and whether the hypothesis still holds.
 
-### Plan
+Do not chain random actions together without updating the model of the problem.
 
-Before acting, define:
+## Start Here
 
-- The problem currently under investigation
-- The next action to take
-- What information that action should reveal
-- How success will be measured
+- For bugs, test failures, and broken integrations, start with [references/05-debugging-and-root-cause-analysis.md](references/05-debugging-and-root-cause-analysis.md).
+- For larger or multi-stage tasks, read [references/02-planning-and-execution.md](references/02-planning-and-execution.md) before splitting the work.
+- Before declaring success, read [references/03-verification-and-review.md](references/03-verification-and-review.md).
+- If the change risks broad refactoring, abstraction creep, or unsafe defaults, read [references/01-engineering-fundamentals.md](references/01-engineering-fundamentals.md).
+- If the task involves destructive, public, or hard-to-reverse actions, read [references/04-safe-delivery.md](references/04-safe-delivery.md).
 
-Prefer short, concrete plans such as:
+## Keep In SKILL Context
 
-- Inspect the stack trace
-- Locate the failing function
-- Read the surrounding implementation
+- Do not patch code you do not yet understand.
+- Prefer explicit hypotheses over intuition.
+- Increase investigation depth when an attempt fails.
+- Preserve existing behavior unless the task requires changing it.
+- Be explicit when verification is partial.
 
-### Act
+## Reference Index
 
-Execute the planned step. Typical actions include:
+Read only the references needed for the current task.
 
-- Read repository files
-- Search the codebase
-- Inspect logs and runtime output
-- Run commands
-- Check configuration and dependency versions
-- Implement code changes
-- Create or run tests
+### [references/01-engineering-fundamentals.md](references/01-engineering-fundamentals.md)
 
-Only this step should change system state.
+Read for:
 
-### Reflect
+- change scope discipline
+- avoiding over-engineering and premature abstractions
+- reading code before editing
+- boundary validation and secure-by-default decisions
+- what to do when an approach is blocked
 
-After each action, determine:
+### [references/02-planning-and-execution.md](references/02-planning-and-execution.md)
 
-- What new information was discovered
-- Whether expectations were met
-- Which assumptions were confirmed or invalidated
-- What the next step should be
+Read for:
 
-Do not chain random actions together without reflection.
+- iterative planning
+- decomposition for larger tasks
+- parallel work or worker orchestration
+- completion protocol for delegated work
 
-## Investigation Before Modification
+### [references/03-verification-and-review.md](references/03-verification-and-review.md)
 
-Before implementing a fix:
+Read for:
 
-- Reproduce the failure when possible
-- Read the exact error message and stack trace
-- Locate the failing code and surrounding implementation
-- Understand the execution path that leads to the failure
+- adversarial verification
+- writing a verification plan
+- review and simplification passes before declaring completion
 
-Do not patch code you do not yet understand.
+### [references/04-safe-delivery.md](references/04-safe-delivery.md)
 
-## Root Cause First
+Read for:
 
-Prefer fixes that correct the mechanism causing the failure. Before patching, answer:
+- destructive action thresholds
+- git safety
+- commit, PR, and hook discipline
+- when to confirm with the user before taking irreversible actions
 
-- What exactly caused the failure?
-- Which assumption was violated?
-- Which component produced the incorrect behavior?
+### [references/05-debugging-and-root-cause-analysis.md](references/05-debugging-and-root-cause-analysis.md)
 
-If a change only suppresses symptoms, keep investigating.
+Read for:
 
-## Hypothesis-Driven Debugging
-
-Debug with explicit hypotheses:
-
-1. Observe evidence from stack traces, logs, runtime output, configuration, and dependency versions.
-2. Generate multiple plausible explanations.
-3. Design a validation step for each explanation.
-4. Use the evidence to eliminate incorrect hypotheses.
-
-Example:
-
-- H1: A dependency is missing -> inspect installed packages
-- H2: A version is incompatible -> compare actual versions and compatibility constraints
-- H3: An import path is wrong -> search project imports and resolution paths
-- H4: The environment is misconfigured -> inspect env vars and config files
-
-## Iteration and Escalation
-
-When an attempt fails:
-
-- Analyze why it failed
-- Identify the broken assumption
-- Choose a meaningfully different next strategy
-
-Do not repeat the same fix with minor variations.
-
-Increase investigation depth as attempts fail:
-
-- After first failure: re-read errors, code, and assumptions
-- After second failure: search exact error text and check documentation
-- After third failure: trace execution flow and instrument code if needed
-- After fourth failure: create a minimal reproduction and isolate components
-- After fifth failure: reconsider architecture, framing, and constraints
-
-## Patch Principles
-
-When implementing a fix:
-
-- Minimize scope
-- Preserve readability
-- Follow repository conventions
-- Preserve existing functionality unless the requirement says otherwise
-
-Avoid speculative large refactors unless the root cause demands them.
-
-## Verification Pipeline
-
-Every patch should pass this pipeline:
-
-1. Reproduce the failure
-2. Apply the patch
-3. Confirm the original failure is resolved
-4. Run sanity or regression checks
-5. Inspect nearby code paths for related issues
-
-Without reproducing the issue, be explicit that verification is partial.
-
-Examples of sanity checks:
-
-- Relevant tests pass
-- The affected command or page works end to end
-- No new errors appear in adjacent flows
-
-If the same bug pattern exists elsewhere, fix those locations too when the scope is clear and safe.
-
-## Verify Assumptions
-
-Do not rely on unchecked assumptions when verification is possible. Common sources of failure include:
-
-- Dependency versions
-- Environment configuration
-- API behavior
-- File paths
-- Permissions
-- Environment variables
-
-## Tool-First Investigation
-
-Gather evidence with available tools before asking the user. Prefer to:
-
-- Search the repository
-- Inspect stack traces and logs
-- Read configuration
-- Check documentation or dependency state
-
-Ask the user only after reasonable investigation.
-
-## Ask the User When Needed
-
-Request clarification when:
-
-- Credentials, secrets, or external data are missing
-- Domain knowledge is unavailable in the repository
-- Multiple product decisions are viable
-- The issue cannot be reproduced locally
-
-When asking, include:
-
-- What was tried
-- What evidence was collected
-- The specific missing information
+- `Plan -> Act -> Reflect`
+- investigation before modification
+- root-cause-first debugging
+- hypothesis-driven debugging
+- escalation strategy after failed attempts
+- verification pipeline and partial-verification rules
+- tool-first investigation and when to ask the user
 
 ## Completion Criteria
 
 Treat the task as complete only when:
 
-- The root cause is understood
-- The fix addresses that root cause
-- The issue is reproducibly resolved, or the verification limit is stated clearly
-- The fix has been validated
-- No obvious regressions remain
+- the root cause is understood
+- the fix addresses that cause
+- the result is verified, or the verification limit is stated clearly
+- nearby regressions have been checked
+- the chosen references were actually applied to the task at hand
 
-Take ownership of the full outcome: fix the bug, validate the result, and confirm the change integrates cleanly with the surrounding system.
+Do not report success based on a plausible diff alone.
