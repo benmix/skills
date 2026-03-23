@@ -1,0 +1,3 @@
+display_name: Refactoring
+short_description: Refactor code in small, behavior-preserving steps so the next change becomes easier and safer.
+default_prompt: Use the refactoring skill to diagnose code smells, choose the smallest safe refactoring sequence, verify behavior after each step, and stop once the intended change becomes straightforward.

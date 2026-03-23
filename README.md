@@ -58,6 +58,7 @@ This repository currently contains three kinds of skills:
 | --- | --- | --- |
 | [`writing-maestro`](skills/writing-maestro/SKILL.md) | Writing and editing workflow for human-facing prose, with emphasis on clarity, concision, and removing AI-sounding phrasing. | Local custom skill |
 | [`advanced-engineer`](skills/advanced-engineer/SKILL.md) | End-to-end engineering workflow covering debugging, root-cause analysis, minimal fixes, verification, and delivery checks. | Local custom skill |
+| [`refactoring`](skills/refactoring/SKILL.md) | Small-step, behavior-preserving refactoring guidance focused on making the next code change easier, safer, and cheaper. | Local custom skill |
 
 ### Remote-Synced Skills
 
@@ -253,7 +254,7 @@ This repository includes a GitHub Actions workflow that verifies selected skills
 - workflow file: `.github/workflows/verify-skills-install.yml`
 - runs on pushes to `main` and on pull requests that change `skills/**` or the workflow file
 - when run manually, you can choose which skills to verify
-- the current whitelist only verifies `advanced-engineer` and `writing-maestro`
+- the current whitelist verifies `advanced-engineer`, `writing-maestro`, and `refactoring`
 
 The workflow runs:
 
