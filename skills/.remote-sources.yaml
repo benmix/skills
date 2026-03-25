@@ -54,3 +54,10 @@ skills:
     ref: main
     source_path: skills/web-design-guidelines
     last_synced_commit: 9aec8ee6aaf702e49312a071e672f1c1b7b7e948
+
+  - skill_name: design-dna
+    local_path: design-dna
+    repo: zanwei/design-dna
+    ref: main
+    source_path: .
+    last_synced_commit: 4288b6121c6c28f5e870362a73ccdc8d17e092a2

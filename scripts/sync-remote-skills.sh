@@ -350,14 +350,22 @@ for line in "${selected_lines[@]}"; do
   ref_slug="${ref//\//-}"
   local_slug="${local_path//\//-}"
   repo_dir="$tmp_root/${repo_slug}__${ref_slug}__${local_slug}"
-  source_dir="$repo_dir/$source_path"
+  root_source=0
+  if [[ "$source_path" == "." || "$source_path" == "./" ]]; then
+    source_dir="$repo_dir"
+    root_source=1
+  else
+    source_dir="$repo_dir/$source_path"
+  fi
   target_dir="$repo_root/skills/$local_path"
   target_parent="$(dirname "$target_dir")"
 
   git init "$repo_dir" >/dev/null
   git -C "$repo_dir" remote add origin "https://github.com/$repo.git"
-  git -C "$repo_dir" sparse-checkout init --cone >/dev/null
-  git -C "$repo_dir" sparse-checkout set "$source_path" >/dev/null
+  if [[ "$root_source" -eq 0 ]]; then
+    git -C "$repo_dir" sparse-checkout init --cone >/dev/null
+    git -C "$repo_dir" sparse-checkout set "$source_path" >/dev/null
+  fi
   git -C "$repo_dir" fetch --depth 1 origin "$ref" >/dev/null
   git -C "$repo_dir" -c advice.detachedHead=false checkout FETCH_HEAD >/dev/null
   fetched_commit="$(git -C "$repo_dir" rev-parse HEAD)"
@@ -378,7 +386,12 @@ for line in "${selected_lines[@]}"; do
 
   mkdir -p "$target_parent"
   rm -rf "$target_dir"
-  cp -R "$source_dir" "$target_dir"
+  if [[ "$root_source" -eq 1 ]]; then
+    mkdir -p "$target_dir"
+    find "$repo_dir" -mindepth 1 -maxdepth 1 ! -name '.git' -exec cp -R {} "$target_dir"/ \;
+  else
+    cp -R "$source_dir" "$target_dir"
+  fi
   update_manifest_commit "$skill_name" "$local_path" "$fetched_commit"
 
   updated_skills+=("$skill_name"$'\t'"$local_path"$'\t'"$last_synced_commit"$'\t'"$fetched_commit")
