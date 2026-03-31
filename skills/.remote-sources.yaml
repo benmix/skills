@@ -61,3 +61,10 @@ skills:
     ref: main
     source_path: .
     last_synced_commit: 4288b6121c6c28f5e870362a73ccdc8d17e092a2
+
+  - skill_name: web-shader-extractor
+    local_path: web-shader-extractor
+    repo: lixiaolin94/skills
+    ref: main
+    source_path: web-shader-extractor
+    last_synced_commit: fc56abad11dbdefe002eb86d5ebd7a08d1dcdc78
