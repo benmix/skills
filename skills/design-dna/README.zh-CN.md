@@ -1,10 +1,12 @@
 <h1 align="center">design-dna</h1>
 
-![示例：从参考站点（thekrakentraining.com）提取视觉 DNA，并应用到自有内容（deno.com）。](docs/example-style-transfer.png)
-
-[English](README.md) | 中文
+<p align="center">
+<a href="README.md">English</a> | 中文 | <a href="README.ja.md">日本語</a> | <a href="README.ko.md">한국어</a> | <a href="README.es.md">Español</a> | <a href="README.zh-TW.md">繁體中文</a>
+</p>
 
 面向编程智能体的技能，用于提取、结构化并应用视觉设计身份（Design DNA），覆盖三个维度：设计系统（可度量 token）、设计风格（定性感受）与视觉特效。
+
+![示例：从参考站点（thekrakentraining.com）提取视觉 DNA，并应用到自有内容（deno.com）。](docs/example-style-transfer.png)
 
 ## 前置条件
 
@@ -80,6 +82,11 @@ flowchart LR
 **第三步 — 基于 DNA 生成。** 将 DNA JSON 与你自己的内容一同提供，智能体会生成忠实还原原始设计语言的实现，同时适配你的素材与文案。
 
 DNA JSON 是核心产物。一旦提取完成，它可以**提交到版本控制**、**跨团队共享**、**在多个项目中复用**，也可以**持续迭代微调** — 把主观的「照着那个网站做」变成一份精确、可复现的规格定义，任何智能体都能据此稳定输出一致的设计。
+
+> [!TIP]
+> **视觉精修提示。** 若首轮产出相对参考仍显单薄或细节不足，可将**同一批参考链接或截图**再次提供给智能体，发起明确的**精修轮次**；可在保留初稿的前提下显著拉近与「高保真参照」的差距，无需从零重做。
+>
+> **Prompt：** **请其对照参考复审界面层级与点缀、字阶与留白、动效与材质及整体 UI，并将结论回填至当前实现。**
 
 ## 兼容性
 
