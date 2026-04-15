@@ -4,63 +4,63 @@ skills:
     repo: obra/superpowers
     ref: main
     source_path: skills/verification-before-completion
-    last_synced_commit: 917e5f53b16b115b70a3a355ed5f4993b9f8b73d
+    last_synced_commit: f9b088f7b3a6fe9d9a9a98e392ad13c9d47053a4
 
   - skill_name: systematic-debugging
     local_path: systematic-debugging
     repo: obra/superpowers
     ref: main
     source_path: skills/systematic-debugging
-    last_synced_commit: 917e5f53b16b115b70a3a355ed5f4993b9f8b73d
+    last_synced_commit: f9b088f7b3a6fe9d9a9a98e392ad13c9d47053a4
 
   - skill_name: find-skills
     local_path: .system/find-skills
     repo: vercel-labs/skills
     ref: main
     source_path: skills/find-skills
-    last_synced_commit: df0579f85cb8a360473c921e1343359006100d3c
+    last_synced_commit: 004c73806e35f3b12582967759559203c4ed01f9
 
   - skill_name: skill-creator
     local_path: .system/skill-creator
     repo: openai/skills
     ref: main
     source_path: skills/.system/skill-creator
-    last_synced_commit: 0ed2046f287a92b5f4bcace213dcb3cc5f094cb9
+    last_synced_commit: e6afb0d74cc75d220df2faf3dd6c635c2dc6a108
 
   - skill_name: skill-installer
     local_path: .system/skill-installer
     repo: openai/skills
     ref: main
     source_path: skills/.system/skill-installer
-    last_synced_commit: 0ed2046f287a92b5f4bcace213dcb3cc5f094cb9
+    last_synced_commit: e6afb0d74cc75d220df2faf3dd6c635c2dc6a108
 
   - skill_name: vercel-composition-patterns
     local_path: vercel-composition-patterns
     repo: vercel-labs/agent-skills
     ref: main
     source_path: skills/composition-patterns
-    last_synced_commit: 73140fc5b3a214ad3222bcf557b397b3c02d11c1
+    last_synced_commit: 47863b24f8e22966bfcf8470debc7ba8c2c3b99c
 
   - skill_name: vercel-react-best-practices
     local_path: vercel-react-best-practices
     repo: vercel-labs/agent-skills
     ref: main
     source_path: skills/react-best-practices
-    last_synced_commit: 73140fc5b3a214ad3222bcf557b397b3c02d11c1
+    last_synced_commit: 47863b24f8e22966bfcf8470debc7ba8c2c3b99c
 
   - skill_name: web-design-guidelines
     local_path: web-design-guidelines
     repo: vercel-labs/agent-skills
     ref: main
     source_path: skills/web-design-guidelines
-    last_synced_commit: 73140fc5b3a214ad3222bcf557b397b3c02d11c1
+    last_synced_commit: 47863b24f8e22966bfcf8470debc7ba8c2c3b99c
 
   - skill_name: design-dna
     local_path: design-dna
     repo: zanwei/design-dna
     ref: main
     source_path: .
-    last_synced_commit: 6debc51c14788e227e1391631dec5322f454cd4e
+    last_synced_commit: 9d9d79568df31cd846681f89fd3be1c3ce0c2aff
 
   - skill_name: web-shader-extractor
     local_path: web-shader-extractor
