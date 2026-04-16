@@ -71,6 +71,24 @@ This repository currently contains three kinds of skills:
 | [`vercel-composition-patterns`](skills/vercel-composition-patterns/SKILL.md) | Guidance for React component architecture and composition patterns. | [`vercel-labs/agent-skills`](https://github.com/vercel-labs/agent-skills/blob/main/skills/composition-patterns/README.md) |
 | [`vercel-react-best-practices`](skills/vercel-react-best-practices/SKILL.md) | React and Next.js implementation and performance best practices. | [`vercel-labs/agent-skills`](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/README.md) |
 | [`web-design-guidelines`](skills/web-design-guidelines/SKILL.md) | Review guidance for web UI design, usability, and accessibility. | [`vercel-labs/agent-skills`](https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md) |
+| [`adapt`](skills/adapt/SKILL.md) | Adapt designs across screen sizes, devices, contexts, and platforms. | [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable/blob/main/.agents/skills/adapt/SKILL.md) |
+| [`animate`](skills/animate/SKILL.md) | Add purposeful animations, transitions, and motion that improve usability and delight. | [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable/blob/main/.agents/skills/animate/SKILL.md) |
+| [`audit`](skills/audit/SKILL.md) | Run technical frontend quality checks across accessibility, performance, theming, responsive design, and anti-patterns. | [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable/blob/main/.agents/skills/audit/SKILL.md) |
+| [`bolder`](skills/bolder/SKILL.md) | Amplify bland designs to create more visual impact and character. | [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable/blob/main/.agents/skills/bolder/SKILL.md) |
+| [`clarify`](skills/clarify/SKILL.md) | Improve unclear UX copy, labels, error messages, and instructions. | [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable/blob/main/.agents/skills/clarify/SKILL.md) |
+| [`colorize`](skills/colorize/SKILL.md) | Add strategic color to designs that feel too monochromatic or dull. | [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable/blob/main/.agents/skills/colorize/SKILL.md) |
+| [`critique`](skills/critique/SKILL.md) | Review design quality from a UX perspective with scoring, personas, and actionable feedback. | [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable/blob/main/.agents/skills/critique/SKILL.md) |
+| [`delight`](skills/delight/SKILL.md) | Add memorable moments of joy, personality, and polish. | [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable/blob/main/.agents/skills/delight/SKILL.md) |
+| [`distill`](skills/distill/SKILL.md) | Simplify designs by removing unnecessary complexity and noise. | [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable/blob/main/.agents/skills/distill/SKILL.md) |
+| [`harden`](skills/harden/SKILL.md) | Make interfaces production-ready with better states, onboarding, i18n, and edge-case handling. | [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable/blob/main/.agents/skills/harden/SKILL.md) |
+| [`impeccable`](skills/impeccable/SKILL.md) | Create distinctive, production-grade frontend interfaces with strong design direction and craft. | [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable/blob/main/.agents/skills/impeccable/SKILL.md) |
+| [`layout`](skills/layout/SKILL.md) | Improve layout, spacing, visual rhythm, and composition. | [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable/blob/main/.agents/skills/layout/SKILL.md) |
+| [`optimize`](skills/optimize/SKILL.md) | Diagnose and improve UI loading, rendering, animation, and bundle performance. | [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable/blob/main/.agents/skills/optimize/SKILL.md) |
+| [`overdrive`](skills/overdrive/SKILL.md) | Push interfaces into ambitious territory with technically advanced visual effects. | [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable/blob/main/.agents/skills/overdrive/SKILL.md) |
+| [`polish`](skills/polish/SKILL.md) | Perform a final design quality pass before shipping. | [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable/blob/main/.agents/skills/polish/SKILL.md) |
+| [`quieter`](skills/quieter/SKILL.md) | Tone down visually aggressive interfaces while keeping them refined. | [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable/blob/main/.agents/skills/quieter/SKILL.md) |
+| [`shape`](skills/shape/SKILL.md) | Plan UX and UI direction before implementation through structured discovery. | [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable/blob/main/.agents/skills/shape/SKILL.md) |
+| [`typeset`](skills/typeset/SKILL.md) | Improve font choices, hierarchy, sizing, and readability. | [`pbakaus/impeccable`](https://github.com/pbakaus/impeccable/blob/main/.agents/skills/typeset/SKILL.md) |
 
 ### System-Level Skills
 

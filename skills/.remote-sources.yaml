@@ -68,3 +68,129 @@ skills:
     ref: main
     source_path: web-shader-extractor
     last_synced_commit: fc56abad11dbdefe002eb86d5ebd7a08d1dcdc78
+
+  - skill_name: adapt
+    local_path: adapt
+    repo: pbakaus/impeccable
+    ref: main
+    source_path: .agents/skills/adapt
+    last_synced_commit: 00d485659af82982aef0328d0419c49a2716d123
+
+  - skill_name: animate
+    local_path: animate
+    repo: pbakaus/impeccable
+    ref: main
+    source_path: .agents/skills/animate
+    last_synced_commit: 00d485659af82982aef0328d0419c49a2716d123
+
+  - skill_name: audit
+    local_path: audit
+    repo: pbakaus/impeccable
+    ref: main
+    source_path: .agents/skills/audit
+    last_synced_commit: 00d485659af82982aef0328d0419c49a2716d123
+
+  - skill_name: bolder
+    local_path: bolder
+    repo: pbakaus/impeccable
+    ref: main
+    source_path: .agents/skills/bolder
+    last_synced_commit: 00d485659af82982aef0328d0419c49a2716d123
+
+  - skill_name: clarify
+    local_path: clarify
+    repo: pbakaus/impeccable
+    ref: main
+    source_path: .agents/skills/clarify
+    last_synced_commit: 00d485659af82982aef0328d0419c49a2716d123
+
+  - skill_name: colorize
+    local_path: colorize
+    repo: pbakaus/impeccable
+    ref: main
+    source_path: .agents/skills/colorize
+    last_synced_commit: 00d485659af82982aef0328d0419c49a2716d123
+
+  - skill_name: critique
+    local_path: critique
+    repo: pbakaus/impeccable
+    ref: main
+    source_path: .agents/skills/critique
+    last_synced_commit: 00d485659af82982aef0328d0419c49a2716d123
+
+  - skill_name: delight
+    local_path: delight
+    repo: pbakaus/impeccable
+    ref: main
+    source_path: .agents/skills/delight
+    last_synced_commit: 00d485659af82982aef0328d0419c49a2716d123
+
+  - skill_name: distill
+    local_path: distill
+    repo: pbakaus/impeccable
+    ref: main
+    source_path: .agents/skills/distill
+    last_synced_commit: 00d485659af82982aef0328d0419c49a2716d123
+
+  - skill_name: harden
+    local_path: harden
+    repo: pbakaus/impeccable
+    ref: main
+    source_path: .agents/skills/harden
+    last_synced_commit: 00d485659af82982aef0328d0419c49a2716d123
+
+  - skill_name: impeccable
+    local_path: impeccable
+    repo: pbakaus/impeccable
+    ref: main
+    source_path: .agents/skills/impeccable
+    last_synced_commit: 00d485659af82982aef0328d0419c49a2716d123
+
+  - skill_name: layout
+    local_path: layout
+    repo: pbakaus/impeccable
+    ref: main
+    source_path: .agents/skills/layout
+    last_synced_commit: 00d485659af82982aef0328d0419c49a2716d123
+
+  - skill_name: optimize
+    local_path: optimize
+    repo: pbakaus/impeccable
+    ref: main
+    source_path: .agents/skills/optimize
+    last_synced_commit: 00d485659af82982aef0328d0419c49a2716d123
+
+  - skill_name: overdrive
+    local_path: overdrive
+    repo: pbakaus/impeccable
+    ref: main
+    source_path: .agents/skills/overdrive
+    last_synced_commit: 00d485659af82982aef0328d0419c49a2716d123
+
+  - skill_name: polish
+    local_path: polish
+    repo: pbakaus/impeccable
+    ref: main
+    source_path: .agents/skills/polish
+    last_synced_commit: 00d485659af82982aef0328d0419c49a2716d123
+
+  - skill_name: quieter
+    local_path: quieter
+    repo: pbakaus/impeccable
+    ref: main
+    source_path: .agents/skills/quieter
+    last_synced_commit: 00d485659af82982aef0328d0419c49a2716d123
+
+  - skill_name: shape
+    local_path: shape
+    repo: pbakaus/impeccable
+    ref: main
+    source_path: .agents/skills/shape
+    last_synced_commit: 00d485659af82982aef0328d0419c49a2716d123
+
+  - skill_name: typeset
+    local_path: typeset
+    repo: pbakaus/impeccable
+    ref: main
+    source_path: .agents/skills/typeset
+    last_synced_commit: 00d485659af82982aef0328d0419c49a2716d123
