@@ -59,6 +59,7 @@ This repository currently contains three kinds of skills:
 | [`writing-maestro`](skills/writing-maestro/SKILL.md) | Writing and editing workflow for human-facing prose, with emphasis on clarity, concision, and removing AI-sounding phrasing. | Local custom skill |
 | [`advanced-engineer`](skills/advanced-engineer/SKILL.md) | End-to-end engineering workflow covering debugging, root-cause analysis, minimal fixes, verification, and delivery checks. | Local custom skill |
 | [`refactoring`](skills/refactoring/SKILL.md) | Small-step, behavior-preserving refactoring guidance focused on making the next code change easier, safer, and cheaper. | Local custom skill |
+| [`anti-repo-skill`](skills/anti-repo-skill/SKILL.md) | Guardrail that keeps repo-local skills opt-in only unless the user explicitly names one. | Local custom skill |
 
 ### Remote-Synced Skills
 
