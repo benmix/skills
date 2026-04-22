@@ -1,3 +1,0 @@
-display_name: Anti Repo Skill
-short_description: Prevents automatic use of repository-local skills unless the user explicitly names one.
-default_prompt: Use the anti-repo-skill guardrail so repo-local skills stay disabled unless the user explicitly requests a named skill.
