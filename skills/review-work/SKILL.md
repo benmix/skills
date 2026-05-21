@@ -1,6 +1,6 @@
 ---
 name: review-work
-description: Review local changes, branches, PRs, or completed agent work along two axes: code standards and spec compliance. Use when the user asks to review work, review since a commit or branch, check whether implementation matches requirements, or assess whether a change is ready to ship.
+description: "Review local changes, branches, PRs, or completed agent work along two axes: code standards and spec compliance. Use when the user asks to review work, review since a commit or branch, check whether implementation matches requirements, or assess whether a change is ready to ship."
 ---
 
 # Review Work

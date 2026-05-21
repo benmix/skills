@@ -43,6 +43,10 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Use npmjs registry
+        shell: bash
+        run: npm config set registry https://registry.npmjs.org/
+
       - name: Resolve skill list
         id: resolve
         shell: bash
