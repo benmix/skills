@@ -261,7 +261,7 @@ This repository includes a GitHub Actions workflow that verifies selected skills
 - workflow file: `.github/workflows/verify-skills-install.yml`
 - runs on pushes to `main` and on pull requests that change `skills/**` or the workflow file
 - when run manually, you can choose which skills to verify
-- the current whitelist verifies `advanced-engineer`, `writing-maestro`, and `refactoring`
+- the current whitelist verifies `advanced-engineer`, `clarify-plan`, `handoff`, `prototype`, `refactoring`, `review-work`, `slice-plan`, and `writing-maestro`
 
 The workflow runs:
 

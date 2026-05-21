@@ -26,7 +26,12 @@ jobs:
     env:
       ALLOWED_SKILLS: |
         advanced-engineer
+        clarify-plan
+        handoff
+        prototype
         refactoring
+        review-work
+        slice-plan
         writing-maestro
 
     steps:
