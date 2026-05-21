@@ -4,10 +4,11 @@
 
 1. Lock down behavior first with tests
 2. Identify the smell and the intended improvement
-3. Choose the smallest safe refactoring move
-4. Make one small change
-5. Run the tests
-6. Commit or continue with the next small step
+3. For abstraction changes, apply the deletion test
+4. Choose the smallest safe refactoring move
+5. Make one small change
+6. Run the tests
+7. Commit or continue with the next small step
 
 Repeat only while the code is still getting easier to change.
 
@@ -79,6 +80,8 @@ Use the strongest available verification, in this order:
 - Prefer local changes before architectural ones.
 - Prefer reversible edits.
 - Prefer explicit names over clever abstractions.
+- Prefer refactorings that increase locality or leverage.
+- Avoid seams that only support hypothetical future adapters.
 - Stop when the intended feature or fix becomes easy.
 - Do not refactor unrelated areas just because they are ugly.
 

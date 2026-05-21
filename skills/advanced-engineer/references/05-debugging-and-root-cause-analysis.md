@@ -2,6 +2,47 @@
 
 ---
 
+# Build the feedback loop first
+
+## Rule
+
+Before debugging a bug or changing behavior, establish the fastest reliable pass/fail signal you can. A good feedback loop makes every later step cheaper: reproduction, hypothesis testing, instrumentation, fixing, and regression checking.
+
+## Why It Matters
+
+Without a repeatable signal, debugging collapses into code reading and guesswork. A slow or flaky signal is only slightly better. Spend real effort making the loop fast, sharp, and deterministic.
+
+## How To Apply It
+
+Try feedback loops in roughly this order:
+
+1. Failing automated test at the narrowest correct seam.
+2. HTTP or CLI script with fixture input and expected output.
+3. Headless browser check for UI behavior, DOM state, console errors, or network calls.
+4. Captured trace or payload replayed through the affected code path.
+5. Throwaway harness that exercises the failing function or service boundary.
+6. Property, fuzz, or stress loop for intermittent or input-sensitive failures.
+7. `git bisect run` style harness when the bug appeared between two known states.
+8. Structured human-in-the-loop script only when automation is genuinely impossible.
+
+Once a loop exists, improve it:
+
+- make it faster by narrowing setup and scope
+- make it sharper by asserting the user-visible symptom
+- make it deterministic by pinning time, seeds, filesystem state, and network boundaries
+
+Do not proceed to speculative fixes when no credible loop exists. State what you tried and ask for logs, traces, reproduction access, or permission to add temporary instrumentation.
+
+## Common Failure Mode
+
+Treating "I read the code and it looks wrong" as a feedback loop.
+
+## Practical Test
+
+Can you run one command or script that demonstrates the failure before the fix and demonstrates the fix afterwards?
+
+---
+
 # Understand the problem before changing code
 
 ## Rule
@@ -129,7 +170,7 @@ After each step, can you state what you learned and why the next step logically 
 
 ## Rule
 
-Debugging must be guided by explicit, testable hypotheses. At any point in the investigation, maintain a set of plausible explanations for the observed behavior, and use targeted checks or experiments to validate or eliminate each hypothesis.
+Debugging must be guided by explicit, testable hypotheses. At any point in the investigation, maintain a ranked set of plausible explanations for the observed behavior, and use targeted checks or experiments to validate or eliminate each hypothesis.
 
 ## Why It Matters
 
@@ -140,16 +181,18 @@ Debugging becomes reliable when driven by explicit reasoning instead of trial-an
 Follow this process:
 
 1. Observe evidence from stack traces, logs, runtime output, configuration, and dependency versions
-2. Generate multiple plausible explanations
-3. Design a validation step for each explanation
-4. Use evidence to eliminate incorrect hypotheses
+2. Generate 3-5 plausible explanations when the cause is not obvious
+3. Rank them by likelihood and cost to test
+4. State the prediction each hypothesis makes
+5. Design a validation step for each explanation
+6. Use evidence to eliminate incorrect hypotheses
 
 Example:
 
-* H1: A dependency is missing -> inspect installed packages
-* H2: A version is incompatible -> compare versions and constraints
-* H3: An import path is wrong -> search resolution paths
-* H4: Environment misconfiguration -> inspect env vars and configs
+* H1: A dependency is missing -> if true, package inspection will show it absent
+* H2: A version is incompatible -> if true, versions will differ from documented constraints
+* H3: An import path is wrong -> if true, resolution tracing will point at the wrong file
+* H4: Environment misconfiguration -> if true, env/config inspection will differ between working and failing runs
 
 ## Common Failure Mode
 

@@ -1,0 +1,3 @@
+display_name: Review Work
+short_description: Review changes along code standards and spec compliance, with findings first.
+default_prompt: Use the review-work skill to inspect local changes, branches, PRs, or completed agent work against repository standards and the originating spec, reporting actionable findings first.

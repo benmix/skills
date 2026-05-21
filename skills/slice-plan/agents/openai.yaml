@@ -1,0 +1,3 @@
+display_name: Slice Plan
+short_description: Break broad plans into vertical AFK/HITL slices with dependencies and acceptance criteria.
+default_prompt: Use the slice-plan skill to turn a broad plan into independently verifiable vertical slices, marking AFK/HITL work and dependencies without creating issues automatically.

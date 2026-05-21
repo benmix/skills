@@ -35,7 +35,9 @@ Do not chain random actions together without updating the model of the problem.
 ## Keep In SKILL Context
 
 - Do not patch code you do not yet understand.
+- Build or identify a fast feedback loop before debugging or changing behavior.
 - Prefer explicit hypotheses over intuition.
+- Prefer several falsifiable hypotheses over the first plausible explanation.
 - Increase investigation depth when an attempt fails.
 - Preserve existing behavior unless the task requires changing it.
 - Be explicit when verification is partial.
@@ -69,6 +71,7 @@ Read for:
 
 - adversarial verification
 - writing a verification plan
+- vertical red-green-refactor test cycles
 - review and simplification passes before declaring completion
 
 ### [references/04-safe-delivery.md](references/04-safe-delivery.md)
@@ -85,9 +88,11 @@ Read for:
 Read for:
 
 - `Plan -> Act -> Reflect`
+- building a deterministic feedback loop
 - investigation before modification
 - root-cause-first debugging
 - hypothesis-driven debugging
+- ranked falsifiable hypotheses
 - escalation strategy after failed attempts
 - verification pipeline and partial-verification rules
 - tool-first investigation and when to ask the user

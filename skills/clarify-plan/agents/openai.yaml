@@ -1,0 +1,3 @@
+display_name: Clarify Plan
+short_description: Resolve ambiguous plans with focused questions, recommended answers, and a concise execution brief.
+default_prompt: Use the clarify-plan skill to ask focused planning questions one at a time, recommend answers, and turn the result into a short execution brief.

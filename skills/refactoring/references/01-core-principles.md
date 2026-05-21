@@ -13,6 +13,26 @@
 4. Write understanding back into the code instead of keeping it in your head.
 5. Favor economic payoff over aesthetic argument.
 
+## Deep And Shallow Modules
+
+A module is anything with an interface and an implementation: a function, class, package, workflow, component, or slice.
+
+- **Interface**: everything a caller must know to use the module, including types, invariants, ordering, configuration, and error modes.
+- **Implementation**: the code behind that interface.
+- **Deep module**: a small, stable interface that hides meaningful behavior.
+- **Shallow module**: an interface nearly as complex as its implementation.
+
+Prefer refactorings that deepen modules. A good module gives callers leverage: they learn a little and get a lot. It also gives maintainers locality: changes and bugs concentrate in one place instead of spreading across callers.
+
+## Deletion Test
+
+When considering an abstraction, imagine deleting it.
+
+- If complexity disappears, the abstraction may be unnecessary.
+- If complexity reappears across several callers, the abstraction is probably earning its keep.
+
+Use this test before adding a seam, wrapper, helper, or service. A seam is real when it concentrates behavior or supports real variation. One adapter often means a hypothetical seam; two adapters usually mean a real seam.
+
 ## The Two Hats
 
 - When adding functionality: define new behavior and make the tests pass.
@@ -24,6 +44,7 @@
 - Increase readability
 - Make bugs easier to spot
 - Make long-term development faster
+- Increase locality and leverage
 
 ## Common Refactoring Moments
 

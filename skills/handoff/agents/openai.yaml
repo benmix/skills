@@ -1,0 +1,3 @@
+display_name: Handoff
+short_description: Create a temporary handoff brief so another agent or future session can continue the work.
+default_prompt: Use the handoff skill to summarize current state, decisions, commands, risks, next steps, and suggested skills in a temp-directory document.

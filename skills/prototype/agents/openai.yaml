@@ -1,0 +1,3 @@
+display_name: Prototype
+short_description: Build throwaway prototypes to answer uncertain UI, state, or business-logic questions before production work.
+default_prompt: Use the prototype skill to create a temporary runnable spike that answers the specific design or logic question, then capture the decision and clean up or absorb the code.

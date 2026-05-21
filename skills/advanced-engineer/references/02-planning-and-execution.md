@@ -20,6 +20,20 @@ Good plans are built from evidence, not from guesses. An iterative plan stays gr
 - Ask the user about requirements, priorities, and tradeoffs, not facts already present in the code.
 - Include a verification section in the plan.
 
+## Zoom Out When Context Fragments
+
+If code exploration becomes a sequence of disconnected files, pause and go up one level before editing.
+
+Write a short map of:
+
+- the relevant modules and their responsibilities
+- the main callers and callees
+- the data or control flow through the area
+- the public interfaces or seams that matter
+- the likely place where the change should land
+
+Use the project's domain language where it exists. The goal is not a full architecture document; it is to restore orientation so the next edit is local and justified.
+
 ## What A Good Plan Contains
 
 - The context for the change.

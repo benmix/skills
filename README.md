@@ -59,6 +59,11 @@ This repository currently contains three kinds of skills:
 | [`writing-maestro`](skills/writing-maestro/SKILL.md) | Writing and editing workflow for human-facing prose, with emphasis on clarity, concision, and removing AI-sounding phrasing. | Local custom skill |
 | [`advanced-engineer`](skills/advanced-engineer/SKILL.md) | End-to-end engineering workflow covering debugging, root-cause analysis, minimal fixes, verification, and delivery checks. | Local custom skill |
 | [`refactoring`](skills/refactoring/SKILL.md) | Small-step, behavior-preserving refactoring guidance focused on making the next code change easier, safer, and cheaper. | Local custom skill |
+| [`prototype`](skills/prototype/SKILL.md) | Throwaway prototypes for uncertain UI, state-machine, or business-logic questions before production work. | Local custom skill |
+| [`handoff`](skills/handoff/SKILL.md) | Temporary handoff briefs for continuing long-running work in another session or agent. | Local custom skill |
+| [`clarify-plan`](skills/clarify-plan/SKILL.md) | Focused planning questions with recommended answers for ambiguous or high-cost changes. | Local custom skill |
+| [`slice-plan`](skills/slice-plan/SKILL.md) | Break broad plans into vertical AFK/HITL slices with dependencies and acceptance criteria. | Local custom skill |
+| [`review-work`](skills/review-work/SKILL.md) | Review changes along repository standards and spec compliance with findings first. | Local custom skill |
 
 ### Remote-Synced Skills
 

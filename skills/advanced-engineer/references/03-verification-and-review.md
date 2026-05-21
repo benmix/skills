@@ -2,6 +2,42 @@
 
 ---
 
+# Vertical Red-Green-Refactor
+
+## Rule
+
+When the task calls for test-first work, add behavior one vertical slice at a time: one failing behavior test, the smallest implementation that passes it, then refactor while green.
+
+## Why It Matters
+
+Writing many tests before any implementation often locks in imagined interfaces and brittle implementation details. A vertical cycle lets each test respond to what the previous slice taught you.
+
+## How To Apply It
+
+For each behavior:
+
+1. Write one test that verifies observable behavior through a public interface.
+2. Run it and confirm it fails for the expected reason.
+3. Implement only enough code to pass that test.
+4. Run the test and the nearest relevant checks.
+5. Refactor only after the test is green.
+6. Repeat with the next behavior.
+
+Prefer integration-style tests that exercise real code paths. Avoid tests that mock internal collaborators, inspect private details, or fail when implementation changes but behavior does not.
+
+## Common Failure Modes
+
+- Writing all tests first, then all implementation.
+- Testing data shape or function names instead of user-visible behavior.
+- Refactoring while tests are red.
+- Adding speculative behavior for future tests.
+
+## Practical Test
+
+Can you name the single behavior the current test proves, and would that test survive an internal refactor?
+
+---
+
 # Adversarial Verification
 
 ## Rule

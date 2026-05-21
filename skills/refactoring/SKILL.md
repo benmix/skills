@@ -27,6 +27,7 @@ Refactor code in small, behavior-preserving steps so the next change becomes eas
 - Refactoring is structural improvement that preserves observable behavior.
 - Refactoring is not rewriting.
 - Refactoring is not feature work.
+- Good refactoring increases locality or leverage; it should make future changes concentrate in fewer places or expose more behavior behind a simpler interface.
 - Wear one hat at a time:
   `Refactor hat` changes structure only.
   `Feature hat` changes behavior only.
@@ -37,12 +38,13 @@ Refactor code in small, behavior-preserving steps so the next change becomes eas
 1. Clarify the real goal: feature, bug fix, or comprehension.
 2. State the smell in one sentence.
 3. State the intended improvement in one sentence.
-4. Lock down current behavior with tests or the strongest repeatable check available.
-5. Choose the smallest refactoring that makes the next change easier.
-6. Apply one micro-step.
-7. Run checks immediately.
-8. Repeat only while improvement is still clear.
-9. Stop as soon as the intended change becomes straightforward.
+4. For abstraction changes, apply the deletion test: if the module disappeared, would complexity vanish or spread across callers?
+5. Lock down current behavior with tests or the strongest repeatable check available.
+6. Choose the smallest refactoring that makes the next change easier.
+7. Apply one micro-step.
+8. Run checks immediately.
+9. Repeat only while improvement is still clear.
+10. Stop as soon as the intended change becomes straightforward.
 
 Preferred step order:
 
@@ -106,6 +108,9 @@ Use the strongest available verification, in this order:
 ## Working Heuristics
 
 - In legacy code, improve the area you must touch instead of trying to beautify everything.
+- Prefer deep modules: small interfaces that hide meaningful behavior.
+- Be suspicious of shallow modules: interfaces nearly as complex as their implementations.
+- A seam is useful when it improves locality or has at least one real alternative adapter, not just a hypothetical future variation.
 - In low-test systems, choose especially safe transformations and verify constantly.
 - Do not mix performance tuning into routine refactoring. First improve clarity, then measure, then optimize only where evidence demands it.
 - Long-lived feature branches make refactoring harder. Integrate frequently and keep branch lifetime short.
@@ -120,15 +125,16 @@ A refactoring task is done only when:
 - the target area is easier to understand
 - the next intended change is easier than before
 - no unnecessary abstraction was introduced
+- complexity is either removed or concentrated behind a simpler, more useful interface
 
 ## Reference Strategy
 
 Stay in this file by default. Read references only when the default loop is not enough:
 
 - `references/01-core-principles.md`
-  Use when you need the core definition, the "two hats" model, or the decision standard for good design.
+  Use when you need the core definition, the "two hats" model, deep/shallow module language, or the decision standard for good design.
 - `references/02-workflow-and-tactics.md`
-  Use when you need the execution loop, preferred step order, verification ladder, or common refactoring tactics.
+  Use when you need the execution loop, deletion test, preferred step order, verification ladder, or common refactoring tactics.
 - `references/03-bad-smells-map.md`
   Use when you can tell the code is bad but need help naming the smell and choosing the first move.
 - `references/04-refactoring-priority.md`
