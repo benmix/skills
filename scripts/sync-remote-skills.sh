@@ -337,6 +337,78 @@ trap cleanup EXIT
 
 declare -a updated_skills=()
 declare -a unchanged_skills=()
+declare -a checkout_keys=()
+declare -a checkout_dirs=()
+declare -a checkout_commits=()
+
+prepared_repo_dir=""
+prepared_repo_commit=""
+
+prepare_repo_checkout() {
+  local repo="$1"
+  local ref="$2"
+  local key="$repo"$'\t'"$ref"
+  local index
+  local line
+  local skill_name
+  local local_path
+  local line_repo
+  local line_ref
+  local source_path
+  local last_synced_commit
+  local repo_slug
+  local ref_slug
+  local repo_dir
+  local root_source=0
+  local fetched_commit
+  local sparse_paths=()
+
+  for index in "${!checkout_keys[@]}"; do
+    if [[ "${checkout_keys[$index]}" == "$key" ]]; then
+      prepared_repo_dir="${checkout_dirs[$index]}"
+      prepared_repo_commit="${checkout_commits[$index]}"
+      return 0
+    fi
+  done
+
+  repo_slug="${repo//@/-}"
+  repo_slug="${repo_slug//\//-}"
+  ref_slug="${ref//\//-}"
+  repo_dir="$tmp_root/${repo_slug}__${ref_slug}"
+
+  for line in "${selected_lines[@]}"; do
+    IFS=$'\t' read -r skill_name local_path line_repo line_ref source_path last_synced_commit <<< "$line"
+    if [[ -n "$ref_override" ]]; then
+      line_ref="$ref_override"
+    fi
+
+    if [[ "$line_repo" != "$repo" || "$line_ref" != "$ref" ]]; then
+      continue
+    fi
+
+    if [[ "$source_path" == "." || "$source_path" == "./" ]]; then
+      root_source=1
+    else
+      sparse_paths+=("$source_path")
+    fi
+  done
+
+  git init "$repo_dir" >/dev/null
+  git -C "$repo_dir" remote add origin "https://github.com/$repo.git"
+  if [[ "$root_source" -eq 0 ]]; then
+    git -C "$repo_dir" sparse-checkout init --cone >/dev/null
+    git -C "$repo_dir" sparse-checkout set "${sparse_paths[@]}" >/dev/null
+  fi
+  git -C "$repo_dir" fetch --depth 1 origin "$ref" >/dev/null
+  git -C "$repo_dir" -c advice.detachedHead=false checkout FETCH_HEAD >/dev/null
+  fetched_commit="$(git -C "$repo_dir" rev-parse HEAD)"
+
+  checkout_keys+=("$key")
+  checkout_dirs+=("$repo_dir")
+  checkout_commits+=("$fetched_commit")
+  prepared_repo_dir="$repo_dir"
+  prepared_repo_commit="$fetched_commit"
+}
 
 printf '%s %d skill%s\n' "$(heading_text "Syncing")" "${#selected_lines[@]}" "$([[ ${#selected_lines[@]} -eq 1 ]] && printf '' || printf 's')"
 
@@ -346,10 +418,10 @@ for line in "${selected_lines[@]}"; do
     ref="$ref_override"
   fi
 
-  repo_slug="${repo//@/-}"
-  ref_slug="${ref//\//-}"
-  local_slug="${local_path//\//-}"
-  repo_dir="$tmp_root/${repo_slug}__${ref_slug}__${local_slug}"
+  prepare_repo_checkout "$repo" "$ref"
+  repo_dir="$prepared_repo_dir"
+  fetched_commit="$prepared_repo_commit"
+
   root_source=0
   if [[ "$source_path" == "." || "$source_path" == "./" ]]; then
     source_dir="$repo_dir"
@@ -359,16 +431,6 @@ for line in "${selected_lines[@]}"; do
   fi
   target_dir="$repo_root/skills/$local_path"
   target_parent="$(dirname "$target_dir")"
-
-  git init "$repo_dir" >/dev/null
-  git -C "$repo_dir" remote add origin "https://github.com/$repo.git"
-  if [[ "$root_source" -eq 0 ]]; then
-    git -C "$repo_dir" sparse-checkout init --cone >/dev/null
-    git -C "$repo_dir" sparse-checkout set "$source_path" >/dev/null
-  fi
-  git -C "$repo_dir" fetch --depth 1 origin "$ref" >/dev/null
-  git -C "$repo_dir" -c advice.detachedHead=false checkout FETCH_HEAD >/dev/null
-  fetched_commit="$(git -C "$repo_dir" rev-parse HEAD)"
 
   printf '\n[%s] %s (%s)\n' "$(status_text "CHECK")" "$skill_name" "$local_path"
   printf '  %s %s:%s/%s\n' "$(label_text "source:")" "$repo" "$ref" "$source_path"
@@ -394,7 +456,7 @@ for line in "${selected_lines[@]}"; do
   fi
   update_manifest_commit "$skill_name" "$local_path" "$fetched_commit"
 
-  updated_skills+=("$skill_name"$'\t'"$local_path"$'\t'"$last_synced_commit"$'\t'"$fetched_commit")
+  updated_skills+=("$skill_name"$'\t'"$local_path"$'\t'"$(display_commit "$last_synced_commit")"$'\t'"$(display_commit "$fetched_commit")")
   printf '  %s %s (%s -> %s)\n' "$(label_text "result:")" "$(status_text "UPDATED")" "$(display_commit "$last_synced_commit")" "$(display_commit "$fetched_commit")"
 done
 
@@ -413,8 +475,8 @@ if [[ ${#updated_skills[@]} -gt 0 ]]; then
     printf '  - %s (%s): %s -> %s\n' \
       "$skill_name" \
       "$local_path" \
-      "$(display_commit "$previous_commit")" \
-      "$(display_commit "$fetched_commit")"
+      "$previous_commit" \
+      "$fetched_commit"
   done
 fi
 

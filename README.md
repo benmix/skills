@@ -21,10 +21,9 @@ Optional supporting directories include:
 - `scripts/`: reusable helper scripts
 - `assets/`: templates, static files, or other reusable outputs
 
-This repository currently contains three kinds of skills:
+This repository currently contains two kinds of skills:
 
 - local custom skills maintained directly in this repo
-- system-level skills under `skills/.system/`, usually imported from external projects
 - remote-sync skills tracked in `skills/.remote-sources.yaml` and updated from upstream repositories
 
 ## Repository Layout
@@ -32,8 +31,6 @@ This repository currently contains three kinds of skills:
 ```text
 .
 ├── skills/
-│   ├── .system/                  # System-level or imported skills
-│   │   └── <skill-name>/
 │   ├── <skill-name>/             # Local skills or synced skills stored in this repo
 │   │   ├── SKILL.md
 │   │   ├── agents/
@@ -67,23 +64,15 @@ This repository currently contains three kinds of skills:
 
 ### Remote-Synced Skills
 
-| Skill | Purpose | Source |
+| Source | Synced skills | Notes |
 | --- | --- | --- |
-| [`verification-before-completion`](skills/verification-before-completion/SKILL.md) | Requires fresh command evidence before claiming work is complete, fixed, or passing. | [`obra/superpowers`](https://github.com/obra/superpowers/blob/main/skills/verification-before-completion/SKILL.md) |
-| [`systematic-debugging`](skills/systematic-debugging/SKILL.md) | Debugging workflow that starts with root-cause analysis before proposing fixes. | [`obra/superpowers`](https://github.com/obra/superpowers/blob/main/skills/systematic-debugging/SKILL.md) |
-| [`design-dna`](skills/design-dna/SKILL.md) | Extract, structure, and apply visual design identity across design tokens, qualitative style, and visual effects. | [`zanwei/design-dna`](https://github.com/zanwei/design-dna/blob/main/SKILL.md) |
-| [`web-shader-extractor`](skills/web-shader-extractor/SKILL.md) | Extract and package reusable shader patterns and implementation details from web projects. | [`lixiaolin94/skills`](https://github.com/lixiaolin94/skills/tree/main/web-shader-extractor) |
-| [`vercel-composition-patterns`](skills/vercel-composition-patterns/SKILL.md) | Guidance for React component architecture and composition patterns. | [`vercel-labs/agent-skills`](https://github.com/vercel-labs/agent-skills/blob/main/skills/composition-patterns/README.md) |
-| [`vercel-react-best-practices`](skills/vercel-react-best-practices/SKILL.md) | React and Next.js implementation and performance best practices. | [`vercel-labs/agent-skills`](https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/README.md) |
-| [`web-design-guidelines`](skills/web-design-guidelines/SKILL.md) | Review guidance for web UI design, usability, and accessibility. | [`vercel-labs/agent-skills`](https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md) |
-
-### System-Level Skills
-
-| Skill | Purpose | Source |
-| --- | --- | --- |
-| [`find-skills`](skills/.system/find-skills/SKILL.md) | Helps discover relevant skills when a user asks for a capability or workflow. | [`vercel-labs/skills`](https://github.com/vercel-labs/skills/blob/main/skills/find-skills/SKILL.md) |
-| [`skill-creator`](skills/.system/skill-creator/SKILL.md) | General guidance for creating or updating skills. | [`openai/skills`](https://github.com/openai/skills/blob/main/skills/.system/skill-creator/SKILL.md) |
-| [`skill-installer`](skills/.system/skill-installer/SKILL.md) | Guidance for installing skills from curated sources or GitHub paths. | [`openai/skills`](https://github.com/openai/skills/blob/main/skills/.system/skill-installer/SKILL.md) |
+| [`obra/superpowers`](https://github.com/obra/superpowers/tree/main/skills) | [`verification-before-completion`](skills/verification-before-completion/SKILL.md), [`systematic-debugging`](skills/systematic-debugging/SKILL.md) | Verification and debugging workflows. |
+| [`zanwei/design-dna`](https://github.com/zanwei/design-dna) | [`design-dna`](skills/design-dna/SKILL.md) | Visual identity extraction and application. |
+| [`lixiaolin94/skills`](https://github.com/lixiaolin94/skills) | [`web-shader-extractor`](skills/web-shader-extractor/SKILL.md) | Web shader extraction and porting workflow. |
+| [`vercel-labs/agent-skills`](https://github.com/vercel-labs/agent-skills/tree/main/skills) | [`vercel-composition-patterns`](skills/vercel-composition-patterns/SKILL.md), [`vercel-react-best-practices`](skills/vercel-react-best-practices/SKILL.md), [`web-design-guidelines`](skills/web-design-guidelines/SKILL.md) | React, Next.js, component architecture, and web design guidance. |
+| [`vercel-labs/skills`](https://github.com/vercel-labs/skills/tree/main/skills) | [`find-skills`](skills/find-skills/SKILL.md) | Skill discovery helper. |
+| [`openai/skills`](https://github.com/openai/skills/tree/main/skills/.system) | [`skill-creator`](skills/skill-creator/SKILL.md), [`skill-installer`](skills/skill-installer/SKILL.md) | Skill creation and installation workflows. |
+| [`larksuite/cli`](https://github.com/larksuite/cli/tree/main/skills) | `lark-*` suite: [`lark-approval`](skills/lark-approval/SKILL.md), [`lark-apps`](skills/lark-apps/SKILL.md), [`lark-attendance`](skills/lark-attendance/SKILL.md), [`lark-base`](skills/lark-base/SKILL.md), [`lark-calendar`](skills/lark-calendar/SKILL.md), [`lark-contact`](skills/lark-contact/SKILL.md), [`lark-doc`](skills/lark-doc/SKILL.md), [`lark-drive`](skills/lark-drive/SKILL.md), [`lark-event`](skills/lark-event/SKILL.md), [`lark-im`](skills/lark-im/SKILL.md), [`lark-mail`](skills/lark-mail/SKILL.md), [`lark-markdown`](skills/lark-markdown/SKILL.md), [`lark-minutes`](skills/lark-minutes/SKILL.md), [`lark-okr`](skills/lark-okr/SKILL.md), [`lark-openapi-explorer`](skills/lark-openapi-explorer/SKILL.md), [`lark-shared`](skills/lark-shared/SKILL.md), [`lark-sheets`](skills/lark-sheets/SKILL.md), [`lark-skill-maker`](skills/lark-skill-maker/SKILL.md), [`lark-slides`](skills/lark-slides/SKILL.md), [`lark-task`](skills/lark-task/SKILL.md), [`lark-vc`](skills/lark-vc/SKILL.md), [`lark-vc-agent`](skills/lark-vc-agent/SKILL.md), [`lark-whiteboard`](skills/lark-whiteboard/SKILL.md), [`lark-wiki`](skills/lark-wiki/SKILL.md), [`lark-workflow-meeting-summary`](skills/lark-workflow-meeting-summary/SKILL.md), [`lark-workflow-standup-report`](skills/lark-workflow-standup-report/SKILL.md) | Feishu/Lark CLI workflows across docs, IM, calendar, Base, Sheets, tasks, meetings, and approvals. |
 
 ## Quick Start
 
@@ -162,7 +151,6 @@ Install a single skill:
 ```bash
 ./scripts/install-skills.sh my-skill
 ./scripts/install-skills.sh skill-installer
-./scripts/install-skills.sh .system/skill-installer
 ```
 
 Preview the install without writing files:
@@ -214,7 +202,7 @@ skills:
     last_synced_commit: 7e516434f2a30114300efc9247db32fb37daa5f9
 
   - skill_name: skill-installer
-    local_path: .system/skill-installer
+    local_path: skill-installer
     repo: openai/skills
     ref: main
     source_path: skills/.system/skill-installer
@@ -231,7 +219,7 @@ Sync a single skill:
 
 ```bash
 ./scripts/sync-remote-skills.sh verification-before-completion
-./scripts/sync-remote-skills.sh .system/skill-installer
+./scripts/sync-remote-skills.sh skill-installer
 ```
 
 Preview the sync plan without making network requests or writing files:

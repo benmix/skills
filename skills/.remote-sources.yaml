@@ -14,21 +14,21 @@ skills:
     last_synced_commit: f2cbfbefebbfef77321e4c9abc9e949826bea9d7
 
   - skill_name: find-skills
-    local_path: .system/find-skills
+    local_path: find-skills
     repo: vercel-labs/skills
     ref: main
     source_path: skills/find-skills
     last_synced_commit: e4243fbf7d9398722024f62850ece90fa0d5c693
 
   - skill_name: skill-creator
-    local_path: .system/skill-creator
+    local_path: skill-creator
     repo: openai/skills
     ref: main
     source_path: skills/.system/skill-creator
     last_synced_commit: b0401f07213a66414d84a65cb50c1d226f99485a
 
   - skill_name: skill-installer
-    local_path: .system/skill-installer
+    local_path: skill-installer
     repo: openai/skills
     ref: main
     source_path: skills/.system/skill-installer
@@ -68,3 +68,185 @@ skills:
     ref: main
     source_path: web-shader-extractor
     last_synced_commit: 72caac27cb0ed7446a59efb880ca09d49ca55a9e
+
+  - skill_name: lark-approval
+    local_path: lark-approval
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-approval
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: lark-apps
+    local_path: lark-apps
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-apps
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: lark-attendance
+    local_path: lark-attendance
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-attendance
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: lark-base
+    local_path: lark-base
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-base
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: lark-calendar
+    local_path: lark-calendar
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-calendar
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: lark-contact
+    local_path: lark-contact
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-contact
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: lark-doc
+    local_path: lark-doc
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-doc
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: lark-drive
+    local_path: lark-drive
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-drive
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: lark-event
+    local_path: lark-event
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-event
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: lark-im
+    local_path: lark-im
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-im
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: lark-mail
+    local_path: lark-mail
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-mail
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: lark-markdown
+    local_path: lark-markdown
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-markdown
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: lark-minutes
+    local_path: lark-minutes
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-minutes
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: lark-okr
+    local_path: lark-okr
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-okr
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: lark-openapi-explorer
+    local_path: lark-openapi-explorer
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-openapi-explorer
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: lark-shared
+    local_path: lark-shared
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-shared
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: lark-sheets
+    local_path: lark-sheets
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-sheets
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: lark-skill-maker
+    local_path: lark-skill-maker
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-skill-maker
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: lark-slides
+    local_path: lark-slides
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-slides
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: lark-task
+    local_path: lark-task
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-task
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: lark-vc
+    local_path: lark-vc
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-vc
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: lark-vc-agent
+    local_path: lark-vc-agent
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-vc-agent
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: lark-whiteboard
+    local_path: lark-whiteboard
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-whiteboard
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: lark-wiki
+    local_path: lark-wiki
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-wiki
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: lark-workflow-meeting-summary
+    local_path: lark-workflow-meeting-summary
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-workflow-meeting-summary
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: lark-workflow-standup-report
+    local_path: lark-workflow-standup-report
+    repo: larksuite/cli
+    ref: main
+    source_path: skills/lark-workflow-standup-report
+    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
