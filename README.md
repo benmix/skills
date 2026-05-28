@@ -49,7 +49,7 @@ This repository currently contains two kinds of skills:
 
 ## Current Skills
 
-### Local Custom Skills
+### Local Skills
 
 | Skill | Purpose | Source |
 | --- | --- | --- |
@@ -62,7 +62,7 @@ This repository currently contains two kinds of skills:
 | [`slice-plan`](skills/slice-plan/SKILL.md) | Break broad plans into vertical AFK/HITL slices with dependencies and acceptance criteria. | Local custom skill |
 | [`review-work`](skills/review-work/SKILL.md) | Review changes along repository standards and spec compliance with findings first. | Local custom skill |
 
-### Remote-Synced Skills
+### Synced Skills
 
 | Source | Synced skills | Notes |
 | --- | --- | --- |
