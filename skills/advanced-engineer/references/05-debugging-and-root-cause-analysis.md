@@ -1,5 +1,19 @@
 # Debugging And Root Cause Analysis
 
+Use this reference for root-cause-first debugging, concrete tracing tools, and evidence-before-claims verification.
+
+## Quick Index
+
+| Need | Section |
+| --- | --- |
+| Establish a deterministic feedback loop | [Build the feedback loop first](#build-the-feedback-loop-first) |
+| Understand and fix root causes | [Identify and fix the root cause, not just the visible symptom](#identify-and-fix-the-root-cause-not-just-the-visible-symptom) |
+| Trace bad data from symptom to source | [Trace bad data backward through the call chain](#trace-bad-data-backward-through-the-call-chain) |
+| Make invalid data structurally harder to reintroduce | [Use defense-in-depth after finding invalid data](#use-defense-in-depth-after-finding-invalid-data) |
+| Replace flaky sleeps | [Replace arbitrary waits with condition-based waits](#replace-arbitrary-waits-with-condition-based-waits) |
+| Verify completion, commit, or PR claims | [Use the evidence-before-claims verification gate](#use-the-evidence-before-claims-verification-gate) |
+| Find test pollution | [Find test pollution by bisection](#find-test-pollution-by-bisection) |
+
 ---
 
 # Build the feedback loop first
@@ -101,6 +115,123 @@ Adding guards, retries, or fallbacks that hide the issue without explaining it.
 ## Practical Test
 
 Does the fix eliminate the cause of the failure, or only make the failure less visible?
+
+---
+
+# Follow the root-cause-first gate
+
+## Rule
+
+For bugs, test failures, build failures, integration issues, performance surprises, or other unexpected behavior, do not propose or implement fixes before root cause investigation.
+
+## How To Apply It
+
+Complete these phases in order:
+
+1. Root cause investigation:
+   - Read the exact error, warning, stack trace, and line numbers.
+   - Reproduce the failure when possible.
+   - Check recent diffs, commits, dependency changes, config changes, and environment differences.
+   - In multi-component systems, instrument each boundary before guessing: log inputs, outputs, propagated config, and state at each layer.
+2. Pattern analysis:
+   - Find similar working code in the same codebase.
+   - Read the relevant reference implementation completely when applying a known pattern.
+   - List concrete differences between working and broken paths.
+3. Hypothesis testing:
+   - State one explicit hypothesis and the evidence behind it.
+   - Make the smallest possible experiment to confirm or falsify it.
+   - Change one variable at a time.
+4. Implementation:
+   - Add or identify a failing test or repeatable reproduction when possible.
+   - Implement one minimal root-cause fix.
+   - Verify the original symptom and nearby regressions.
+
+## Stop Signals
+
+Stop and return to investigation when you catch yourself thinking:
+
+- "Just try this and see."
+- "It is probably X."
+- "I do not fully understand it, but this might work."
+- "Add several fixes, then run tests."
+- "Skip the test and manually verify later."
+- "One more fix attempt" after multiple failed attempts.
+- "I see the problem, let me fix it."
+- "The reference is long; I will adapt the pattern from memory."
+
+After three failed fix attempts, revisit the architecture or framing before adding another patch. Repeated fixes that reveal new shared-state or coupling problems usually mean the design premise is wrong, not that the fourth patch will be better.
+
+If investigation reveals the issue is truly environmental, timing-dependent, or external, document what was investigated, implement appropriate handling such as retry, timeout, user-facing error, or monitoring, and state the remaining uncertainty. Treat "no root cause" as rare; most cases mean investigation is incomplete.
+
+## Practical Test
+
+Can you state the root cause investigation evidence before describing the fix?
+
+---
+
+# Trace bad data backward through the call chain
+
+## Rule
+
+When a bug appears deep in the stack, trace backward until you find the original trigger. Fixing only where the error appears treats the symptom.
+
+## How To Apply It
+
+1. Observe the symptom.
+2. Identify the immediate failing operation.
+3. Ask what called that operation.
+4. Inspect the value passed at each caller.
+5. Continue until you find where the bad value first entered the system.
+6. Fix at the source and add validation at downstream layers when the operation is dangerous.
+
+Add context before the dangerous operation when manual tracing stalls:
+
+```ts
+async function performOperation(input: string) {
+  console.error("DEBUG operation input", {
+    input,
+    cwd: process.cwd(),
+    nodeEnv: process.env.NODE_ENV,
+    stack: new Error().stack,
+  });
+
+  await runOperation(input);
+}
+```
+
+In tests, prefer `console.error()` for temporary diagnostics because loggers are often suppressed.
+
+## Practical Test
+
+Can you show where the bad value originated, not just where it exploded?
+
+---
+
+# Use defense-in-depth after finding invalid data
+
+## Rule
+
+When a bug is caused by invalid data crossing boundaries, validate at every meaningful layer the data passes through. One check can be bypassed by another path, refactor, or mock.
+
+## How To Apply It
+
+Add checks at these layers:
+
+1. Entry point validation: reject invalid external input early.
+2. Business logic validation: assert the value makes sense for this operation.
+3. Environment guard: prevent dangerous behavior in special contexts such as tests, CI, or production.
+4. Diagnostic context: log enough information to debug future bypasses.
+
+Checklist:
+
+- Map the full data flow.
+- Identify every point where the invalid value can be produced, transformed, or consumed.
+- Add the narrowest useful guard at each layer.
+- Test that lower layers catch bypasses of upper layers.
+
+## Practical Test
+
+If the entry validation is bypassed, does a later layer still prevent the dangerous operation?
 
 ---
 
@@ -437,5 +568,122 @@ Declaring success based on confidence rather than evidence.
 ## Practical Test
 
 Can you explain the cause, show the fix, demonstrate the result, and state any remaining uncertainty?
+
+---
+
+# Replace arbitrary waits with condition-based waits
+
+## Rule
+
+For flaky tests and asynchronous workflows, wait for the condition you care about, not a guessed duration.
+
+## How To Apply It
+
+Use a polling helper with a timeout and a clear description:
+
+```ts
+async function waitFor<T>(
+  condition: () => T | undefined | null | false,
+  description: string,
+  timeoutMs = 5000
+): Promise<T> {
+  const start = Date.now();
+
+  while (true) {
+    const result = condition();
+    if (result) return result;
+
+    if (Date.now() - start > timeoutMs) {
+      throw new Error(`Timeout waiting for ${description} after ${timeoutMs}ms`);
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 10));
+  }
+}
+```
+
+Use it for events, state transitions, event counts, event predicates, files, and async results:
+
+```ts
+await waitFor(() => events.find((event) => event.type === "DONE"), "DONE event");
+await waitFor(() => machine.state === "ready", "machine ready");
+await waitFor(() => items.length >= 5 && items, "five items");
+```
+
+For fuller event helper examples, see [condition-based-waiting-example.ts](condition-based-waiting-example.ts).
+
+An arbitrary timeout is acceptable only when testing timing behavior itself. Document the known timing and first wait for the triggering condition.
+
+## Practical Test
+
+Does the test fail only when the real condition fails, or can machine speed decide the outcome?
+
+---
+
+# Use the evidence-before-claims verification gate
+
+## Rule
+
+Before claiming work is complete, fixed, passing, clean, ready, safe to commit, ready for PR, or successfully delegated, run fresh verification and read the output.
+
+## How To Apply It
+
+1. Identify the command or check that proves the claim.
+2. Run the full command fresh in this turn.
+3. Read the output and exit code.
+4. Compare output to the claim.
+5. Only then report the evidence, or state the exact gap.
+
+Skipping any step is not verification.
+
+| Claim | Requires | Not sufficient |
+| --- | --- | --- |
+| Tests pass | Test command output with zero failures | Previous run or confidence |
+| Linter clean | Linter command output with zero errors | Partial file checks |
+| Build succeeds | Build command exit 0 | Linter output or logs that look fine |
+| Bug fixed | Original symptom reproduced and then resolved | Code changed |
+| Regression test works | Red-green cycle or equivalent proof | Test exists or passed once |
+| Agent completed | VCS diff checked and independently verified | Agent report |
+| Requirements met | Line-by-line requirement checklist plus relevant commands | Tests passing |
+| Commit ready | Fresh relevant checks and reviewed staged diff | Clean-looking diff |
+| PR ready | Branch state, changed-files review, and relevant checks | Commit exists |
+| Task complete | Requirements checklist and relevant commands | Plausible diff |
+
+## Stop Signals
+
+Stop before claiming success if you are:
+
+- Using "should", "probably", "seems to", or similar confidence language.
+- Expressing satisfaction before verification.
+- About to commit, push, create a PR, report final status, or move to the next task.
+- Trusting another agent's success report without checking the diff and evidence.
+- Relying on partial verification without saying exactly what remains unchecked.
+- Tired and trying to skip the gate.
+
+## Practical Test
+
+Could another engineer rerun the command you cited and see the same evidence?
+
+---
+
+# Find test pollution by bisection
+
+## Rule
+
+When a test creates unwanted files or persistent state and the polluting test is unknown, isolate the polluter by running candidate tests one by one and checking for the unwanted artifact after each run.
+
+## How To Apply It
+
+Use [scripts/find-polluter.sh](../scripts/find-polluter.sh):
+
+```bash
+./skills/advanced-engineer/scripts/find-polluter.sh '.git' 'src/**/*.test.ts'
+```
+
+The script checks whether the target file or directory appears after each test. Adapt the test command inside the script when the repository does not use `npm test`.
+
+## Practical Test
+
+Can you identify the specific test that creates the unwanted artifact?
 
 ---

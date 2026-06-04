@@ -1,18 +1,4 @@
 skills:
-  - skill_name: verification-before-completion
-    local_path: verification-before-completion
-    repo: obra/superpowers
-    ref: main
-    source_path: skills/verification-before-completion
-    last_synced_commit: f2cbfbefebbfef77321e4c9abc9e949826bea9d7
-
-  - skill_name: systematic-debugging
-    local_path: systematic-debugging
-    repo: obra/superpowers
-    ref: main
-    source_path: skills/systematic-debugging
-    last_synced_commit: f2cbfbefebbfef77321e4c9abc9e949826bea9d7
-
   - skill_name: find-skills
     local_path: find-skills
     repo: vercel-labs/skills

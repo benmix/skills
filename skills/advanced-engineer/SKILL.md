@@ -1,20 +1,28 @@
 ---
 name: advanced-engineer
-description: Reliable end-to-end engineering workflow for debugging, root-cause analysis, minimal patching, and verification in production codebases. Use when Codex needs to investigate a failure systematically, trace execution, test hypotheses, implement a correct fix, validate the resolution, and check for regressions before declaring the task complete.
+description: Reliable end-to-end engineering workflow for bugs, test failures, unexpected behavior, build failures, performance problems, integration issues, root-cause analysis, minimal patching, and verification in production codebases. Use when Codex needs to investigate a failure systematically before proposing fixes, trace execution, test hypotheses, implement a correct fix, validate the resolution with fresh command evidence, or is about to claim work is complete/fixed/passing, commit changes, create a PR, delegate work, or report final status.
 ---
 
 # Advanced Engineer
 
 Use this skill when the task requires disciplined engineering execution rather than a quick patch.
 
-## Mission
+## Core Contract
 
 - Understand the problem before changing code.
 - Fix root causes, not symptoms.
 - Keep changes minimal and consistent with the surrounding code.
 - Verify the result with real evidence before claiming success.
 
-## Default Loop
+These rules are mandatory:
+
+1. No fixes without root cause investigation first.
+2. No completion, fixed, passing, or success claims without fresh verification evidence.
+3. No stacked fix attempts without learning from the previous attempt.
+
+If the root cause is unknown, keep investigating. If verification is partial, state the exact limit instead of implying completion.
+
+## Operating Loop
 
 Work in a strict `Plan -> Act -> Reflect` loop:
 
@@ -24,78 +32,34 @@ Work in a strict `Plan -> Act -> Reflect` loop:
 
 Do not chain random actions together without updating the model of the problem.
 
-## Start Here
-
-- For bugs, test failures, and broken integrations, start with [references/05-debugging-and-root-cause-analysis.md](references/05-debugging-and-root-cause-analysis.md).
-- For larger or multi-stage tasks, read [references/02-planning-and-execution.md](references/02-planning-and-execution.md) before splitting the work.
-- Before declaring success, read [references/03-verification-and-review.md](references/03-verification-and-review.md).
-- If the change risks broad refactoring, abstraction creep, or unsafe defaults, read [references/01-engineering-fundamentals.md](references/01-engineering-fundamentals.md).
-- If the task involves destructive, public, or hard-to-reverse actions, read [references/04-safe-delivery.md](references/04-safe-delivery.md).
-
-## Keep In SKILL Context
+## Always Keep Loaded
 
 - Do not patch code you do not yet understand.
+- Do not propose a fix before reading the exact error, reproducing when possible, checking recent changes, and identifying the failing component.
 - Build or identify a fast feedback loop before debugging or changing behavior.
 - Prefer explicit hypotheses over intuition.
 - Prefer several falsifiable hypotheses over the first plausible explanation.
 - Increase investigation depth when an attempt fails.
 - Preserve existing behavior unless the task requires changing it.
 - Be explicit when verification is partial.
+- Before any success claim, identify the command that proves it, run it fresh, read the full output, and report the result accurately.
 
-## Reference Index
+## Reference Routing
 
 Read only the references needed for the current task.
 
-### [references/01-engineering-fundamentals.md](references/01-engineering-fundamentals.md)
+| Situation | Read |
+| --- | --- |
+| Broad refactoring risk, abstraction risk, unsafe defaults, or boundary validation | [references/01-engineering-fundamentals.md](references/01-engineering-fundamentals.md) |
+| Larger or multi-stage tasks | [references/02-planning-and-execution.md](references/02-planning-and-execution.md) |
+| Completion claims, commits, PRs, delegation, or final status | [references/03-verification-and-review.md](references/03-verification-and-review.md) |
+| Destructive, public, or hard-to-reverse actions | [references/04-safe-delivery.md](references/04-safe-delivery.md) |
+| Bugs, test failures, broken integrations, unexpected behavior, deep stack failures, bad data propagation, flaky waits, test pollution, or repeated failed fixes | [references/05-debugging-and-root-cause-analysis.md](references/05-debugging-and-root-cause-analysis.md) |
 
-Read for:
+## Bundled Tools
 
-- change scope discipline
-- avoiding over-engineering and premature abstractions
-- reading code before editing
-- boundary validation and secure-by-default decisions
-- what to do when an approach is blocked
-
-### [references/02-planning-and-execution.md](references/02-planning-and-execution.md)
-
-Read for:
-
-- iterative planning
-- decomposition for larger tasks
-- parallel work or worker orchestration
-- completion protocol for delegated work
-
-### [references/03-verification-and-review.md](references/03-verification-and-review.md)
-
-Read for:
-
-- adversarial verification
-- writing a verification plan
-- vertical red-green-refactor test cycles
-- review and simplification passes before declaring completion
-
-### [references/04-safe-delivery.md](references/04-safe-delivery.md)
-
-Read for:
-
-- destructive action thresholds
-- git safety
-- commit, PR, and hook discipline
-- when to confirm with the user before taking irreversible actions
-
-### [references/05-debugging-and-root-cause-analysis.md](references/05-debugging-and-root-cause-analysis.md)
-
-Read for:
-
-- `Plan -> Act -> Reflect`
-- building a deterministic feedback loop
-- investigation before modification
-- root-cause-first debugging
-- hypothesis-driven debugging
-- ranked falsifiable hypotheses
-- escalation strategy after failed attempts
-- verification pipeline and partial-verification rules
-- tool-first investigation and when to ask the user
+- [scripts/find-polluter.sh](scripts/find-polluter.sh): identify which test creates unwanted files or persistent state.
+- [references/condition-based-waiting-example.ts](references/condition-based-waiting-example.ts): complete event-wait helper examples for replacing arbitrary sleeps.
 
 ## Completion Criteria
 
@@ -103,7 +67,7 @@ Treat the task as complete only when:
 
 - the root cause is understood
 - the fix addresses that cause
-- the result is verified, or the verification limit is stated clearly
+- the result is verified with fresh command output, or the verification limit is stated clearly
 - nearby regressions have been checked
 - the chosen references were actually applied to the task at hand
 

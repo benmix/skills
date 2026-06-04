@@ -54,7 +54,7 @@ This repository currently contains two kinds of skills:
 | Skill | Purpose | Source |
 | --- | --- | --- |
 | [`writing-maestro`](skills/writing-maestro/SKILL.md) | Writing and editing workflow for human-facing prose, with emphasis on clarity, concision, and removing AI-sounding phrasing. | Local custom skill |
-| [`advanced-engineer`](skills/advanced-engineer/SKILL.md) | End-to-end engineering workflow covering debugging, root-cause analysis, minimal fixes, verification, and delivery checks. | Local custom skill |
+| [`advanced-engineer`](skills/advanced-engineer/SKILL.md) | Root-cause-first engineering workflow covering systematic debugging, minimal fixes, evidence-backed verification, and delivery checks. | Local custom skill |
 | [`refactoring`](skills/refactoring/SKILL.md) | Small-step, behavior-preserving refactoring guidance focused on making the next code change easier, safer, and cheaper. | Local custom skill |
 | [`prototype`](skills/prototype/SKILL.md) | Throwaway prototypes for uncertain UI, state-machine, or business-logic questions before production work. | Local custom skill |
 | [`handoff`](skills/handoff/SKILL.md) | Temporary handoff briefs for continuing long-running work in another session or agent. | Local custom skill |
@@ -66,7 +66,6 @@ This repository currently contains two kinds of skills:
 
 | Source | Synced skills | Notes |
 | --- | --- | --- |
-| [`obra/superpowers`](https://github.com/obra/superpowers/tree/main/skills) | [`verification-before-completion`](skills/verification-before-completion/SKILL.md), [`systematic-debugging`](skills/systematic-debugging/SKILL.md) | Verification and debugging workflows. |
 | [`zanwei/design-dna`](https://github.com/zanwei/design-dna) | [`design-dna`](skills/design-dna/SKILL.md) | Visual identity extraction and application. |
 | [`lixiaolin94/skills`](https://github.com/lixiaolin94/skills) | [`web-shader-extractor`](skills/web-shader-extractor/SKILL.md) | Web shader extraction and porting workflow. |
 | [`vercel-labs/agent-skills`](https://github.com/vercel-labs/agent-skills/tree/main/skills) | [`vercel-composition-patterns`](skills/vercel-composition-patterns/SKILL.md), [`vercel-react-best-practices`](skills/vercel-react-best-practices/SKILL.md), [`web-design-guidelines`](skills/web-design-guidelines/SKILL.md) | React, Next.js, component architecture, and web design guidance. |
@@ -194,12 +193,12 @@ Example:
 
 ```yaml
 skills:
-  - skill_name: verification-before-completion
-    local_path: verification-before-completion
-    repo: obra/superpowers
+  - skill_name: find-skills
+    local_path: find-skills
+    repo: vercel-labs/skills
     ref: main
-    source_path: skills/verification-before-completion
-    last_synced_commit: 7e516434f2a30114300efc9247db32fb37daa5f9
+    source_path: skills/find-skills
+    last_synced_commit: e4243fbf7d9398722024f62850ece90fa0d5c693
 
   - skill_name: skill-installer
     local_path: skill-installer
@@ -218,7 +217,7 @@ Sync all remote skills:
 Sync a single skill:
 
 ```bash
-./scripts/sync-remote-skills.sh verification-before-completion
+./scripts/sync-remote-skills.sh find-skills
 ./scripts/sync-remote-skills.sh skill-installer
 ```
 
