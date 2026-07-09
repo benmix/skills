@@ -236,3 +236,157 @@ skills:
     ref: main
     source_path: skills/lark-workflow-standup-report
     last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+
+  - skill_name: ask-matt
+    local_path: mattpocock/engineering/ask-matt
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/engineering/ask-matt
+    last_synced_commit:
+
+  - skill_name: code-review
+    local_path: mattpocock/engineering/code-review
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/engineering/code-review
+    last_synced_commit:
+
+  - skill_name: codebase-design
+    local_path: mattpocock/engineering/codebase-design
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/engineering/codebase-design
+    last_synced_commit:
+
+  - skill_name: diagnosing-bugs
+    local_path: mattpocock/engineering/diagnosing-bugs
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/engineering/diagnosing-bugs
+    last_synced_commit:
+
+  - skill_name: domain-modeling
+    local_path: mattpocock/engineering/domain-modeling
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/engineering/domain-modeling
+    last_synced_commit:
+
+  - skill_name: grill-with-docs
+    local_path: mattpocock/engineering/grill-with-docs
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/engineering/grill-with-docs
+    last_synced_commit:
+
+  - skill_name: implement
+    local_path: mattpocock/engineering/implement
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/engineering/implement
+    last_synced_commit:
+
+  - skill_name: improve-codebase-architecture
+    local_path: mattpocock/engineering/improve-codebase-architecture
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/engineering/improve-codebase-architecture
+    last_synced_commit:
+
+  - skill_name: prototype
+    local_path: mattpocock/engineering/prototype
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/engineering/prototype
+    last_synced_commit:
+
+  - skill_name: research
+    local_path: mattpocock/engineering/research
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/engineering/research
+    last_synced_commit:
+
+  - skill_name: resolving-merge-conflicts
+    local_path: mattpocock/engineering/resolving-merge-conflicts
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/engineering/resolving-merge-conflicts
+    last_synced_commit:
+
+  - skill_name: setup-matt-pocock-skills
+    local_path: mattpocock/engineering/setup-matt-pocock-skills
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/engineering/setup-matt-pocock-skills
+    last_synced_commit:
+
+  - skill_name: tdd
+    local_path: mattpocock/engineering/tdd
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/engineering/tdd
+    last_synced_commit:
+
+  - skill_name: to-spec
+    local_path: mattpocock/engineering/to-spec
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/engineering/to-spec
+    last_synced_commit:
+
+  - skill_name: to-tickets
+    local_path: mattpocock/engineering/to-tickets
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/engineering/to-tickets
+    last_synced_commit:
+
+  - skill_name: triage
+    local_path: mattpocock/engineering/triage
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/engineering/triage
+    last_synced_commit:
+
+  - skill_name: wayfinder
+    local_path: mattpocock/engineering/wayfinder
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/engineering/wayfinder
+    last_synced_commit:
+
+  - skill_name: grill-me
+    local_path: mattpocock/productivity/grill-me
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/productivity/grill-me
+    last_synced_commit:
+
+  - skill_name: grilling
+    local_path: mattpocock/productivity/grilling
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/productivity/grilling
+    last_synced_commit:
+
+  - skill_name: handoff
+    local_path: mattpocock/productivity/handoff
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/productivity/handoff
+    last_synced_commit:
+
+  - skill_name: teach
+    local_path: mattpocock/productivity/teach
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/productivity/teach
+    last_synced_commit:
+
+  - skill_name: writing-great-skills
+    local_path: mattpocock/productivity/writing-great-skills
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/productivity/writing-great-skills
+    last_synced_commit:
