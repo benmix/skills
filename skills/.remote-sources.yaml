@@ -4,42 +4,42 @@ skills:
     repo: vercel-labs/skills
     ref: main
     source_path: skills/find-skills
-    last_synced_commit: e4243fbf7d9398722024f62850ece90fa0d5c693
+    last_synced_commit: 3176ae424e50bb7d3f20a7e085f31912b3f325d2
 
   - skill_name: skill-creator
     local_path: skill-creator
     repo: openai/skills
     ref: main
     source_path: skills/.system/skill-creator
-    last_synced_commit: b0401f07213a66414d84a65cb50c1d226f99485a
+    last_synced_commit: 49f948faa9258a0c61caceaf225e179651397431
 
   - skill_name: skill-installer
     local_path: skill-installer
     repo: openai/skills
     ref: main
     source_path: skills/.system/skill-installer
-    last_synced_commit: b0401f07213a66414d84a65cb50c1d226f99485a
+    last_synced_commit: 49f948faa9258a0c61caceaf225e179651397431
 
   - skill_name: vercel-composition-patterns
     local_path: vercel-composition-patterns
     repo: vercel-labs/agent-skills
     ref: main
     source_path: skills/composition-patterns
-    last_synced_commit: 180115660cfb8a86b808f117475a01f54caf3bc5
+    last_synced_commit: f8a72b9603728bb92a217a879b7e62e43ad76c81
 
   - skill_name: vercel-react-best-practices
     local_path: vercel-react-best-practices
     repo: vercel-labs/agent-skills
     ref: main
     source_path: skills/react-best-practices
-    last_synced_commit: 180115660cfb8a86b808f117475a01f54caf3bc5
+    last_synced_commit: f8a72b9603728bb92a217a879b7e62e43ad76c81
 
   - skill_name: web-design-guidelines
     local_path: web-design-guidelines
     repo: vercel-labs/agent-skills
     ref: main
     source_path: skills/web-design-guidelines
-    last_synced_commit: 180115660cfb8a86b808f117475a01f54caf3bc5
+    last_synced_commit: f8a72b9603728bb92a217a879b7e62e43ad76c81
 
   - skill_name: design-dna
     local_path: design-dna
@@ -53,340 +53,340 @@ skills:
     repo: lixiaolin94/skills
     ref: main
     source_path: web-shader-extractor
-    last_synced_commit: 72caac27cb0ed7446a59efb880ca09d49ca55a9e
+    last_synced_commit: ee7e9c50049bf9278b7810c3cd00802cfa401138
 
   - skill_name: lark-approval
     local_path: lark-approval
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-approval
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: lark-apps
     local_path: lark-apps
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-apps
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: lark-attendance
     local_path: lark-attendance
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-attendance
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: lark-base
     local_path: lark-base
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-base
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: lark-calendar
     local_path: lark-calendar
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-calendar
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: lark-contact
     local_path: lark-contact
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-contact
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: lark-doc
     local_path: lark-doc
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-doc
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: lark-drive
     local_path: lark-drive
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-drive
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: lark-event
     local_path: lark-event
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-event
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: lark-im
     local_path: lark-im
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-im
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: lark-mail
     local_path: lark-mail
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-mail
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: lark-markdown
     local_path: lark-markdown
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-markdown
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: lark-minutes
     local_path: lark-minutes
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-minutes
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: lark-okr
     local_path: lark-okr
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-okr
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: lark-openapi-explorer
     local_path: lark-openapi-explorer
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-openapi-explorer
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: lark-shared
     local_path: lark-shared
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-shared
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: lark-sheets
     local_path: lark-sheets
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-sheets
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: lark-skill-maker
     local_path: lark-skill-maker
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-skill-maker
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: lark-slides
     local_path: lark-slides
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-slides
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: lark-task
     local_path: lark-task
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-task
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: lark-vc
     local_path: lark-vc
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-vc
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: lark-vc-agent
     local_path: lark-vc-agent
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-vc-agent
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: lark-whiteboard
     local_path: lark-whiteboard
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-whiteboard
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: lark-wiki
     local_path: lark-wiki
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-wiki
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: lark-workflow-meeting-summary
     local_path: lark-workflow-meeting-summary
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-workflow-meeting-summary
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: lark-workflow-standup-report
     local_path: lark-workflow-standup-report
     repo: larksuite/cli
     ref: main
     source_path: skills/lark-workflow-standup-report
-    last_synced_commit: b91f6a23f39cd19fca804c7436a6ce53ce893fb4
+    last_synced_commit: 4847f06ca898f84802513bc5f7dae49b5f7a8bb8
 
   - skill_name: ask-matt
     local_path: mattpocock/engineering/ask-matt
     repo: mattpocock/skills
     ref: main
     source_path: skills/engineering/ask-matt
-    last_synced_commit:
+    last_synced_commit: 391a2701dd948f94f56a39f7533f8eea9a859c87
 
   - skill_name: code-review
     local_path: mattpocock/engineering/code-review
     repo: mattpocock/skills
     ref: main
     source_path: skills/engineering/code-review
-    last_synced_commit:
+    last_synced_commit: 391a2701dd948f94f56a39f7533f8eea9a859c87
 
   - skill_name: codebase-design
     local_path: mattpocock/engineering/codebase-design
     repo: mattpocock/skills
     ref: main
     source_path: skills/engineering/codebase-design
-    last_synced_commit:
+    last_synced_commit: 391a2701dd948f94f56a39f7533f8eea9a859c87
 
   - skill_name: diagnosing-bugs
     local_path: mattpocock/engineering/diagnosing-bugs
     repo: mattpocock/skills
     ref: main
     source_path: skills/engineering/diagnosing-bugs
-    last_synced_commit:
+    last_synced_commit: 391a2701dd948f94f56a39f7533f8eea9a859c87
 
   - skill_name: domain-modeling
     local_path: mattpocock/engineering/domain-modeling
     repo: mattpocock/skills
     ref: main
     source_path: skills/engineering/domain-modeling
-    last_synced_commit:
+    last_synced_commit: 391a2701dd948f94f56a39f7533f8eea9a859c87
 
   - skill_name: grill-with-docs
     local_path: mattpocock/engineering/grill-with-docs
     repo: mattpocock/skills
     ref: main
     source_path: skills/engineering/grill-with-docs
-    last_synced_commit:
+    last_synced_commit: 391a2701dd948f94f56a39f7533f8eea9a859c87
 
   - skill_name: implement
     local_path: mattpocock/engineering/implement
     repo: mattpocock/skills
     ref: main
     source_path: skills/engineering/implement
-    last_synced_commit:
+    last_synced_commit: 391a2701dd948f94f56a39f7533f8eea9a859c87
 
   - skill_name: improve-codebase-architecture
     local_path: mattpocock/engineering/improve-codebase-architecture
     repo: mattpocock/skills
     ref: main
     source_path: skills/engineering/improve-codebase-architecture
-    last_synced_commit:
+    last_synced_commit: 391a2701dd948f94f56a39f7533f8eea9a859c87
 
   - skill_name: prototype
     local_path: mattpocock/engineering/prototype
     repo: mattpocock/skills
     ref: main
     source_path: skills/engineering/prototype
-    last_synced_commit:
+    last_synced_commit: 391a2701dd948f94f56a39f7533f8eea9a859c87
 
   - skill_name: research
     local_path: mattpocock/engineering/research
     repo: mattpocock/skills
     ref: main
     source_path: skills/engineering/research
-    last_synced_commit:
+    last_synced_commit: 391a2701dd948f94f56a39f7533f8eea9a859c87
 
   - skill_name: resolving-merge-conflicts
     local_path: mattpocock/engineering/resolving-merge-conflicts
     repo: mattpocock/skills
     ref: main
     source_path: skills/engineering/resolving-merge-conflicts
-    last_synced_commit:
+    last_synced_commit: 391a2701dd948f94f56a39f7533f8eea9a859c87
 
   - skill_name: setup-matt-pocock-skills
     local_path: mattpocock/engineering/setup-matt-pocock-skills
     repo: mattpocock/skills
     ref: main
     source_path: skills/engineering/setup-matt-pocock-skills
-    last_synced_commit:
+    last_synced_commit: 391a2701dd948f94f56a39f7533f8eea9a859c87
 
   - skill_name: tdd
     local_path: mattpocock/engineering/tdd
     repo: mattpocock/skills
     ref: main
     source_path: skills/engineering/tdd
-    last_synced_commit:
+    last_synced_commit: 391a2701dd948f94f56a39f7533f8eea9a859c87
 
   - skill_name: to-spec
     local_path: mattpocock/engineering/to-spec
     repo: mattpocock/skills
     ref: main
     source_path: skills/engineering/to-spec
-    last_synced_commit:
+    last_synced_commit: 391a2701dd948f94f56a39f7533f8eea9a859c87
 
   - skill_name: to-tickets
     local_path: mattpocock/engineering/to-tickets
     repo: mattpocock/skills
     ref: main
     source_path: skills/engineering/to-tickets
-    last_synced_commit:
+    last_synced_commit: 391a2701dd948f94f56a39f7533f8eea9a859c87
 
   - skill_name: triage
     local_path: mattpocock/engineering/triage
     repo: mattpocock/skills
     ref: main
     source_path: skills/engineering/triage
-    last_synced_commit:
+    last_synced_commit: 391a2701dd948f94f56a39f7533f8eea9a859c87
 
   - skill_name: wayfinder
     local_path: mattpocock/engineering/wayfinder
     repo: mattpocock/skills
     ref: main
     source_path: skills/engineering/wayfinder
-    last_synced_commit:
+    last_synced_commit: 391a2701dd948f94f56a39f7533f8eea9a859c87
 
   - skill_name: grill-me
     local_path: mattpocock/productivity/grill-me
     repo: mattpocock/skills
     ref: main
     source_path: skills/productivity/grill-me
-    last_synced_commit:
+    last_synced_commit: 391a2701dd948f94f56a39f7533f8eea9a859c87
 
   - skill_name: grilling
     local_path: mattpocock/productivity/grilling
     repo: mattpocock/skills
     ref: main
     source_path: skills/productivity/grilling
-    last_synced_commit:
+    last_synced_commit: 391a2701dd948f94f56a39f7533f8eea9a859c87
 
   - skill_name: handoff
     local_path: mattpocock/productivity/handoff
     repo: mattpocock/skills
     ref: main
     source_path: skills/productivity/handoff
-    last_synced_commit:
+    last_synced_commit: 391a2701dd948f94f56a39f7533f8eea9a859c87
 
   - skill_name: teach
     local_path: mattpocock/productivity/teach
     repo: mattpocock/skills
     ref: main
     source_path: skills/productivity/teach
-    last_synced_commit:
+    last_synced_commit: 391a2701dd948f94f56a39f7533f8eea9a859c87
 
   - skill_name: writing-great-skills
     local_path: mattpocock/productivity/writing-great-skills
     repo: mattpocock/skills
     ref: main
     source_path: skills/productivity/writing-great-skills
-    last_synced_commit:
+    last_synced_commit: 391a2701dd948f94f56a39f7533f8eea9a859c87

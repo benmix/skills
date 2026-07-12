@@ -5,6 +5,7 @@ set -euo pipefail
 repo_root="$(cd "$(dirname "$0")/.." && pwd)"
 manifest_file="$repo_root/skills/.remote-sources.yaml"
 dry_run=0
+force_sync=0
 ref_override=""
 declare -a requested_skills=()
 
@@ -16,6 +17,7 @@ Sync non-local skills from their upstream repositories.
 
 Options:
   --dry-run         Show what would be synced without network or file writes
+  --force           Reinstall selected skills even when their upstream commit is unchanged
   --ref REF         Override the manifest ref for every selected skill
   -h, --help        Show this help
 EOF
@@ -30,6 +32,10 @@ while [[ $# -gt 0 ]]; do
   case "$1" in
     --dry-run)
       dry_run=1
+      shift
+      ;;
+    --force)
+      force_sync=1
       shift
       ;;
     --ref)
@@ -440,7 +446,7 @@ for line in "${selected_lines[@]}"; do
     exit 1
   fi
 
-  if [[ -n "$last_synced_commit" && "$last_synced_commit" == "$fetched_commit" ]]; then
+  if [[ "$force_sync" -eq 0 && -n "$last_synced_commit" && "$last_synced_commit" == "$fetched_commit" ]]; then
     unchanged_skills+=("$skill_name"$'\t'"$local_path"$'\t'"$fetched_commit")
     printf '  %s %s (%s)\n' "$(label_text "result:")" "$(status_text "UNCHANGED")" "$(display_commit "$fetched_commit")"
     continue
