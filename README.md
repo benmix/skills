@@ -165,6 +165,13 @@ Clear the destination directory before reinstalling:
 ./scripts/install-skills.sh --clean-install-dir
 ```
 
+Exclude all Lark skills from an install:
+
+```bash
+./scripts/install-skills.sh --exclude-lark
+./scripts/install-skills.sh --clean-install-dir --exclude-lark
+```
+
 Use symlinks instead of copying:
 
 ```bash

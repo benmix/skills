@@ -7,6 +7,7 @@ source_dir="$repo_root/skills"
 dry_run=0
 mode="copy"
 clean_install_dir=0
+exclude_lark=0
 install_dir_override=0
 default_agents_dir="${AGENTS_HOME:-$HOME/.agents}/skills"
 
@@ -15,13 +16,14 @@ dest_dirs=()
 
 usage() {
   cat <<EOF
-Usage: ./scripts/install-skills.sh [--dry-run] [--clean-install-dir] [--mode copy|link] [--install-dir PATH] [skill-name ...]
+Usage: ./scripts/install-skills.sh [--dry-run] [--clean-install-dir] [--exclude-lark] [--mode copy|link] [--install-dir PATH] [skill-name ...]
 
 Install local skills from this repository into the local agents skills directory.
 
 Options:
   --dry-run         Show what would be installed without writing files
   --clean-install-dir Remove the install directory before installing
+  --exclude-lark    Exclude skills whose paths start with lark-
   --mode MODE       Install mode: copy (default) or link
   --install-dir PATH Install into a custom destination. Can be repeated
   -h, --help        Show this help
@@ -78,6 +80,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --clean-install-dir)
       clean_install_dir=1
+      shift
+      ;;
+    --exclude-lark)
+      exclude_lark=1
       shift
       ;;
     --mode)
@@ -222,6 +228,9 @@ install_skill_to_dest() {
 resolved_skills=()
 while IFS= read -r skill_name; do
   [[ -n "$skill_name" ]] || continue
+  if [[ "$exclude_lark" -eq 1 && "$skill_name" == lark-* ]]; then
+    continue
+  fi
   resolved_skills+=("$skill_name")
 done < <(collect_skills)
 
