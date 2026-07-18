@@ -24,6 +24,14 @@ Use this skill when the task is to write, rewrite, edit, or polish prose that hu
 5. Run clarity and concision pass with the selected style reference.
 6. Final read aloud check: smooth rhythm, no redundant transitions, no empty emphasis.
 
+For Chinese prose, use the localized references instead:
+
+- [references/ai-writing-tropes-to-avoid.zh-CN.md](references/ai-writing-tropes-to-avoid.zh-CN.md)
+- [references/elements-of-style-principles.zh-CN.md](references/elements-of-style-principles.zh-CN.md)
+- [references/the-elements-of-style.zh-CN.md](references/the-elements-of-style.zh-CN.md)
+
+The Chinese versions are localized writing guides, not word-for-word translations. They preserve the original editorial intent while replacing English-only grammar rules and examples with guidance that works in modern written Chinese.
+
 ## Editing Priorities
 
 - Use active voice when actor and action are important.
