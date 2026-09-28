@@ -54,6 +54,7 @@ This repository currently contains two kinds of skills:
 | Skill | Purpose | Source |
 | --- | --- | --- |
 | [`writing-maestro`](skills/writing-maestro/SKILL.md) | Writing and editing workflow for human-facing prose, with emphasis on clarity, concision, and removing AI-sounding phrasing. | Local custom skill |
+| [`technical-doc-writing`](skills/technical-doc-writing/SKILL.md) | Writing and reviewing developer documentation using practical guidance from the Google developer documentation style guide. | Local custom skill |
 | [`advanced-engineer`](skills/advanced-engineer/SKILL.md) | Root-cause-first engineering workflow covering systematic debugging, minimal fixes, evidence-backed verification, and delivery checks. | Local custom skill |
 | [`refactoring`](skills/refactoring/SKILL.md) | Small-step, behavior-preserving refactoring guidance focused on making the next code change easier, safer, and cheaper. | Local custom skill |
 | [`prototype`](skills/prototype/SKILL.md) | Throwaway prototypes for uncertain UI, state-machine, or business-logic questions before production work. | Local custom skill |

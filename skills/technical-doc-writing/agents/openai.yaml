@@ -1,0 +1,3 @@
+display_name: Technical Doc Writing
+short_description: Write and review developer documentation using practical Google style guidance.
+default_prompt: Use the technical-doc-writing skill to draft or revise this developer documentation for its intended readers.
