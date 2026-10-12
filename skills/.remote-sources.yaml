@@ -215,3 +215,31 @@ skills:
     ref: main
     source_path: skills/productivity/writing-for-agents
     last_synced_commit: 49dd158d1076134a641b33efb035946536778336
+
+  - skill_name: wizard
+    local_path: mattpocock/engineering/wizard
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/engineering/wizard
+    last_synced_commit: 49dd158d1076134a641b33efb035946536778336
+
+  - skill_name: retro
+    local_path: mattpocock/engineering/retro
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/engineering/retro
+    last_synced_commit: 49dd158d1076134a641b33efb035946536778336
+
+  - skill_name: implement-spec
+    local_path: mattpocock/engineering/implement-spec
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/engineering/implement-spec
+    last_synced_commit: 49dd158d1076134a641b33efb035946536778336
+
+  - skill_name: to-questionnaire
+    local_path: mattpocock/productivity/to-questionnaire
+    repo: mattpocock/skills
+    ref: main
+    source_path: skills/productivity/to-questionnaire
+    last_synced_commit: 49dd158d1076134a641b33efb035946536778336
