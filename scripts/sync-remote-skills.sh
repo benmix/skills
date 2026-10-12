@@ -401,11 +401,20 @@ prepare_repo_checkout() {
 
   git init "$repo_dir" >/dev/null
   git -C "$repo_dir" remote add origin "https://github.com/$repo.git"
-  if [[ "$root_source" -eq 0 ]]; then
-    git -C "$repo_dir" sparse-checkout init --cone >/dev/null
-    git -C "$repo_dir" sparse-checkout set "${sparse_paths[@]}" >/dev/null
-  fi
-  git -C "$repo_dir" fetch --depth 1 origin "$ref" >/dev/null
+  git -C "$repo_dir" config remote.origin.promisor true
+  git -C "$repo_dir" config remote.origin.partialclonefilter blob:none
+  git -C "$repo_dir" sparse-checkout init --no-cone >/dev/null
+  {
+    if [[ "$root_source" -eq 1 ]]; then
+      printf '/*\n'
+    else
+      for source_path in "${sparse_paths[@]}"; do
+        printf '/%s/\n' "$source_path"
+      done
+    fi
+    printf '!/.agents-flow/\n!/**/.agents-flow/\n!/.agents-standard/\n!/**/.agents-standard/\n'
+  } | git -C "$repo_dir" sparse-checkout set --no-cone --stdin >/dev/null
+  git -C "$repo_dir" fetch --filter=blob:none --depth 1 origin "$ref" >/dev/null
   git -C "$repo_dir" -c advice.detachedHead=false checkout FETCH_HEAD >/dev/null
   fetched_commit="$(git -C "$repo_dir" rev-parse HEAD)"
 

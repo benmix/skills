@@ -88,6 +88,30 @@ DNA JSON 是核心产物。一旦提取完成，它可以**提交到版本控制
 >
 > **Prompt：** **请其对照参考复审界面层级与点缀、字阶与留白、动效与材质及整体 UI，并将结论回填至当前实现。**
 
+## 确定性测量（可选）
+
+LLM 对颜色的感知容易向常见调色板的默认值偏移——例如品牌粉色 `#ff90e8` 可能被“看成” `#ec4899`（ΔE ≈ 29）。以下两个可选脚本可让分析与生成阶段获得可量化的结果：
+
+以下手工命令适用于本仓库的本地克隆，请在克隆目录的根目录中运行：
+
+```bash
+npm install --prefix ./scripts
+
+# 分析：从参考截图中测量精确调色板
+node scripts/measure-colors.mjs reference.png > measured-colors.json
+
+# 生成：根据参考结果评估实现截图
+node scripts/verify.mjs implementation.png measured-colors.json
+```
+
+通过“快速安装”安装为智能体技能时，智能体应以已加载的 `SKILL.md` 所在绝对目录为基准解析这些脚本；用户无需在自己的项目根目录中准备 `scripts/` 目录。
+
+`measure-colors.mjs` 对实际像素执行确定性 k-means 聚类（通过感知 ΔE 合并抗锯齿噪点），输出精确的十六进制颜色、以 `0..1` 比例表示的覆盖率、背景/文本/强调色角色以及聚类参数 `k`。`verify.mjs` 会复用记录的 `k`，重新测量生成结果，报告每种颜色的 ΔE 和覆盖率偏差，并给出 PASS/FAIL 结果，让智能体能够自我校正，而不必依赖用户目测。参考素材为图片文件时，技能会指示智能体自动使用这两个脚本；无需 API 密钥。
+
+同一份参考（bun.sh 的首屏）、同一个智能体——感知重建与测量重建的对比：
+
+![示例：根据感知样式与测量令牌重建 bun.sh 首屏。测量重建复现了所有令牌（验证通过，平均 ΔE 0.87）；感知重建将近黑色背景偏移为 #000000，并将品牌粉色偏移为常见的 #ec4899（验证失败，平均 ΔE 9.54）。](docs/example-deterministic-measurement.png)
+
 ## 兼容性
 
 符合 [Agent Skills 规范](https://agentskills.io)。可通过 [`skills` CLI](https://github.com/vercel-labs/skills) 安装到所有[支持的智能体](https://github.com/vercel-labs/skills#supported-agents)，包括 Cursor、Claude Code、Codex、GitHub Copilot 等 [40+ 款](https://github.com/vercel-labs/skills#supported-agents)。

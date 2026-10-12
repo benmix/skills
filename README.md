@@ -67,6 +67,7 @@ This repository currently contains two kinds of skills:
 
 | Source | Synced skills | Notes |
 | --- | --- | --- |
+| [`wheresryan22/anatomy`](https://github.com/wheresryan22/anatomy) | [`anatomy`](skills/anatomy/SKILL.md) | Interactive isometric figures that explain technical concepts. |
 | [`zanwei/design-dna`](https://github.com/zanwei/design-dna) | [`design-dna`](skills/design-dna/SKILL.md) | Visual identity extraction and application. |
 | [`lixiaolin94/skills`](https://github.com/lixiaolin94/skills) | [`web-shader-extractor`](skills/web-shader-extractor/SKILL.md) | Web shader extraction and porting workflow. |
 | [`vercel-labs/agent-skills`](https://github.com/vercel-labs/agent-skills/tree/main/skills) | [`vercel-composition-patterns`](skills/vercel-composition-patterns/SKILL.md), [`vercel-react-best-practices`](skills/vercel-react-best-practices/SKILL.md), [`web-design-guidelines`](skills/web-design-guidelines/SKILL.md) | React, Next.js, component architecture, and web design guidance. |

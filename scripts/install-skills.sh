@@ -148,7 +148,7 @@ collect_skills() {
 }
 
 list_all_skills() {
-  find "$source_dir" -type f -name SKILL.md -print \
+  find "$source_dir" \( -type d \( -name '.agents-flow' -o -name '.agents-standard' \) -prune \) -o \( -type f -name SKILL.md -print \) \
     | sed "s#^$source_dir/##; s#/SKILL\\.md\$##" \
     | sort
 }
@@ -217,7 +217,8 @@ install_skill_to_dest() {
   rm -rf "$dest"
 
   if [[ "$mode" == "copy" ]]; then
-    cp -R "$src" "$dest"
+    mkdir -p "$dest"
+    rsync -a --exclude='.agents-flow/' --exclude='.agents-standard/' "$src/" "$dest/"
   else
     ln -s "$src" "$dest"
   fi
