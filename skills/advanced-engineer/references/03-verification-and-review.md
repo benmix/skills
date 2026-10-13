@@ -54,6 +54,7 @@ A passing unit test suite does not prove that a feature works end to end. Many d
 - Run the project's tests and linters.
 - Reproduce the original bug if the task was a fix.
 - Exercise the changed behavior directly.
+- Check relevant side effects, such as persisted records, written files, released resources, or state after restart. A success message alone does not establish them.
 - Run at least one adversarial probe, such as boundary input, duplicate requests, invalid IDs, or concurrency.
 - Record the exact command and the observed output.
 
@@ -130,3 +131,13 @@ Look for repeated work, missed concurrency, hot-path bloat, unnecessary existenc
 ## Practical Test
 
 If the diff introduces a new helper, a new state field, or a new loop, ask whether an existing construct already covered the same need more simply.
+
+---
+
+# Maintain a usable verification path
+
+When a project lacks a repeatable way to exercise the changed behavior, reuse its existing harness or document the smallest working recipe. Include startup and readiness, a health check for the intended instance, the actual operation, observable success and side effects, evidence location, and cleanup of resources created by this run.
+
+Execute the recipe end to end before treating it as usable. Confirm cleanup preserves evidence. Add a project-local verification skill only when repeated use warrants one; an unexecuted recipe remains a draft. Distinguish documentation drift, driver gaps, and product regressions rather than weakening checks to make them pass.
+
+Pstack-derived additions in this reference and the debugging reference are adapted from Lauren Tan's verification and premise-investigation practices.

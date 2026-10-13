@@ -80,7 +80,7 @@ The most effective framing is not "I want to clean up the code." It is:
 Be conservative when a refactor crosses package, service, or public API boundaries:
 
 - keep contracts stable unless changing them is part of the task
-- use compatibility shims when an interface must change
+- use compatibility shims or staged migration for external consumers or rolling releases; fully controlled internal callers can migrate together and the old path can then be removed
 - prefer staged migration over direct cleanup
 
 ## Code Review

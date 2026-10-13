@@ -63,6 +63,8 @@ This repository currently contains two kinds of skills:
 | [`slice-plan`](skills/slice-plan/SKILL.md) | Break broad plans into vertical AFK/HITL slices with dependencies and acceptance criteria. | Local custom skill |
 | [`review-work`](skills/review-work/SKILL.md) | Review changes along repository standards and spec compliance with findings first. | Local custom skill |
 
+Engineering guidance in `advanced-engineer`, `refactoring`, and `review-work` includes selected practices adapted from [Lauren Tan's pstack 0.15.23](https://github.com/cursor/plugins/tree/dbf49813a39c1a5389c5e28cb8e4c1c2379e2454/pstack). These additions cover data and ownership design, performance measurement, debugging assumptions, verification, and review beyond the diff. The full plugin is not installed or synced by this repository.
+
 ### Synced Skills
 
 | Source | Synced skills | Notes |

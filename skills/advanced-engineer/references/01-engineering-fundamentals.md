@@ -60,7 +60,7 @@ If the solution introduces a new concept, ask whether the current task works wit
 
 ## Rule
 
-Do not create helpers, utilities, or abstractions for one-off operations or hypothetical future needs. A small amount of duplication is often better than an abstraction with no proven pressure behind it.
+Do not create helpers, utilities, or abstractions for hypothetical future needs. Repeated use, substantial policy, or a resource lifecycle can justify a boundary. A small amount of duplication is often better than an abstraction with no proven pressure behind it.
 
 ## Why It Matters
 
@@ -79,7 +79,7 @@ Three slightly similar lines get replaced with a generalized helper that now req
 
 ## Practical Test
 
-Ask whether the abstraction has at least two real callers with the same need today. If not, keep the code concrete.
+Ask what complexity the abstraction hides today. Multiple real callers can justify it, as can ownership of a substantial invariant or resource lifecycle. If it only forwards a one-off operation, keep the code concrete.
 
 ---
 

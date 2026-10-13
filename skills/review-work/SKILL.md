@@ -44,6 +44,18 @@ If no spec artifact exists, reconstruct the intended spec from the conversation 
 
 Do not fix issues during the review unless the user explicitly asks.
 
+## Trace Safety Beyond the Diff
+
+For changes to shared interfaces, asynchronous lifetimes, persisted formats, or other high-risk boundaries, identify the key facts the change's safety depends on. Follow relevant timing, teardown, serialization, cross-language consumers, and the actual dependency version or local patch; a caller search alone may miss them.
+
+Use the smallest safe executable check to test those facts against real code. Use temporary harnesses when appropriate; do not change product code, mutate live data, or expand external actions to obtain proof. If the environment cannot support the check, report the fact as unverified. Distinguish source reasoning, an executable probe, and real application evidence.
+
+## Judge Findings Against Actual Behavior
+
+Trace a finding from a reachable trigger to a concrete consequence. Check boundary guarantees and surrounding code before accepting hypothetical inputs. Prioritize correctness and security even when only one reviewer raises them; reviewer agreement is a signal, not proof.
+
+Filter preferences, arbitrary file-size thresholds, and abstraction requests without concrete benefit. For structural findings, explain the extra layers, hidden state, or caller coordination introduced and how they affect maintenance. Keep relevant unresolved risk as a verification gap instead of inventing a defect.
+
 ## Output
 
 Use this order:
@@ -62,3 +74,5 @@ If no findings are found, say that explicitly and still mention residual risk or
 - `Low` - minor cleanup, clarity, or consistency issue.
 
 Do not pad the review. If something is not actionable, leave it out.
+
+The safety and finding-judgment guidance is adapted from Lauren Tan's pstack blast-radius and interrogate practices.

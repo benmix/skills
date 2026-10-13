@@ -159,7 +159,9 @@ Stop and return to investigation when you catch yourself thinking:
 - "I see the problem, let me fix it."
 - "The reference is long; I will adapt the pattern from memory."
 
-After three failed fix attempts, revisit the architecture or framing before adding another patch. Repeated fixes that reveal new shared-state or coupling problems usually mean the design premise is wrong, not that the fourth patch will be better.
+When repeated failed attempts share one premise, write that premise down before the next patch. Identify what evidence would falsify it and run the smallest discriminating probe. For uneven load, inspect the distribution across threads, shards, or roles instead of only totals. Use the corresponding observation for other defects. A failure should narrow the explanation, not merely motivate another guard.
+
+If the probe refutes the premise, revise the investigation and remove changes justified only by that premise. If it supports the premise, keep the evidence and investigate the remaining explanations. Revisit architecture when repeated attempts expose the same ownership or coupling problem.
 
 If investigation reveals the issue is truly environmental, timing-dependent, or external, document what was investigated, implement appropriate handling such as retry, timeout, user-facing error, or monitoring, and state the remaining uncertainty. Treat "no root cause" as rare; most cases mean investigation is incomplete.
 

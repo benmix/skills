@@ -55,6 +55,8 @@ Read only the references needed for the current task.
 | Completion claims, commits, PRs, delegation, or final status | [references/03-verification-and-review.md](references/03-verification-and-review.md) |
 | Destructive, public, or hard-to-reverse actions | [references/04-safe-delivery.md](references/04-safe-delivery.md) |
 | Bugs, test failures, broken integrations, unexpected behavior, deep stack failures, bad data propagation, flaky waits, test pollution, or repeated failed fixes | [references/05-debugging-and-root-cause-analysis.md](references/05-debugging-and-root-cause-analysis.md) |
+| Cross-module contracts, related lifecycle states, or concurrent state ownership | [references/06-data-and-interface-design.md](references/06-data-and-interface-design.md) |
+| Performance comparisons, regression measurements, or sustained metric improvement | [references/07-performance-measurement.md](references/07-performance-measurement.md) |
 
 ## Bundled Tools
 

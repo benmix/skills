@@ -92,7 +92,8 @@ Use this as a quick chooser, not a rigid law:
 - If tests fail, assume the last step is wrong until proven otherwise.
 - Revert aggressively instead of debugging a giant diff.
 - Keep public interfaces stable unless changing them is part of the task.
-- When an interface must change across boundaries, use compatibility shims or staged migration.
+- For a fully controlled internal API, inventory callers, migrate them, and remove the obsolete path in the same verified change. Check string references, examples, and configuration as well as symbol usages.
+- For external consumers or rolling releases, use the required compatibility window or staged migration. Give temporary adapters an explicit removal condition.
 - Do not refactor unrelated areas just because they are ugly.
 - Leave the touched area a bit healthier than you found it.
 
@@ -110,6 +111,8 @@ Use the strongest available verification, in this order:
 - In legacy code, improve the area you must touch instead of trying to beautify everything.
 - Prefer deep modules: small interfaces that hide meaningful behavior.
 - Be suspicious of shallow modules: interfaces nearly as complex as their implementations.
+- Judge structural improvement by layers a reader must trace, hidden state they must remember, and coordination required of callers. A new layer should hide meaningful complexity; shrink mutable scope and derive values instead of synchronizing copies.
+- Treat single-caller wrappers and file length as investigation clues. Keep a boundary that owns policy, adapts representations, or protects a resource lifecycle even when it has one caller.
 - A seam is useful when it improves locality or has at least one real alternative adapter, not just a hypothetical future variation.
 - In low-test systems, choose especially safe transformations and verify constantly.
 - Do not mix performance tuning into routine refactoring. First improve clarity, then measure, then optimize only where evidence demands it.
@@ -166,3 +169,5 @@ When asked to refactor, produce:
 ## One-Line Principle
 
 **For each desired change, first make the change easy, then make the easy change.**
+
+The reader-cost and internal API migration additions are adapted from Lauren Tan's pstack practices.
