@@ -3,6 +3,19 @@
 set -euo pipefail
 
 repo_root="$(cd "$(dirname "$0")/.." && pwd)"
+# Consolidated skills have a review-first updater, not directory replacement.
+absorbed_args=()
+absorbed_mode=0
+for argument in "$@"; do
+  case "$argument" in
+    advanced-engineer|--absorbed) absorbed_mode=1 ;;
+    *) absorbed_args+=("$argument") ;;
+  esac
+done
+if [[ "$absorbed_mode" -eq 1 ]]; then
+  exec python3 "$repo_root/scripts/sync-absorbed-skills.py" "${absorbed_args[@]}"
+fi
+
 manifest_file="$repo_root/skills/.remote-sources.yaml"
 dry_run=0
 force_sync=0
@@ -14,6 +27,8 @@ usage() {
 Usage: ./scripts/sync-remote-skills.sh [--dry-run] [--ref REF] [skill-name ...]
 
 Sync non-local skills from their upstream repositories.
+Use --absorbed (or advanced-engineer) for review-first absorption updates.
+Example: ./scripts/sync-remote-skills.sh --absorbed --dry-run
 
 Options:
   --dry-run         Show what would be synced without network or file writes

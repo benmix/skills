@@ -1,76 +1,67 @@
 ---
 name: advanced-engineer
-description: Reliable end-to-end engineering workflow for bugs, test failures, unexpected behavior, build failures, performance problems, integration issues, root-cause analysis, minimal patching, and verification in production codebases. Use when Codex needs to investigate a failure systematically before proposing fixes, trace execution, test hypotheses, implement a correct fix, validate the resolution with fresh command evidence, or is about to claim work is complete/fixed/passing, commit changes, create a PR, delegate work, or report final status.
+description: "Unified software-engineering workflow for planning/specs, task slicing, domain and architecture design, prototypes, implementation, TDD, debugging, refactoring, performance, code/UI review, verification, developer documentation, handoff, and retrospectives. Use for software requests including 实现、修复、重构、测试、代码审查、需求拆分、架构设计、工程交接, React/Next.js engineering, and WebGL/WebGPU/Canvas effect extraction. Select only the relevant internal procedures. Excludes general prose, non-software planning/research, app operations, and visual-design-only work."
 ---
 
 # Advanced Engineer
 
-Use this skill when the task requires disciplined engineering execution rather than a quick patch.
+The single entry for software engineering. Choose the requested outcome, read only the relevant procedures, and preserve the user's scope. Independent engineering skills have been replaced by internal references.
 
-## Core Contract
+## Select the mode
 
-- Understand the problem before changing code.
-- Fix root causes, not symptoms.
-- Keep changes minimal and consistent with the surrounding code.
-- Verify the result with real evidence before claiming success.
-
-These rules are mandatory:
-
-1. No fixes without root cause investigation first.
-2. No completion, fixed, passing, or success claims without fresh verification evidence.
-3. No stacked fix attempts without learning from the previous attempt.
-
-If the root cause is unknown, keep investigating. If verification is partial, state the exact limit instead of implying completion.
-
-## Operating Loop
-
-Work in a strict `Plan -> Act -> Reflect` loop:
-
-1. Plan the next concrete step and what evidence it should produce.
-2. Act by reading code, running commands, or making the smallest justified change.
-3. Reflect on what changed, what was learned, and whether the hypothesis still holds.
-
-Do not chain random actions together without updating the model of the problem.
-
-## Always Keep Loaded
-
-- Do not patch code you do not yet understand.
-- Do not propose a fix before reading the exact error, reproducing when possible, checking recent changes, and identifying the failing component.
-- Build or identify a fast feedback loop before debugging or changing behavior.
-- Prefer explicit hypotheses over intuition.
-- Prefer several falsifiable hypotheses over the first plausible explanation.
-- Increase investigation depth when an attempt fails.
-- Preserve existing behavior unless the task requires changing it.
-- Be explicit when verification is partial.
-- Before any success claim, identify the command that proves it, run it fresh, read the full output, and report the result accurately.
-
-## Reference Routing
-
-Read only the references needed for the current task.
-
-| Situation | Read |
+| Requested outcome | Read |
 | --- | --- |
-| Broad refactoring risk, abstraction risk, unsafe defaults, or boundary validation | [references/01-engineering-fundamentals.md](references/01-engineering-fundamentals.md) |
-| Larger or multi-stage tasks | [references/02-planning-and-execution.md](references/02-planning-and-execution.md) |
-| Completion claims, commits, PRs, delegation, or final status | [references/03-verification-and-review.md](references/03-verification-and-review.md) |
-| Destructive, public, or hard-to-reverse actions | [references/04-safe-delivery.md](references/04-safe-delivery.md) |
-| Bugs, test failures, broken integrations, unexpected behavior, deep stack failures, bad data propagation, flaky waits, test pollution, or repeated failed fixes | [references/05-debugging-and-root-cause-analysis.md](references/05-debugging-and-root-cause-analysis.md) |
-| Cross-module contracts, related lifecycle states, or concurrent state ownership | [references/06-data-and-interface-design.md](references/06-data-and-interface-design.md) |
-| Performance comparisons, regression measurements, or sustained metric improvement | [references/07-performance-measurement.md](references/07-performance-measurement.md) |
+| Implement a feature or fix | Inspect the current path and requirements, then use the operating loop below; [ticket implementation](references/workflows/implement/GUIDE.md) for ticket-driven work |
+| Diagnose a bug, failing test/build/integration, or regression | [Root-cause analysis](references/05-debugging-and-root-cause-analysis.md); [hard-bug feedback loops](references/workflows/diagnosing-bugs/GUIDE.md) when useful |
+| Restructure code while preserving behavior | [Refactoring](references/08-refactoring.md) |
+| Standalone code review, PR/diff review, or implementation self-review | [Code review](references/09-code-review.md) |
+| Verify and deliver code changes | [Verification](references/03-verification-and-review.md); [safe delivery](references/04-safe-delivery.md) for destructive/public actions |
+| Clarify requirements or stress-test an engineering plan | [Clarification](references/workflows/clarify-plan/GUIDE.md); [domain-aware design discussion](references/workflows/grill-with-docs/GUIDE.md) when recording decisions |
+| Write a spec from an agreed discussion | [Specification](references/workflows/to-spec/GUIDE.md) |
+| Break a plan into executable vertical slices | [Local slicing](references/workflows/slice-plan/GUIDE.md); [tracker tickets](references/workflows/to-tickets/GUIDE.md) only when requested |
+| Resolve a multi-session effort's unknown decisions | [Wayfinding](references/workflows/wayfinder/GUIDE.md) |
+| Design modules, seams, domain terms, glossaries, or ADRs | [Module design](references/workflows/codebase-design/GUIDE.md), [domain modeling](references/workflows/domain-modeling/GUIDE.md) |
+| Survey architectural improvement opportunities | [Architecture survey](references/workflows/improve-codebase-architecture/GUIDE.md) |
+| Prototype a UI, state model, or business rule | [Prototype](references/workflows/prototype/GUIDE.md); [logic/UI walkthrough tactics](references/workflows/prototype-patterns/GUIDE.md) if needed |
+| Work test-first or design behavioral tests | [TDD](references/workflows/tdd/GUIDE.md) |
+| Implement a spec with a dependency graph of tickets | [Spec implementation](references/workflows/implement-spec/GUIDE.md) |
+| Triage incoming issues or external PRs | [Triage](references/workflows/triage/GUIDE.md) |
+| Configure tracker, triage labels, or domain-doc layout | [Project setup](references/workflows/setup-matt-pocock-skills/GUIDE.md), only when needed |
+| Research technical documentation, source, or APIs | [Research](references/workflows/research/GUIDE.md) |
+| Build a wizard for steps only a human can perform | [Human setup wizard](references/workflows/wizard/GUIDE.md) |
+| Write/review developer docs or API/CLI instructions | [Technical writing](references/workflows/technical-doc-writing/GUIDE.md) |
+| React/Next.js implementation, review, or performance | [React practices](references/workflows/vercel-react-best-practices/GUIDE.md); select the relevant rules |
+| React composition or component API design | [Composition patterns](references/workflows/vercel-composition-patterns/GUIDE.md) |
+| Audit UI code against Web accessibility/design guidelines | [Web guidelines](references/workflows/web-design-guidelines/GUIDE.md) |
+| Extract/replay a URL's WebGL/WebGPU/Canvas effect | [Shader extraction](references/workflows/web-shader-extractor/GUIDE.md) |
+| Measure performance or manage cross-module contracts | [Performance measurement](references/07-performance-measurement.md), [data/interfaces](references/06-data-and-interface-design.md) |
+| Handoff engineering work or review a coding session | [Handoff](references/workflows/handoff/GUIDE.md), [retrospective](references/workflows/retro/GUIDE.md) |
 
-## Bundled Tools
+Before using an imported workflow under `references/workflows/`, read [integration rules](references/workflows/README.md). They resolve former assumptions about independent skills, trackers, delegation, and publishing. Resolve workflow-relative resource paths from the selected GUIDE directory. Keep large reference catalogs unloaded until needed.
 
-- [scripts/find-polluter.sh](scripts/find-polluter.sh): identify which test creates unwanted files or persistent state.
-- [references/condition-based-waiting-example.ts](references/condition-based-waiting-example.ts): complete event-wait helper examples for replacing arbitrary sleeps.
+## Scope and authorization
 
-## Completion Criteria
+- **Review:** inspect and report findings first. Fix code only if fixes are also requested. Planning, research, and retrospective requests likewise do not imply implementation.
+- **Implementation:** refactor only where it serves the authorized goal. Before completing substantive changes, use the internal code-review procedure in self-review mode, correct in-scope findings, and verify corrections.
+- **External delivery:** issue creation/comments, commits, pushes, PR state changes, deployment, and messages require task authorization; selecting a workflow does not supply it.
+- Choose the smallest adequate workflow. Do not run planning, TDD, architecture surveys, prototypes, tracker setup, or parallel agents simply because they are available.
 
-Treat the task as complete only when:
+## Operating loop
 
-- the root cause is understood
-- the fix addresses that cause
-- the result is verified with fresh command output, or the verification limit is stated clearly
-- nearby regressions have been checked
-- the chosen references were actually applied to the task at hand
+1. Establish the requested result and current behavior. Read applicable repository instructions and surrounding code; respect all directory access exclusions.
+2. For failures, reproduce where practical, form testable hypotheses, and identify the cause before patching. A failed attempt should change what you know before the next attempt.
+3. Make the smallest coherent change using local conventions. Keep structural and behavior changes separately verifiable; preserve behavior unless the task requests changing it.
+4. Run meaningful, proportional checks against the requested behavior and affected boundaries. Use [engineering fundamentals](references/01-engineering-fundamentals.md) for abstraction/boundary risks and [planning/execution](references/02-planning-and-execution.md) for longer tasks.
+5. Review the result against correctness, repository standards, and intended requirements. Report fresh evidence, residual risk, and verification limits accurately.
 
-Do not report success based on a plausible diff alone.
+## Completion
+
+The requested artifact or behavior is delivered, relevant checks have been read and assessed, and remaining uncertainty is stated. A review can complete with findings; a plan can complete without implementation. An implementation requires the requested behavior or structural improvement and a self-review, with verification evidence or explicit limits. A plausible diff alone does not prove success.
+
+## Utilities
+
+[find-polluter.sh](scripts/find-polluter.sh) isolates test pollution. [Condition-based waiting](references/condition-based-waiting-example.ts) illustrates event-driven waits.
+
+## Sources and maintenance
+
+Read [source provenance and absorbed-update instructions](SOURCES.md) when tracing a capability or updating from upstream. [sources.json](sources.json) records original skills, revisions, capabilities, and current targets.

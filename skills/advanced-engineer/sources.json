@@ -1,0 +1,482 @@
+{
+  "schema_version": 1,
+  "skill": "advanced-engineer",
+  "sources": [
+    {
+      "id": "advanced-engineer-native",
+      "origin": "local",
+      "source_path": "skills/advanced-engineer",
+      "local_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+      "sync_mode": "manual",
+      "capabilities": [
+        "Root-cause investigation, minimal implementation, safe delivery, and evidence-based verification",
+        "Unified workflow selection and integration constraints"
+      ],
+      "targets": [
+        "SKILL.md",
+        "references/01-engineering-fundamentals.md",
+        "references/02-planning-and-execution.md",
+        "references/03-verification-and-review.md",
+        "references/04-safe-delivery.md",
+        "references/05-debugging-and-root-cause-analysis.md",
+        "references/06-data-and-interface-design.md",
+        "references/07-performance-measurement.md"
+      ],
+      "notes": "Native workflow plus local consolidation changes; the recorded revision is the repository base, not a claim that all current edits were committed."
+    },
+    {
+      "id": "clarify-plan",
+      "former_path": "clarify-plan",
+      "capabilities": [
+        "Resolve high-cost engineering ambiguity through focused questions"
+      ],
+      "target": "references/workflows/clarify-plan",
+      "origin": "local",
+      "source_path": "skills/clarify-plan",
+      "local_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+      "sync_mode": "manual",
+      "notes": "Local workflow absorbed during consolidation; maintain its target directly."
+    },
+    {
+      "id": "handoff",
+      "former_path": "handoff",
+      "capabilities": [
+        "Record engineering state, evidence, and next steps for continuation"
+      ],
+      "target": "references/workflows/handoff",
+      "origin": "local",
+      "source_path": "skills/handoff",
+      "local_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+      "sync_mode": "manual",
+      "notes": "Local workflow absorbed during consolidation; maintain its target directly."
+    },
+    {
+      "id": "mattpocock--engineering--ask-matt",
+      "former_path": "mattpocock/engineering/ask-matt",
+      "capabilities": [
+        "Choose the engineering workflow and context transition"
+      ],
+      "target": "references/workflows/ask-matt",
+      "origin": "upstream",
+      "repo": "mattpocock/skills",
+      "ref": "main",
+      "source_path": "skills/engineering/ask-matt",
+      "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
+      "sync_mode": "manual",
+      "notes": "Superseded by the unified router or local handoff procedure; compare upstream manually without replacing the consolidated target."
+    },
+    {
+      "id": "mattpocock--engineering--code-review",
+      "former_path": "mattpocock/engineering/code-review",
+      "capabilities": [
+        "Review a pinned change against standards and the originating spec"
+      ],
+      "target": "references/09-code-review.md",
+      "origin": "upstream",
+      "repo": "mattpocock/skills",
+      "ref": "main",
+      "source_path": "skills/engineering/code-review",
+      "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
+      "sync_mode": "entry"
+    },
+    {
+      "id": "mattpocock--engineering--codebase-design",
+      "former_path": "mattpocock/engineering/codebase-design",
+      "capabilities": [
+        "Design deep modules, interfaces, and seams"
+      ],
+      "target": "references/workflows/codebase-design",
+      "origin": "upstream",
+      "repo": "mattpocock/skills",
+      "ref": "main",
+      "source_path": "skills/engineering/codebase-design",
+      "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
+      "sync_mode": "tree"
+    },
+    {
+      "id": "mattpocock--engineering--diagnosing-bugs",
+      "former_path": "mattpocock/engineering/diagnosing-bugs",
+      "capabilities": [
+        "Build reproducible feedback loops and test root-cause hypotheses"
+      ],
+      "target": "references/workflows/diagnosing-bugs",
+      "origin": "upstream",
+      "repo": "mattpocock/skills",
+      "ref": "main",
+      "source_path": "skills/engineering/diagnosing-bugs",
+      "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
+      "sync_mode": "tree"
+    },
+    {
+      "id": "mattpocock--engineering--domain-modeling",
+      "former_path": "mattpocock/engineering/domain-modeling",
+      "capabilities": [
+        "Sharpen domain terminology, glossary, and architectural decisions"
+      ],
+      "target": "references/workflows/domain-modeling",
+      "origin": "upstream",
+      "repo": "mattpocock/skills",
+      "ref": "main",
+      "source_path": "skills/engineering/domain-modeling",
+      "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
+      "sync_mode": "tree"
+    },
+    {
+      "id": "mattpocock--engineering--grill-with-docs",
+      "former_path": "mattpocock/engineering/grill-with-docs",
+      "capabilities": [
+        "Clarify design while recording domain terms and decisions"
+      ],
+      "target": "references/workflows/grill-with-docs",
+      "origin": "upstream",
+      "repo": "mattpocock/skills",
+      "ref": "main",
+      "source_path": "skills/engineering/grill-with-docs",
+      "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
+      "sync_mode": "tree"
+    },
+    {
+      "id": "mattpocock--engineering--implement",
+      "former_path": "mattpocock/engineering/implement",
+      "capabilities": [
+        "Implement and verify a requested feature or ticket"
+      ],
+      "target": "references/workflows/implement",
+      "origin": "upstream",
+      "repo": "mattpocock/skills",
+      "ref": "main",
+      "source_path": "skills/engineering/implement",
+      "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
+      "sync_mode": "tree"
+    },
+    {
+      "id": "mattpocock--engineering--implement-spec",
+      "former_path": "mattpocock/engineering/implement-spec",
+      "capabilities": [
+        "Execute a dependency graph of implementation tickets"
+      ],
+      "target": "references/workflows/implement-spec",
+      "origin": "upstream",
+      "repo": "mattpocock/skills",
+      "ref": "main",
+      "source_path": "skills/engineering/implement-spec",
+      "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
+      "sync_mode": "tree"
+    },
+    {
+      "id": "mattpocock--engineering--improve-codebase-architecture",
+      "former_path": "mattpocock/engineering/improve-codebase-architecture",
+      "capabilities": [
+        "Identify module deepening and testability opportunities"
+      ],
+      "target": "references/workflows/improve-codebase-architecture",
+      "origin": "upstream",
+      "repo": "mattpocock/skills",
+      "ref": "main",
+      "source_path": "skills/engineering/improve-codebase-architecture",
+      "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
+      "sync_mode": "tree"
+    },
+    {
+      "id": "mattpocock--engineering--prototype",
+      "former_path": "mattpocock/engineering/prototype",
+      "capabilities": [
+        "Build throwaway UI or logic prototypes to resolve design questions"
+      ],
+      "target": "references/workflows/prototype-patterns",
+      "origin": "upstream",
+      "repo": "mattpocock/skills",
+      "ref": "main",
+      "source_path": "skills/engineering/prototype",
+      "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
+      "sync_mode": "tree"
+    },
+    {
+      "id": "mattpocock--engineering--research",
+      "former_path": "mattpocock/engineering/research",
+      "capabilities": [
+        "Investigate technical questions against primary sources"
+      ],
+      "target": "references/workflows/research",
+      "origin": "upstream",
+      "repo": "mattpocock/skills",
+      "ref": "main",
+      "source_path": "skills/engineering/research",
+      "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
+      "sync_mode": "tree"
+    },
+    {
+      "id": "mattpocock--engineering--retro",
+      "former_path": "mattpocock/engineering/retro",
+      "capabilities": [
+        "Identify coding-session environment and process improvements"
+      ],
+      "target": "references/workflows/retro",
+      "origin": "upstream",
+      "repo": "mattpocock/skills",
+      "ref": "main",
+      "source_path": "skills/engineering/retro",
+      "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
+      "sync_mode": "tree"
+    },
+    {
+      "id": "mattpocock--engineering--setup-matt-pocock-skills",
+      "former_path": "mattpocock/engineering/setup-matt-pocock-skills",
+      "capabilities": [
+        "Configure project tracker, triage roles, and domain-document layout"
+      ],
+      "target": "references/workflows/setup-matt-pocock-skills",
+      "origin": "upstream",
+      "repo": "mattpocock/skills",
+      "ref": "main",
+      "source_path": "skills/engineering/setup-matt-pocock-skills",
+      "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
+      "sync_mode": "tree"
+    },
+    {
+      "id": "mattpocock--engineering--tdd",
+      "former_path": "mattpocock/engineering/tdd",
+      "capabilities": [
+        "Develop behavior through vertical red-green test slices"
+      ],
+      "target": "references/workflows/tdd",
+      "origin": "upstream",
+      "repo": "mattpocock/skills",
+      "ref": "main",
+      "source_path": "skills/engineering/tdd",
+      "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
+      "sync_mode": "tree"
+    },
+    {
+      "id": "mattpocock--engineering--to-spec",
+      "former_path": "mattpocock/engineering/to-spec",
+      "capabilities": [
+        "Synthesize an agreed discussion into an implementation specification"
+      ],
+      "target": "references/workflows/to-spec",
+      "origin": "upstream",
+      "repo": "mattpocock/skills",
+      "ref": "main",
+      "source_path": "skills/engineering/to-spec",
+      "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
+      "sync_mode": "tree"
+    },
+    {
+      "id": "mattpocock--engineering--to-tickets",
+      "former_path": "mattpocock/engineering/to-tickets",
+      "capabilities": [
+        "Turn specifications into dependency-aware vertical tickets"
+      ],
+      "target": "references/workflows/to-tickets",
+      "origin": "upstream",
+      "repo": "mattpocock/skills",
+      "ref": "main",
+      "source_path": "skills/engineering/to-tickets",
+      "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
+      "sync_mode": "tree"
+    },
+    {
+      "id": "mattpocock--engineering--triage",
+      "former_path": "mattpocock/engineering/triage",
+      "capabilities": [
+        "Classify and verify incoming issues and external PRs"
+      ],
+      "target": "references/workflows/triage",
+      "origin": "upstream",
+      "repo": "mattpocock/skills",
+      "ref": "main",
+      "source_path": "skills/engineering/triage",
+      "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
+      "sync_mode": "tree"
+    },
+    {
+      "id": "mattpocock--engineering--wayfinder",
+      "former_path": "mattpocock/engineering/wayfinder",
+      "capabilities": [
+        "Resolve decisions for multi-session engineering efforts"
+      ],
+      "target": "references/workflows/wayfinder",
+      "origin": "upstream",
+      "repo": "mattpocock/skills",
+      "ref": "main",
+      "source_path": "skills/engineering/wayfinder",
+      "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
+      "sync_mode": "tree"
+    },
+    {
+      "id": "mattpocock--engineering--wizard",
+      "former_path": "mattpocock/engineering/wizard",
+      "capabilities": [
+        "Generate a human-operated setup and migration wizard"
+      ],
+      "target": "references/workflows/wizard",
+      "origin": "upstream",
+      "repo": "mattpocock/skills",
+      "ref": "main",
+      "source_path": "skills/engineering/wizard",
+      "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
+      "sync_mode": "tree"
+    },
+    {
+      "id": "mattpocock--productivity--handoff",
+      "former_path": "mattpocock/productivity/handoff",
+      "capabilities": [
+        "Record engineering state, evidence, and next steps for continuation"
+      ],
+      "target": "references/workflows/handoff",
+      "origin": "upstream",
+      "repo": "mattpocock/skills",
+      "ref": "main",
+      "source_path": "skills/productivity/handoff",
+      "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
+      "sync_mode": "manual",
+      "notes": "Superseded by the unified router or local handoff procedure; compare upstream manually without replacing the consolidated target."
+    },
+    {
+      "id": "prototype",
+      "former_path": "prototype",
+      "capabilities": [
+        "Build throwaway UI or logic prototypes to resolve design questions"
+      ],
+      "target": "references/workflows/prototype",
+      "origin": "local",
+      "source_path": "skills/prototype",
+      "local_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+      "sync_mode": "manual",
+      "notes": "Local workflow absorbed during consolidation; maintain its target directly."
+    },
+    {
+      "id": "refactoring",
+      "former_path": "refactoring",
+      "capabilities": [
+        "Improve structure in small behavior-preserving verified steps"
+      ],
+      "target": "references/08-refactoring.md",
+      "origin": "local",
+      "source_path": "skills/refactoring",
+      "local_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+      "sync_mode": "manual",
+      "notes": "Local workflow absorbed during consolidation; maintain its target directly."
+    },
+    {
+      "id": "review-work",
+      "former_path": "review-work",
+      "capabilities": [
+        "Review correctness, repository standards, and requirements with evidence-backed findings"
+      ],
+      "target": "references/09-code-review.md",
+      "origin": "local",
+      "source_path": "skills/review-work",
+      "local_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+      "sync_mode": "manual",
+      "notes": "Local workflow absorbed during consolidation; maintain its target directly."
+    },
+    {
+      "id": "slice-plan",
+      "former_path": "slice-plan",
+      "capabilities": [
+        "Split implementation into independently verifiable vertical slices"
+      ],
+      "target": "references/workflows/slice-plan",
+      "origin": "local",
+      "source_path": "skills/slice-plan",
+      "local_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+      "sync_mode": "manual",
+      "notes": "Local workflow absorbed during consolidation; maintain its target directly."
+    },
+    {
+      "id": "technical-doc-writing",
+      "former_path": "technical-doc-writing",
+      "capabilities": [
+        "Write developer documentation using local Google style references"
+      ],
+      "target": "references/workflows/technical-doc-writing",
+      "origin": "local",
+      "source_path": "skills/technical-doc-writing",
+      "local_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+      "sync_mode": "manual",
+      "notes": "Local workflow absorbed during consolidation; maintain its target directly."
+    },
+    {
+      "id": "vercel-composition-patterns",
+      "former_path": "vercel-composition-patterns",
+      "capabilities": [
+        "Design composable React component APIs"
+      ],
+      "target": "references/workflows/vercel-composition-patterns",
+      "origin": "upstream",
+      "repo": "vercel-labs/agent-skills",
+      "ref": "main",
+      "source_path": "skills/composition-patterns",
+      "last_ingested_commit": "063bee94c3f4df8453406c830b0a7df0f2860278",
+      "sync_mode": "tree"
+    },
+    {
+      "id": "vercel-react-best-practices",
+      "former_path": "vercel-react-best-practices",
+      "capabilities": [
+        "Apply React and Next.js performance rules"
+      ],
+      "target": "references/workflows/vercel-react-best-practices",
+      "origin": "upstream",
+      "repo": "vercel-labs/agent-skills",
+      "ref": "main",
+      "source_path": "skills/react-best-practices",
+      "last_ingested_commit": "063bee94c3f4df8453406c830b0a7df0f2860278",
+      "sync_mode": "tree"
+    },
+    {
+      "id": "web-design-guidelines",
+      "former_path": "web-design-guidelines",
+      "capabilities": [
+        "Check UI code against current Web Interface Guidelines"
+      ],
+      "target": "references/workflows/web-design-guidelines",
+      "origin": "upstream",
+      "repo": "vercel-labs/agent-skills",
+      "ref": "main",
+      "source_path": "skills/web-design-guidelines",
+      "last_ingested_commit": "063bee94c3f4df8453406c830b0a7df0f2860278",
+      "sync_mode": "tree"
+    },
+    {
+      "id": "web-shader-extractor",
+      "former_path": "web-shader-extractor",
+      "capabilities": [
+        "Investigate and replay WebGL, WebGPU, and Canvas effects"
+      ],
+      "target": "references/workflows/web-shader-extractor",
+      "origin": "upstream",
+      "repo": "lixiaolin94/skills",
+      "ref": "main",
+      "source_path": "web-shader-extractor",
+      "last_ingested_commit": "ee7e9c50049bf9278b7810c3cd00802cfa401138",
+      "sync_mode": "tree"
+    },
+    {
+      "id": "pstack-selected-practices",
+      "origin": "upstream",
+      "repo": "cursor/plugins",
+      "ref": "main",
+      "source_path": "pstack",
+      "last_ingested_commit": "dbf49813a39c1a5389c5e28cb8e4c1c2379e2454",
+      "sync_mode": "manual",
+      "capabilities": [
+        "ownership and interface design",
+        "performance measurement",
+        "premise investigation",
+        "verification and review beyond the diff"
+      ],
+      "targets": [
+        "references/01-engineering-fundamentals.md",
+        "references/03-verification-and-review.md",
+        "references/05-debugging-and-root-cause-analysis.md",
+        "references/06-data-and-interface-design.md",
+        "references/07-performance-measurement.md",
+        "references/08-refactoring.md",
+        "references/09-code-review.md"
+      ],
+      "notes": "Selected practices adapted from pstack 0.15.23, not a complete import. Source revision identifies provenance, not equivalence to current targets."
+    }
+  ]
+}

@@ -108,7 +108,7 @@ A second engineer should be able to execute your plan exactly as written and rea
 
 ## Rule
 
-After implementing a change, review the diff for three things: missed reuse, quality problems, and efficiency problems. Clean up what you find before calling the work done.
+Before completing substantive implementation, a bug fix, or refactoring, read [the shared code-review procedure](09-code-review.md) in implementation self-review mode. Apply its correctness, Standards, and Spec checks along with missed reuse, quality problems, and efficiency problems below. Correct issues within the authorized scope and verify corrections. This is an internal reference of advanced-engineer.
 
 ## Why It Matters
 

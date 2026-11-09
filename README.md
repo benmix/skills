@@ -49,34 +49,17 @@ This repository currently contains two kinds of skills:
 
 ## Current Skills
 
-### Local Skills
+### Engineering
 
-| Skill | Purpose | Source |
-| --- | --- | --- |
-| [`writing-maestro`](skills/writing-maestro/SKILL.md) | Writing and editing workflow for human-facing prose, with emphasis on clarity, concision, and removing AI-sounding phrasing. | Local custom skill |
-| [`technical-doc-writing`](skills/technical-doc-writing/SKILL.md) | Writing and reviewing developer documentation using practical guidance from the Google developer documentation style guide. | Local custom skill |
-| [`advanced-engineer`](skills/advanced-engineer/SKILL.md) | Root-cause-first engineering workflow covering systematic debugging, minimal fixes, evidence-backed verification, and delivery checks. | Local custom skill |
-| [`refactoring`](skills/refactoring/SKILL.md) | Small-step, behavior-preserving refactoring guidance focused on making the next code change easier, safer, and cheaper. | Local custom skill |
-| [`prototype`](skills/prototype/SKILL.md) | Throwaway prototypes for uncertain UI, state-machine, or business-logic questions before production work. | Local custom skill |
-| [`handoff`](skills/handoff/SKILL.md) | Temporary handoff briefs for continuing long-running work in another session or agent. | Local custom skill |
-| [`clarify-plan`](skills/clarify-plan/SKILL.md) | Focused planning questions with recommended answers for ambiguous or high-cost changes. | Local custom skill |
-| [`slice-plan`](skills/slice-plan/SKILL.md) | Break broad plans into vertical AFK/HITL slices with dependencies and acceptance criteria. | Local custom skill |
-| [`review-work`](skills/review-work/SKILL.md) | Review changes along repository standards and spec compliance with findings first. | Local custom skill |
+[`advanced-engineer`](skills/advanced-engineer/SKILL.md) is the only software-engineering skill. It routes planning/specs, slicing, architecture/domain modeling, prototypes, implementation, TDD, debugging, refactoring, reviews, verification, technical research/docs, React/Next.js, Web guidelines, shader extraction, handoff, and retrospectives to internal procedures. Read only the procedure needed by the task.
 
-Engineering guidance in `advanced-engineer`, `refactoring`, and `review-work` includes selected practices adapted from [Lauren Tan's pstack 0.15.23](https://github.com/cursor/plugins/tree/dbf49813a39c1a5389c5e28cb8e4c1c2379e2454/pstack). These additions cover data and ownership design, performance measurement, debugging assumptions, verification, and review beyond the diff. The full plugin is not installed or synced by this repository.
+The former engineering skills and compatibility entries have been removed. Their resources are maintained under `skills/advanced-engineer/references/`; there are no nested `SKILL.md` discovery entries. Install with `./scripts/install-skills.sh advanced-engineer`. Existing installations of the retired skills must be removed separately; installing the new entry alone does not uninstall them. The standalone remote-source manifest no longer syncs retired skills. [The absorption registry](skills/advanced-engineer/sources.json) tracks their provenance and internal targets; [absorbed-update instructions](skills/advanced-engineer/SOURCES.md) describe review-first updates without recreating independent entries.
 
-### Synced Skills
+The imported workflow resources preserve source documentation and attribution. Matt Pocock workflows, Vercel React/Web rules, shader extraction, and local custom engineering guides are maintained internally. Selected engineering practices are adapted from [Lauren Tan's pstack 0.15.23](https://github.com/cursor/plugins/tree/dbf49813a39c1a5389c5e28cb8e4c1c2379e2454/pstack).
 
-| Source | Synced skills | Notes |
-| --- | --- | --- |
-| [`wheresryan22/anatomy`](https://github.com/wheresryan22/anatomy) | [`anatomy`](skills/anatomy/SKILL.md) | Interactive isometric figures that explain technical concepts. |
-| [`zanwei/design-dna`](https://github.com/zanwei/design-dna) | [`design-dna`](skills/design-dna/SKILL.md) | Visual identity extraction and application. |
-| [`lixiaolin94/skills`](https://github.com/lixiaolin94/skills) | [`web-shader-extractor`](skills/web-shader-extractor/SKILL.md) | Web shader extraction and porting workflow. |
-| [`vercel-labs/agent-skills`](https://github.com/vercel-labs/agent-skills/tree/main/skills) | [`vercel-composition-patterns`](skills/vercel-composition-patterns/SKILL.md), [`vercel-react-best-practices`](skills/vercel-react-best-practices/SKILL.md), [`web-design-guidelines`](skills/web-design-guidelines/SKILL.md) | React, Next.js, component architecture, and web design guidance. |
-| [`vercel-labs/skills`](https://github.com/vercel-labs/skills/tree/main/skills) | [`find-skills`](skills/find-skills/SKILL.md) | Skill discovery helper. |
-| [`openai/skills`](https://github.com/openai/skills/tree/main/skills/.system) | [`skill-creator`](skills/skill-creator/SKILL.md), [`skill-installer`](skills/skill-installer/SKILL.md) | Skill creation and installation workflows. |
-| [`larksuite/cli`](https://github.com/larksuite/cli/tree/main/skills) | [`lark-doc`](skills/lark-doc/SKILL.md) | Read and edit Feishu/Lark cloud documents. |
-| [`mattpocock/skills`](https://github.com/mattpocock/skills/tree/main/docs) | Skills documented under `docs/engineering` and `docs/productivity`, synced under `skills/mattpocock/`. | Matt Pocock's engineering and productivity workflows. |
+### Other skills
+
+General writing (`writing-maestro`), skill creation/installation/discovery, Feishu documents (`lark-doc`), design DNA, isometric illustration (`anatomy`), and general productivity skills remain independent. Their remote sources, where applicable, remain in `skills/.remote-sources.yaml`.
 
 ## Quick Start
 
@@ -242,7 +225,7 @@ Preview the sync plan without making network requests or writing files:
 Temporarily override the branch or tag:
 
 ```bash
-./scripts/sync-remote-skills.sh --ref main web-design-guidelines
+./scripts/sync-remote-skills.sh --ref main find-skills
 ```
 
 During a real sync, the script compares the latest upstream commit with `last_synced_commit` first:
@@ -253,6 +236,17 @@ During a real sync, the script compares the latest upstream commit with `last_sy
 
 If you add a new external skill and want to keep syncing it later, add it to `skills/.remote-sources.yaml`.
 
+## Update Absorbed Engineering Sources
+
+```bash
+./scripts/sync-remote-skills.sh advanced-engineer --dry-run
+./scripts/sync-remote-skills.sh --absorbed web-design-guidelines --output /tmp/engineering-source-review
+# Review the package and reconcile merged/ before applying:
+./scripts/sync-remote-skills.sh --absorbed --apply /tmp/engineering-source-review/web-design-guidelines
+```
+
+Absorbed updates compare the recorded upstream base, new upstream, and locally adapted target. They produce review packages first; applying a reconciled package preserves the single advanced-engineer entry and updates its source revision. Partial/local sources remain manual. Default sync continues to update standalone skills. See [SOURCES.md](skills/advanced-engineer/SOURCES.md) for conflict handling, limits, and adding a source.
+
 ## Verification And CI
 
 This repository includes a GitHub Actions workflow that verifies selected skills can be installed through the public `skills` CLI:
@@ -260,7 +254,7 @@ This repository includes a GitHub Actions workflow that verifies selected skills
 - workflow file: `.github/workflows/verify-skills-install.yml`
 - runs on pushes to `main` and on pull requests that change `skills/**` or the workflow file
 - when run manually, you can choose which skills to verify
-- the current whitelist verifies `advanced-engineer`, `clarify-plan`, `handoff`, `prototype`, `refactoring`, `review-work`, `slice-plan`, and `writing-maestro`
+- the current whitelist verifies `advanced-engineer` and `writing-maestro`
 
 The workflow runs:
 
@@ -268,7 +262,9 @@ The workflow runs:
 npx skills add -y -g <owner>/<repo> --skill <skill-name>
 ```
 
-This checks whether the public install path works. It does not mean every skill in the repo is published for public use.
+The workflow also runs the offline absorbed-source integration tests, covering merge preservation, drift, conflicts, additions/deletions, entry-only sources, unsafe content, and rollback.
+
+The public CLI job checks whether the public install path works. It does not mean every skill in the repo is published for public use.
 
 ## Recommended Workflow
 

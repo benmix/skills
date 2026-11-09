@@ -1,3 +1,6 @@
-display_name: Advanced Engineer
-short_description: Root-cause-first engineering workflow for debugging, minimal fixes, commits, PRs, and evidence-backed verification.
-default_prompt: Use the advanced-engineer skill to investigate failures systematically, avoid fixes before root cause, implement the smallest correct patch, and verify completion, commit, PR, or passing claims with fresh evidence.
+interface:
+  display_name: "Advanced Engineer"
+  short_description: "One workflow for software planning, delivery, and review"
+  default_prompt: "Use $advanced-engineer to select and apply the relevant internal software-engineering procedure for this task."
+policy:
+  allow_implicit_invocation: true

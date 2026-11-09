@@ -7,10 +7,16 @@ on:
     paths:
       - ".github/workflows/verify-skills-install.yml"
       - "skills/**"
+      - "scripts/sync-absorbed-skills.py"
+      - "scripts/sync-remote-skills.sh"
+      - "tests/test_absorbed_sync.py"
   pull_request:
     paths:
       - ".github/workflows/verify-skills-install.yml"
       - "skills/**"
+      - "scripts/sync-absorbed-skills.py"
+      - "scripts/sync-remote-skills.sh"
+      - "tests/test_absorbed_sync.py"
   workflow_dispatch:
     inputs:
       skills:
@@ -19,6 +25,18 @@ on:
         type: string
 
 jobs:
+  verify-absorption:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Verify absorbed-source synchronization offline
+        run: python3 -m unittest discover -s tests -p 'test_absorbed_sync.py' -v
+
   verify-install:
     runs-on: ubuntu-latest
     permissions:
@@ -26,12 +44,6 @@ jobs:
     env:
       ALLOWED_SKILLS: |
         advanced-engineer
-        clarify-plan
-        handoff
-        prototype
-        refactoring
-        review-work
-        slice-plan
         writing-maestro
 
     steps:
