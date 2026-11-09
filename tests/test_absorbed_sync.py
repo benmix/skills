@@ -44,11 +44,20 @@ class AbsorbedSyncTests(unittest.TestCase):
         self.git('commit', '-qm', 'fixture change')
         return self.git('rev-parse', 'HEAD')
 
+    def review(self, output):
+        assessment = json.loads((output / 'semantic-review.json').read_text())
+        for name, check in assessment['checks'].items():
+            check.update(preserved=True, evidence=f'Fixture comparison confirms {name}; only the requested resource update is introduced.')
+        (output / 'semantic-review.json').write_text(json.dumps(assessment))
+        sync.seal_review(output)
+
     def proposal(self):
         (self.src / 'resource.txt').write_text('new resource\n')
         new = self.commit()
         output = self.root / 'proposal'
         proposal = sync.stage(self.skill, self.source, self.repo, new, output)
+        if not proposal['conflicts']:
+            self.review(output)
         return output, proposal
 
     def test_stage_then_apply_preserves_local_adaptation_and_advances_version(self):
@@ -81,6 +90,7 @@ class AbsorbedSyncTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Unresolved conflict markers'):
             sync.apply(self.skill, self.registry, self.manifest, output, True)
         (output / 'merged/resource.txt').write_text('reviewed resolution\n')
+        self.review(output)
         sync.apply(self.skill, self.registry, self.manifest, output, True)
         self.assertEqual((self.target / 'resource.txt').read_text(), 'reviewed resolution\n')
 
@@ -99,6 +109,7 @@ class AbsorbedSyncTests(unittest.TestCase):
         new = self.commit()
         output = self.root / 'proposal'
         sync.stage(self.skill, self.source, self.repo, new, output)
+        self.review(output)
         sync.apply(self.skill, self.registry, self.manifest, output)
         self.assertFalse((self.target / 'resource.txt').exists())
         self.assertEqual((self.target / 'new.txt').read_text(), 'added\n')
@@ -131,6 +142,20 @@ class AbsorbedSyncTests(unittest.TestCase):
         self.assertEqual(json.loads(self.registry.read_text())['sources'][0]['last_ingested_commit'], self.base)
         self.assertEqual(self.source['last_ingested_commit'], self.base)
 
+    def test_missing_or_stale_semantic_review_blocks_even_clean_merge(self):
+        output, _ = self.proposal()
+        review = json.loads((output / 'semantic-review.json').read_text())
+        review['checks']['required_steps_and_order']['preserved'] = False
+        (output / 'semantic-review.json').write_text(json.dumps(review))
+        with self.assertRaisesRegex(ValueError, 'Semantic review must confirm'):
+            sync.apply(self.skill, self.registry, self.manifest, output)
+        self.review(output)
+        (output / 'merged/resource.txt').write_text('unreviewed later edit\n')
+        with self.assertRaisesRegex(ValueError, 'missing or stale'):
+            sync.apply(self.skill, self.registry, self.manifest, output)
+        self.assertEqual((self.target / 'resource.txt').read_text(), 'old resource\n')
+        self.assertEqual(self.source['last_ingested_commit'], self.base)
+
     def test_entry_only_source_updates_one_existing_document(self):
         source = copy.deepcopy(self.source)
         source.update(sync_mode='entry', target='references/review.md')
@@ -141,9 +166,29 @@ class AbsorbedSyncTests(unittest.TestCase):
         new = self.commit()
         output = self.root / 'entry-proposal'
         sync.stage(self.skill, source, self.repo, new, output)
+        self.review(output)
         sync.apply(self.skill, self.registry, manifest, output)
         self.assertIn('upstream revision', target.read_text())
         self.assertTrue((self.target / 'GUIDE.md').exists())
+
+
+class SemanticBaselineTests(unittest.TestCase):
+    def test_absorbed_bodies_match_recorded_reviewed_content(self):
+        root = Path(__file__).resolve().parents[1]
+        skill = root / 'skills/advanced-engineer'
+        registry = json.loads((skill / 'sources.json').read_text())
+        for source in registry['sources']:
+            if 'semantic_baseline' not in source:
+                continue
+            with self.subTest(source=source['id']):
+                target = skill / source['target']
+                if source.get('last_semantic_review'):
+                    current = sync.local_tree(skill, source)
+                    self.assertEqual(sync.fingerprint(current), source['last_semantic_review']['reviewed_fingerprint'])
+                else:
+                    if target.is_dir():
+                        target = target / 'GUIDE.md'
+                    self.assertEqual(sync.hashlib.sha256(target.read_bytes()).hexdigest(), source['semantic_baseline']['restored_target_sha256'])
 
 
 if __name__ == '__main__':

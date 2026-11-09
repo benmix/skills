@@ -6,7 +6,7 @@ Help a developer understand a system or complete a task. This skill distills the
 
 Read [references/google-style-map.md](references/google-style-map.md) to select the few chapters needed for the task. Every chapter link in that map points to a local Markdown file under `references/google-style-guide/`. The [complete chapter index](references/google-style-guide/README.md) lists all 70 chapters and their official source URLs. Consult the online source only when a current detail is needed.
 
-To refresh the downloaded chapters, run `python3 scripts/update_google_style.py` from this procedure directory (or pass its path from elsewhere). Use `--check` to report drift without writing files.
+To refresh the downloaded chapters, run `python3 scripts/update_google_style.py` from this skill directory (or pass its path from elsewhere). Use `--check` to report drift without writing files.
 
 ## Write or revise
 

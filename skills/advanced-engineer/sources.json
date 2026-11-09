@@ -35,7 +35,17 @@
       "source_path": "skills/clarify-plan",
       "local_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
       "sync_mode": "manual",
-      "notes": "Local workflow absorbed during consolidation; maintain its target directly."
+      "notes": "Local workflow absorbed during consolidation; maintain its target directly.",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/clarify-plan/SKILL.md",
+        "body_sha256": "b35ab0f8f8c0c442b526377fb5856db7b36ee62d2366caf8d814adef78f4bf5b",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "b35ab0f8f8c0c442b526377fb5856db7b36ee62d2366caf8d814adef78f4bf5b"
+      }
     },
     {
       "id": "handoff",
@@ -48,7 +58,17 @@
       "source_path": "skills/handoff",
       "local_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
       "sync_mode": "manual",
-      "notes": "Local workflow absorbed during consolidation; maintain its target directly."
+      "notes": "Local workflow absorbed during consolidation; maintain its target directly.",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/handoff/SKILL.md",
+        "body_sha256": "25acda28285f433c6cbfd8ad8a18d59c041898f74300095d777f81d2b6df818f",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "25acda28285f433c6cbfd8ad8a18d59c041898f74300095d777f81d2b6df818f"
+      }
     },
     {
       "id": "mattpocock--engineering--ask-matt",
@@ -62,8 +82,17 @@
       "ref": "main",
       "source_path": "skills/engineering/ask-matt",
       "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
-      "sync_mode": "manual",
-      "notes": "Superseded by the unified router or local handoff procedure; compare upstream manually without replacing the consolidated target."
+      "sync_mode": "tree",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/mattpocock/engineering/ask-matt/SKILL.md",
+        "body_sha256": "8a3b734ef94f4ed0c234294193b8256051b8116f57f34c550fdc00cba16a0265",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "0b4d8de030a5f994fb64fd5f41a1b677df3e49ae3b2ad389416815afb1745860"
+      }
     },
     {
       "id": "mattpocock--engineering--code-review",
@@ -71,13 +100,23 @@
       "capabilities": [
         "Review a pinned change against standards and the originating spec"
       ],
-      "target": "references/09-code-review.md",
+      "target": "references/workflows/code-review/GUIDE.md",
       "origin": "upstream",
       "repo": "mattpocock/skills",
       "ref": "main",
       "source_path": "skills/engineering/code-review",
       "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
-      "sync_mode": "entry"
+      "sync_mode": "entry",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/mattpocock/engineering/code-review/SKILL.md",
+        "body_sha256": "09a1dcec51bdd9b41cb619231d0778fe742e0a0a1c9857c14048310fa200724e",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "06e3bbd7213e3e72b2c04c05c638924a9840693aed1081e3b582429aaad4de22"
+      }
     },
     {
       "id": "mattpocock--engineering--codebase-design",
@@ -91,7 +130,17 @@
       "ref": "main",
       "source_path": "skills/engineering/codebase-design",
       "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
-      "sync_mode": "tree"
+      "sync_mode": "tree",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/mattpocock/engineering/codebase-design/SKILL.md",
+        "body_sha256": "9153e20f10ff70df8ac0c9f4dcf9935a4328079252d2bf33c5765775eb40ef83",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "9153e20f10ff70df8ac0c9f4dcf9935a4328079252d2bf33c5765775eb40ef83"
+      }
     },
     {
       "id": "mattpocock--engineering--diagnosing-bugs",
@@ -105,7 +154,17 @@
       "ref": "main",
       "source_path": "skills/engineering/diagnosing-bugs",
       "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
-      "sync_mode": "tree"
+      "sync_mode": "tree",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/mattpocock/engineering/diagnosing-bugs/SKILL.md",
+        "body_sha256": "a3f31c74aa30114bcb831bf4ef04f88d22e84b373a55c7558b29fe470357a3ca",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "a3f31c74aa30114bcb831bf4ef04f88d22e84b373a55c7558b29fe470357a3ca"
+      }
     },
     {
       "id": "mattpocock--engineering--domain-modeling",
@@ -119,7 +178,17 @@
       "ref": "main",
       "source_path": "skills/engineering/domain-modeling",
       "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
-      "sync_mode": "tree"
+      "sync_mode": "tree",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/mattpocock/engineering/domain-modeling/SKILL.md",
+        "body_sha256": "89fe9ba785772fcc7032e216316922d35b5e48086d63efd1fcaf8f350e5b31d2",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "89fe9ba785772fcc7032e216316922d35b5e48086d63efd1fcaf8f350e5b31d2"
+      }
     },
     {
       "id": "mattpocock--engineering--grill-with-docs",
@@ -133,7 +202,17 @@
       "ref": "main",
       "source_path": "skills/engineering/grill-with-docs",
       "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
-      "sync_mode": "tree"
+      "sync_mode": "tree",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/mattpocock/engineering/grill-with-docs/SKILL.md",
+        "body_sha256": "358732101e8188e25189142d2967270284fb3fa82b54fd5b94a2e47b468c6c96",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "7727585561cb24cae40e84ddd92dcb0406bf688130d92c78d375f76e1b21cf56"
+      }
     },
     {
       "id": "mattpocock--engineering--implement",
@@ -147,7 +226,17 @@
       "ref": "main",
       "source_path": "skills/engineering/implement",
       "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
-      "sync_mode": "tree"
+      "sync_mode": "tree",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/mattpocock/engineering/implement/SKILL.md",
+        "body_sha256": "36a7e5b75db7847b080f4d2e175683de6addf06103108d41245b815b5ce209a7",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "ed618c76cf1d47aceb83568173b9fb683b048c66207da06504c43ce9dddaca19"
+      }
     },
     {
       "id": "mattpocock--engineering--implement-spec",
@@ -161,7 +250,17 @@
       "ref": "main",
       "source_path": "skills/engineering/implement-spec",
       "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
-      "sync_mode": "tree"
+      "sync_mode": "tree",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/mattpocock/engineering/implement-spec/SKILL.md",
+        "body_sha256": "f346240cf6c514f1d3afa20abcc2c5dbf493e8908977dbb0fcd2bed4c435b035",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "1aabaabb4805a7afe35e5a2ffc8a45995c3566fbe96bee2a97f10b7b69a4a1b9"
+      }
     },
     {
       "id": "mattpocock--engineering--improve-codebase-architecture",
@@ -175,7 +274,17 @@
       "ref": "main",
       "source_path": "skills/engineering/improve-codebase-architecture",
       "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
-      "sync_mode": "tree"
+      "sync_mode": "tree",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/mattpocock/engineering/improve-codebase-architecture/SKILL.md",
+        "body_sha256": "19f97e02ed39d902b80827946b4d1ca74da6be9fd36baf0d81bf42c50e3a55e9",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "6c8ecd1baed29ba0f2630ab6fb6e0fc1a744109552e914119e5d88e9e1626a80"
+      }
     },
     {
       "id": "mattpocock--engineering--prototype",
@@ -189,7 +298,17 @@
       "ref": "main",
       "source_path": "skills/engineering/prototype",
       "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
-      "sync_mode": "tree"
+      "sync_mode": "tree",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/mattpocock/engineering/prototype/SKILL.md",
+        "body_sha256": "11ed81ec2d0cbf38606ab6776fb0e615b8bc9f4e02aa0d5e5fc3b87db718af80",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "11ed81ec2d0cbf38606ab6776fb0e615b8bc9f4e02aa0d5e5fc3b87db718af80"
+      }
     },
     {
       "id": "mattpocock--engineering--research",
@@ -203,7 +322,17 @@
       "ref": "main",
       "source_path": "skills/engineering/research",
       "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
-      "sync_mode": "tree"
+      "sync_mode": "tree",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/mattpocock/engineering/research/SKILL.md",
+        "body_sha256": "6beacb408fbed9ced214b0dbea543a9a371da67031f2b5e03deecd4fd269d451",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "6beacb408fbed9ced214b0dbea543a9a371da67031f2b5e03deecd4fd269d451"
+      }
     },
     {
       "id": "mattpocock--engineering--retro",
@@ -217,7 +346,17 @@
       "ref": "main",
       "source_path": "skills/engineering/retro",
       "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
-      "sync_mode": "tree"
+      "sync_mode": "tree",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/mattpocock/engineering/retro/SKILL.md",
+        "body_sha256": "1e95a44a76bc43bf52bcb2bc31a2ce61be3eb1a33ef9f85279b8775435ab64fd",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "1e95a44a76bc43bf52bcb2bc31a2ce61be3eb1a33ef9f85279b8775435ab64fd"
+      }
     },
     {
       "id": "mattpocock--engineering--setup-matt-pocock-skills",
@@ -231,7 +370,18 @@
       "ref": "main",
       "source_path": "skills/engineering/setup-matt-pocock-skills",
       "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
-      "sync_mode": "tree"
+      "sync_mode": "tree",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/mattpocock/engineering/setup-matt-pocock-skills/SKILL.md",
+        "body_sha256": "83512128ef31b0acf4db13f09fc99bdf1f3f86151285994d16e0cae548683250",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references",
+          "Use availability of the built-in triage procedure in place of its former installation check"
+        ],
+        "restored_target_sha256": "aa74b2786199a148ccb5425c62715ffa29e3237539f0425df9c906ff1044ae40"
+      }
     },
     {
       "id": "mattpocock--engineering--tdd",
@@ -245,7 +395,17 @@
       "ref": "main",
       "source_path": "skills/engineering/tdd",
       "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
-      "sync_mode": "tree"
+      "sync_mode": "tree",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/mattpocock/engineering/tdd/SKILL.md",
+        "body_sha256": "eb5d2c89ebc29d4a6a522fa0d024d31964e5acab7584597d2430de8299caa6b3",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "e154b23a9df84a018ebbaa3074bfca7051bcae26c814d4aab2fde1565ce2ffc1"
+      }
     },
     {
       "id": "mattpocock--engineering--to-spec",
@@ -259,7 +419,17 @@
       "ref": "main",
       "source_path": "skills/engineering/to-spec",
       "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
-      "sync_mode": "tree"
+      "sync_mode": "tree",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/mattpocock/engineering/to-spec/SKILL.md",
+        "body_sha256": "38ff2a650412bd40fad23bb7deef8279d3589001b6456c5b12ecf6dc1b52ece6",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "07b7c3420814ccaa4bb290b7eaee0a69502a58f073c1845c23e759b8c61c3d1d"
+      }
     },
     {
       "id": "mattpocock--engineering--to-tickets",
@@ -273,7 +443,17 @@
       "ref": "main",
       "source_path": "skills/engineering/to-tickets",
       "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
-      "sync_mode": "tree"
+      "sync_mode": "tree",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/mattpocock/engineering/to-tickets/SKILL.md",
+        "body_sha256": "9199faa6a636be56691910ac353cf2002f2c9ff8e0d742e4252e39b4521f6e5b",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "6bb1a0aed7c8f78538b6494b0b6eab416450770569100d526b43f27ee859e4aa"
+      }
     },
     {
       "id": "mattpocock--engineering--triage",
@@ -287,7 +467,17 @@
       "ref": "main",
       "source_path": "skills/engineering/triage",
       "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
-      "sync_mode": "tree"
+      "sync_mode": "tree",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/mattpocock/engineering/triage/SKILL.md",
+        "body_sha256": "f7cbc10497a110d1a8b2c08ba5f2c1af15d25e3cf8a661aaf2253fbf93a1e0f6",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "b25b481bdff98f0f3cde795b9c83ba80067961e46d41f77b5a3b0cd7e60c043a"
+      }
     },
     {
       "id": "mattpocock--engineering--wayfinder",
@@ -301,7 +491,17 @@
       "ref": "main",
       "source_path": "skills/engineering/wayfinder",
       "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
-      "sync_mode": "tree"
+      "sync_mode": "tree",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/mattpocock/engineering/wayfinder/SKILL.md",
+        "body_sha256": "8c4e591122cb269ef591f9f353aeef10f1d7e6896e5a5cded74883f8d9d985fb",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "0fed525b432619d290de197ec802c15d1381ae5b0217cb1495711e668aed6546"
+      }
     },
     {
       "id": "mattpocock--engineering--wizard",
@@ -315,7 +515,17 @@
       "ref": "main",
       "source_path": "skills/engineering/wizard",
       "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
-      "sync_mode": "tree"
+      "sync_mode": "tree",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/mattpocock/engineering/wizard/SKILL.md",
+        "body_sha256": "103943b2a0dd8e413642d7f3e05ad680a9be9057c5f37dba3dbcf45530e4f315",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "103943b2a0dd8e413642d7f3e05ad680a9be9057c5f37dba3dbcf45530e4f315"
+      }
     },
     {
       "id": "mattpocock--productivity--handoff",
@@ -323,14 +533,23 @@
       "capabilities": [
         "Record engineering state, evidence, and next steps for continuation"
       ],
-      "target": "references/workflows/handoff",
+      "target": "references/workflows/handoff-compact",
       "origin": "upstream",
       "repo": "mattpocock/skills",
       "ref": "main",
       "source_path": "skills/productivity/handoff",
       "last_ingested_commit": "49dd158d1076134a641b33efb035946536778336",
-      "sync_mode": "manual",
-      "notes": "Superseded by the unified router or local handoff procedure; compare upstream manually without replacing the consolidated target."
+      "sync_mode": "tree",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/mattpocock/productivity/handoff/SKILL.md",
+        "body_sha256": "b29b7dee6162601ec95e40e725ce0b55ae971501a7110969bbca423e1e597156",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "b29b7dee6162601ec95e40e725ce0b55ae971501a7110969bbca423e1e597156"
+      }
     },
     {
       "id": "prototype",
@@ -343,7 +562,17 @@
       "source_path": "skills/prototype",
       "local_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
       "sync_mode": "manual",
-      "notes": "Local workflow absorbed during consolidation; maintain its target directly."
+      "notes": "Local workflow absorbed during consolidation; maintain its target directly.",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/prototype/SKILL.md",
+        "body_sha256": "ca3ac0b273dcc467c3bfcb8b29bcf0090a11d7982f354d54c86164ebb1c0fb72",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "ca3ac0b273dcc467c3bfcb8b29bcf0090a11d7982f354d54c86164ebb1c0fb72"
+      }
     },
     {
       "id": "refactoring",
@@ -356,7 +585,17 @@
       "source_path": "skills/refactoring",
       "local_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
       "sync_mode": "manual",
-      "notes": "Local workflow absorbed during consolidation; maintain its target directly."
+      "notes": "Local workflow absorbed during consolidation; maintain its target directly.",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/refactoring/SKILL.md",
+        "body_sha256": "218af4b7da10de9454488025dbf9584fed90c211ac6945560042f8ed1c06566a",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "2aa9e8a5f8f866dd1eef2d9e4089627280307db3822e561af75e6370af418ed3"
+      }
     },
     {
       "id": "review-work",
@@ -369,7 +608,17 @@
       "source_path": "skills/review-work",
       "local_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
       "sync_mode": "manual",
-      "notes": "Local workflow absorbed during consolidation; maintain its target directly."
+      "notes": "Local workflow absorbed during consolidation; maintain its target directly.",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/review-work/SKILL.md",
+        "body_sha256": "d2528b33174ed7ddd5a3c18cc22423427875ccec3826978fd7ca2677883a1320",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "d2528b33174ed7ddd5a3c18cc22423427875ccec3826978fd7ca2677883a1320"
+      }
     },
     {
       "id": "slice-plan",
@@ -382,7 +631,17 @@
       "source_path": "skills/slice-plan",
       "local_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
       "sync_mode": "manual",
-      "notes": "Local workflow absorbed during consolidation; maintain its target directly."
+      "notes": "Local workflow absorbed during consolidation; maintain its target directly.",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/slice-plan/SKILL.md",
+        "body_sha256": "01b50e6db66ed408b34b844c0101153b82d073c8bbdfe2918b6ea14ab6f54c8d",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "01b50e6db66ed408b34b844c0101153b82d073c8bbdfe2918b6ea14ab6f54c8d"
+      }
     },
     {
       "id": "technical-doc-writing",
@@ -395,7 +654,17 @@
       "source_path": "skills/technical-doc-writing",
       "local_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
       "sync_mode": "manual",
-      "notes": "Local workflow absorbed during consolidation; maintain its target directly."
+      "notes": "Local workflow absorbed during consolidation; maintain its target directly.",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/technical-doc-writing/SKILL.md",
+        "body_sha256": "ad401c345897417dc771f8de7c248a2fcc9da92451b06bc28257bd411c40a0a2",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "ad401c345897417dc771f8de7c248a2fcc9da92451b06bc28257bd411c40a0a2"
+      }
     },
     {
       "id": "vercel-composition-patterns",
@@ -409,7 +678,17 @@
       "ref": "main",
       "source_path": "skills/composition-patterns",
       "last_ingested_commit": "063bee94c3f4df8453406c830b0a7df0f2860278",
-      "sync_mode": "tree"
+      "sync_mode": "tree",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/vercel-composition-patterns/SKILL.md",
+        "body_sha256": "5dbf3b725742b40fe54d1b65ddbfe46b23650d328c0fd8483be3be6297207d7a",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "420f3d5f47b40dfa60efda627e2800085062b200fd886af9e340fcb20e94c79d"
+      }
     },
     {
       "id": "vercel-react-best-practices",
@@ -423,7 +702,17 @@
       "ref": "main",
       "source_path": "skills/react-best-practices",
       "last_ingested_commit": "063bee94c3f4df8453406c830b0a7df0f2860278",
-      "sync_mode": "tree"
+      "sync_mode": "tree",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/vercel-react-best-practices/SKILL.md",
+        "body_sha256": "315f5c4b6e65a9cb8fdec6d383f5723edeec891af6074387a17fe72060301cfd",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "e4960e23c800c90b6091c6220f3bb54edce0b6a69dfa338647ce4d3e4a3ef7c6"
+      }
     },
     {
       "id": "web-design-guidelines",
@@ -437,7 +726,17 @@
       "ref": "main",
       "source_path": "skills/web-design-guidelines",
       "last_ingested_commit": "063bee94c3f4df8453406c830b0a7df0f2860278",
-      "sync_mode": "tree"
+      "sync_mode": "tree",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/web-design-guidelines/SKILL.md",
+        "body_sha256": "719bba3833259bd6a340906ce16c3e00a4047dbed7cc04b39f14be2a460c8240",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "719bba3833259bd6a340906ce16c3e00a4047dbed7cc04b39f14be2a460c8240"
+      }
     },
     {
       "id": "web-shader-extractor",
@@ -451,7 +750,17 @@
       "ref": "main",
       "source_path": "web-shader-extractor",
       "last_ingested_commit": "ee7e9c50049bf9278b7810c3cd00802cfa401138",
-      "sync_mode": "tree"
+      "sync_mode": "tree",
+      "semantic_baseline": {
+        "repo_revision": "e58e80ff4e9643984a9333597a28b7881a4522fa",
+        "path": "skills/web-shader-extractor/SKILL.md",
+        "body_sha256": "a1629815f8aeaeabfe52cf714300d026ccea52b69d77ce854aa790a0d256fe16",
+        "adaptations": [
+          "Remove discovery frontmatter",
+          "Replace former skill invocations and relocated resource paths with internal references"
+        ],
+        "restored_target_sha256": "a1629815f8aeaeabfe52cf714300d026ccea52b69d77ce854aa790a0d256fe16"
+      }
     },
     {
       "id": "pstack-selected-practices",

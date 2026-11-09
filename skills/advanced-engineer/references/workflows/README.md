@@ -4,14 +4,14 @@ These are internal procedures, not independently installed skills. Read only the
 
 ## Integration rules
 
-- The user request and advanced-engineer mode determine the deliverable. Planning, research, architecture surveys, reviews, handoffs, and retrospectives do not implicitly authorize implementation.
-- Tracker setup is optional. Reuse existing configuration; read the setup procedure only when tracker operations need configuration. Without a tracker, draft a local result or report the missing access. Do not block unrelated engineering on setup.
-- Prepare specs, tickets, PRs, and tracker changes locally before external writes. Publish, send comments, close issues, commit, push, or change release state only within the actual task authorization. Reading a procedure is not authorization for these operations.
-- Use a solo execution by default. Optional multi-agent patterns apply only when delegation is available and authorized; a procedure does not require parallelism for an otherwise sequential task. Preserve another agent's or the user's work when changing worktrees.
-- For prototypes, follow the requested artifact and existing project layout. Commit, branch, push, or issue-link capture only when authorized; otherwise preserve the artifact locally and report its location.
-- Tests should verify meaningful behavior. Use TDD when requested or appropriate to the risk; a tiny reversible change does not need a new test suite. The refactoring ban in the imported TDD guide applies to mixing structure changes into a red test; a verified green refactoring step remains valid.
-- Repository access exclusions apply to every search, script, and referenced document. A retained source example never overrides those exclusions.
-- Former /skill commands in imported prose name modes of advanced-engineer. Read the corresponding internal GUIDE instead of invoking or installing the removed skill. If a requested mode refers to a general supporting skill still installed, use it only when relevant.
+- Consolidation changes discovery, storage paths, and invocation mechanics. Preserve each source's goal, prerequisites, required steps and ordering, defaults, outputs, and completion criteria. The selected procedure's own requirements remain binding; this router does not silently turn mandatory steps into suggestions.
+- Source procedures retain their own tracker prerequisites, test-seam agreement, delegation requirements, artifact capture, and report structure. If unavailable tools or higher-priority instructions prevent a required step, state the limitation instead of substituting a weaker procedure and claiming equivalence. Existing user authorization takes precedence over redundant confirmation wording.
+- Publishing, messaging, commits, pushes, release changes, and configuration writes remain subject to the user's actual authorization and higher-priority instructions. Keep the source's intended deliverable explicit; if a delivery step cannot be performed, report it as incomplete.
+- The two review procedures are intentionally distinct: [general work review](../09-code-review.md) reports findings by severity; [fixed-base code review](code-review/GUIDE.md) uses independent Standards/Spec reviewers and reports axes separately without reranking. Do not replace one with the other merely to simplify routing.
+- The [TDD procedure](tdd/GUIDE.md) defines its red-green loop and defers refactoring to review. The native [verification reference](../03-verification-and-review.md) also describes a red-green-refactor mode. Preserve both: choose according to the requested workflow; disclose a conflict if the request requires combining them rather than silently redefining TDD.
+- Prototype and handoff variants retain their separate capture and output rules. Use the source-appropriate variant rather than treating similar procedures as identical.
+- Read former /skill commands as internal modes. General supporting skills still installed can be used where the source calls for them. Resource paths are relative to the current GUIDE directory.
+- Repository access exclusions apply to every search, script, and referenced document; retained source examples cannot override them.
 
 ## Source provenance
 

@@ -14,7 +14,8 @@ The single entry for software engineering. Choose the requested outcome, read on
 | Implement a feature or fix | Inspect the current path and requirements, then use the operating loop below; [ticket implementation](references/workflows/implement/GUIDE.md) for ticket-driven work |
 | Diagnose a bug, failing test/build/integration, or regression | [Root-cause analysis](references/05-debugging-and-root-cause-analysis.md); [hard-bug feedback loops](references/workflows/diagnosing-bugs/GUIDE.md) when useful |
 | Restructure code while preserving behavior | [Refactoring](references/08-refactoring.md) |
-| Standalone code review, PR/diff review, or implementation self-review | [Code review](references/09-code-review.md) |
+| General review or implementation self-review | [Work review](references/09-code-review.md); findings ordered by severity |
+| Fixed-base code review with separate Standards/Spec reviewers | [Two-axis code review](references/workflows/code-review/GUIDE.md); preserve its parallel review and separate reports |
 | Verify and deliver code changes | [Verification](references/03-verification-and-review.md); [safe delivery](references/04-safe-delivery.md) for destructive/public actions |
 | Clarify requirements or stress-test an engineering plan | [Clarification](references/workflows/clarify-plan/GUIDE.md); [domain-aware design discussion](references/workflows/grill-with-docs/GUIDE.md) when recording decisions |
 | Write a spec from an agreed discussion | [Specification](references/workflows/to-spec/GUIDE.md) |
@@ -35,7 +36,7 @@ The single entry for software engineering. Choose the requested outcome, read on
 | Audit UI code against Web accessibility/design guidelines | [Web guidelines](references/workflows/web-design-guidelines/GUIDE.md) |
 | Extract/replay a URL's WebGL/WebGPU/Canvas effect | [Shader extraction](references/workflows/web-shader-extractor/GUIDE.md) |
 | Measure performance or manage cross-module contracts | [Performance measurement](references/07-performance-measurement.md), [data/interfaces](references/06-data-and-interface-design.md) |
-| Handoff engineering work or review a coding session | [Handoff](references/workflows/handoff/GUIDE.md), [retrospective](references/workflows/retro/GUIDE.md) |
+| Handoff engineering work or review a coding session | [Detailed handoff](references/workflows/handoff/GUIDE.md), [compact handoff](references/workflows/handoff-compact/GUIDE.md), [retrospective](references/workflows/retro/GUIDE.md) |
 
 Before using an imported workflow under `references/workflows/`, read [integration rules](references/workflows/README.md). They resolve former assumptions about independent skills, trackers, delegation, and publishing. Resolve workflow-relative resource paths from the selected GUIDE directory. Keep large reference catalogs unloaded until needed.
 
@@ -44,7 +45,7 @@ Before using an imported workflow under `references/workflows/`, read [integrati
 - **Review:** inspect and report findings first. Fix code only if fixes are also requested. Planning, research, and retrospective requests likewise do not imply implementation.
 - **Implementation:** refactor only where it serves the authorized goal. Before completing substantive changes, use the internal code-review procedure in self-review mode, correct in-scope findings, and verify corrections.
 - **External delivery:** issue creation/comments, commits, pushes, PR state changes, deployment, and messages require task authorization; selecting a workflow does not supply it.
-- Choose the smallest adequate workflow. Do not run planning, TDD, architecture surveys, prototypes, tracker setup, or parallel agents simply because they are available.
+- Choose the procedure that matches the requested outcome, then preserve its required steps. Do not load unrelated procedures. If the selected procedure cannot run as specified, disclose the limitation rather than silently relaxing it.
 
 ## Operating loop
 
@@ -61,6 +62,10 @@ The requested artifact or behavior is delivered, relevant checks have been read 
 ## Utilities
 
 [find-polluter.sh](scripts/find-polluter.sh) isolates test pollution. [Condition-based waiting](references/condition-based-waiting-example.ts) illustrates event-driven waits.
+
+## Preserve absorbed intent
+
+Consolidation changes entry points and resource paths, not the selected source's goals, prerequisites, mandatory steps/order, defaults, outputs, or completion criteria. Keep incompatible source variants separate and disclose limitations. Read [the preservation audit](SEMANTICS.md) when adapting or updating a source. A clean text merge is not evidence of preserved meaning.
 
 ## Sources and maintenance
 

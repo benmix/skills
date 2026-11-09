@@ -144,7 +144,7 @@ Stay in this file by default. Read references only when the default loop is not 
 
 ## Response Style
 
-When using Refactor mode, report progress as:
+When using this skill, report progress as:
 
 1. smell observed
 2. chosen micro-refactoring

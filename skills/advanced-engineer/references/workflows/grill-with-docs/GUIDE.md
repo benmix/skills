@@ -1,1 +1,1 @@
-read [domain-modeling](../domain-modeling/GUIDE.md); use the general grilling skill for the interview.
+Use the grilling skill and read and apply [domain-modeling](../domain-modeling/GUIDE.md).

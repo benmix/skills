@@ -2,7 +2,7 @@
 
 The machine-readable inventory is [sources.json](sources.json). It records each former skill, its capability, original path, upstream repository/ref and last ingested revision where known, and the current internal target. Local sources record the repository revision preceding consolidation. Revision fields identify provenance; they do not claim the locally adapted text is identical to upstream.
 
-The native advanced-engineer workflow, local custom workflows, and selected pstack practices are maintained locally. Full upstream skill imports can produce reviewable update proposals. Superseded router/duplicate handoff entries and partial adaptations are manual sources, so their originals cannot overwrite the consolidated design.
+The native advanced-engineer workflow, local custom workflows, and selected pstack practices are maintained locally. Full upstream skill imports can produce reviewable update proposals. Former router, review, and handoff variants retain their source-specific internal procedures. Partial adaptations remain manual sources, so a full upstream import cannot overwrite a selective adaptation.
 
 ## Inspect provenance and planned updates
 
@@ -35,24 +35,30 @@ Each source gets a review package containing:
 - `merged/`: a three-way candidate preserving local edits where compatible.
 - `proposal.json`: source identity, revisions, local fingerprints, and conflicts.
 - `REVIEW.md`: reconciliation instructions.
+- `semantic-review.json`: six preservation checks requiring written evidence before application.
 
 Staging never changes the target or advances its source revision. Text, binary, add/add, and delete/modify conflicts remain review work. Binary and deletion conflicts may have no markers; inspect the conflict list as well as the candidate tree. A removed/empty upstream source stops staging instead of deleting local capabilities.
 
 ## Reconcile and apply
 
-Review `upstream.diff` and edit `merged/` to the complete intended target. Adapt obsolete skill calls and cross-workflow paths to advanced-engineer's internal references, preserve scope and authorization rules, and run checks relevant to changed scripts or guidance. The updater cannot judge instruction semantics or guarantee that new upstream links remain valid.
+Review `upstream.diff` and edit `merged/` to the complete intended target. Preserve the source's goal, prerequisites, required steps and ordering, defaults, constraints, outputs, and completion criteria; disclose cross-workflow conflicts instead of silently simplifying them. See [the semantic preservation audit](SEMANTICS.md). Adapt obsolete skill calls and cross-workflow paths to advanced-engineer's internal references, preserve scope and authorization rules, and run checks relevant to changed scripts or guidance. The updater cannot judge instruction semantics or guarantee that new upstream links remain valid.
+
+Complete each `semantic-review.json` check with `preserved: true` and concrete comparison evidence. Record that review against the final candidate before applying:
 
 ```bash
+./scripts/sync-remote-skills.sh --absorbed --seal-review /tmp/web-guidelines-review/web-design-guidelines
 ./scripts/sync-remote-skills.sh --absorbed --apply /tmp/web-guidelines-review/web-design-guidelines
 ```
 
-If the proposal listed conflicts, resolve them and explicitly acknowledge the reconciliation:
+Application rejects incomplete assessments and candidates changed after the review was recorded. This binds an explicit assessment to exact content; it does not automate semantic judgment.
+
+If the proposal listed conflicts, resolve them, complete and seal its semantic review, then explicitly acknowledge the reconciliation:
 
 ```bash
 ./scripts/sync-remote-skills.sh --absorbed --apply /tmp/review/mattpocock--engineering--tdd --conflicts-resolved
 ```
 
-Apply rejects local/source-record drift, conflict markers, symlinks, and new discovery/configuration entries. It builds the replacement before touching the target, rolls back the target if applying fails, and advances `last_ingested_commit` only after successful replacement. This is per-source application, not an all-sources transaction. Keep source changes and their registry update in the same reviewed Git commit. Reinstall advanced-engineer separately when you want the installed copy updated.
+Apply rejects local/source-record drift, conflict markers, symlinks, and new discovery/configuration entries. It builds the replacement before touching the target, rolls back the target if applying fails, and advances `last_ingested_commit` only after successful replacement. The source record retains the completed semantic assessment and reviewed fingerprints. This is per-source application, not an all-sources transaction. Keep source changes and their registry update in the same reviewed Git commit. Reinstall advanced-engineer separately when you want the installed copy updated.
 
 ## Add a source
 

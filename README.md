@@ -241,7 +241,8 @@ If you add a new external skill and want to keep syncing it later, add it to `sk
 ```bash
 ./scripts/sync-remote-skills.sh advanced-engineer --dry-run
 ./scripts/sync-remote-skills.sh --absorbed web-design-guidelines --output /tmp/engineering-source-review
-# Review the package and reconcile merged/ before applying:
+# Review merged/ and complete semantic-review.json, then bind the review:
+./scripts/sync-remote-skills.sh --absorbed --seal-review /tmp/engineering-source-review/web-design-guidelines
 ./scripts/sync-remote-skills.sh --absorbed --apply /tmp/engineering-source-review/web-design-guidelines
 ```
 

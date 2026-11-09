@@ -1,7 +1,11 @@
-# Implement a requested change
+Implement the work described by the user in the spec or tickets.
 
-Read the user request, spec, or tickets and inspect the affected code. Fetch supplied tracker context with available authorized tools; use local requirements if no tracker is needed.
+If the user passes a ticket reference, fetch it from the issue tracker and state its title before starting. If the reference is ambiguous, ask.
 
-Use [TDD](../tdd/GUIDE.md) when requested or useful for the change, keeping each test and implementation slice vertical. Use existing checks appropriate to the files and affected boundaries. Refactor only where it helps deliver this change safely.
+Read and apply [tdd](../tdd/GUIDE.md) where possible, at pre-agreed seams.
 
-Before completing, apply [code review](../../09-code-review.md) in implementation self-review mode. Correct in-scope findings and verify corrections. Commit or publish only when authorized by the task.
+Run typechecking regularly, single test files regularly, and the full test suite once at the end.
+
+Once done, read and apply [code-review](../code-review/GUIDE.md) to review the work.
+
+Commit your work to the current branch.

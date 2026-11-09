@@ -149,6 +149,37 @@ def merge_trees(base, local, upstream):
     return result, conflicts
 
 
+SEMANTIC_CHECKS = ('goal_and_scope', 'prerequisites', 'required_steps_and_order', 'defaults_and_constraints', 'outputs_and_completion', 'cross_workflow_conflicts')
+
+
+def review_assessment(proposal_dir):
+    review = json.loads((proposal_dir / 'semantic-review.json').read_text())
+    checks = review.get('checks', {})
+    if set(checks) != set(SEMANTIC_CHECKS) or any(
+        check.get('preserved') is not True or not isinstance(check.get('evidence'), str) or not check['evidence'].strip()
+        for check in checks.values()
+    ):
+        raise ValueError('Semantic review must confirm every preservation check with written evidence')
+    return review
+
+
+def seal_review(proposal_dir):
+    review = review_assessment(proposal_dir)
+    merged = read_tree(proposal_dir / 'merged')
+    validate_merged(merged)
+    review['reviewed_fingerprint'] = fingerprint(merged)
+    review['proposal_sha256'] = hashlib.sha256((proposal_dir / 'proposal.json').read_bytes()).hexdigest()
+    (proposal_dir / 'semantic-review.json').write_text(json.dumps(review, ensure_ascii=False, indent=2) + '\n')
+    print('Recorded semantic review for the current merged candidate')
+
+
+def require_semantic_review(proposal_dir, merged):
+    review = review_assessment(proposal_dir)
+    if review.get('reviewed_fingerprint') != fingerprint(merged) or review.get('proposal_sha256') != hashlib.sha256((proposal_dir / 'proposal.json').read_bytes()).hexdigest():
+        raise ValueError('Semantic review is missing or stale; review and seal the current candidate')
+    return review
+
+
 def stage(skill, source, repo, new_commit, output):
     if output.exists():
         raise ValueError('Proposal directory already exists; choose a new output')
@@ -166,7 +197,9 @@ def stage(skill, source, repo, new_commit, output):
     (output / 'upstream.diff').write_bytes(diff.stdout)
     proposal = {'schema_version': 1, 'source_id': source['id'], 'source_record': source, 'base_commit': old_commit, 'upstream_commit': new_commit, 'local_fingerprint': fingerprint(local), 'conflicts': conflicts}
     (output / 'proposal.json').write_text(json.dumps(proposal, indent=2) + '\n')
-    (output / 'REVIEW.md').write_text('# Review this absorption proposal\n\nCompare upstream.diff, local/, and merged/. Reconcile old skill calls and paths with advanced-engineer internal procedures; preserve integration rules and authorization boundaries. Resolve every listed conflict, including binary or delete/modify conflicts that have no text markers. Edit merged/ to the intended complete target tree. Apply only after checking the result. No live skill or source version has changed.\n\nConflicts: ' + (', '.join(conflicts) or 'none') + '\n')
+    assessment = {'schema_version': 1, 'checks': {name: {'preserved': False, 'evidence': ''} for name in SEMANTIC_CHECKS}, 'reviewed_fingerprint': None}
+    (output / 'semantic-review.json').write_text(json.dumps(assessment, indent=2) + '\n')
+    (output / 'REVIEW.md').write_text('# Review this absorption proposal\n\nCompare upstream.diff, local/, and merged/. Reconcile old skill calls and paths with advanced-engineer internal procedures; preserve integration rules and authorization boundaries. Resolve every listed conflict, including binary or delete/modify conflicts that have no text markers. Edit merged/ to the intended complete target tree. Complete semantic-review.json with evidence for every preservation dimension, then seal the review for the final candidate before applying. A clean textual merge does not prove preserved meaning. No live skill or source version has changed.\n\nConflicts: ' + (', '.join(conflicts) or 'none') + '\n')
     return proposal
 
 
@@ -196,6 +229,7 @@ def apply(skill, manifest_path, manifest, proposal_dir, conflicts_resolved=False
     if not merged:
         raise ValueError('An empty merged tree cannot be applied')
     validate_merged(merged)
+    semantic_review = require_semantic_review(proposal_dir, merged)
     if not re.fullmatch('[0-9a-f]{40,64}', proposal['upstream_commit']):
         raise ValueError('Invalid upstream commit')
     target = safe_path(skill, source['target'])
@@ -214,12 +248,14 @@ def apply(skill, manifest_path, manifest, proposal_dir, conflicts_resolved=False
             replacement = staged / 'entry.md' if source['sync_mode'] == 'entry' else staged
             os.replace(replacement, target)
             source['last_ingested_commit'] = proposal['upstream_commit']
+            source['last_semantic_review'] = semantic_review
             updated = json.dumps(manifest, ensure_ascii=False, indent=2) + '\n'
             pending = temp / 'sources.json'
             pending.write_text(updated)
             os.replace(pending, manifest_path)
         except BaseException:
-            source['last_ingested_commit'] = proposal['base_commit']
+            source.clear()
+            source.update(proposal['source_record'])
             if moved:
                 if target.is_dir():
                     shutil.rmtree(target)
@@ -249,6 +285,7 @@ def main():
     parser.add_argument('--ref', help='Override upstream ref for staging')
     parser.add_argument('--output', type=Path, help='New review-package directory (default: OS temporary directory)')
     parser.add_argument('--apply', type=Path, metavar='PROPOSAL', help='Apply a reviewed source proposal directory')
+    parser.add_argument('--seal-review', type=Path, metavar='PROPOSAL', help='Record a completed evidence-based semantic assessment for the final merged candidate')
     parser.add_argument('--conflicts-resolved', action='store_true', help='Acknowledge all listed conflicts have been reconciled')
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
@@ -267,6 +304,11 @@ def main():
             safe_path(skill, target)
         if source['origin'] == 'upstream' and not re.fullmatch(r'[0-9a-f]{40,64}', source['last_ingested_commit']):
             raise ValueError('Recorded upstream revision must be an exact commit')
+    if args.seal_review:
+        if args.apply or args.dry_run or args.sources or args.ref or args.output or args.conflicts_resolved:
+            raise ValueError('--seal-review cannot be combined with other operations')
+        seal_review(args.seal_review.resolve())
+        return
     if args.conflicts_resolved and not args.apply:
         raise ValueError('--conflicts-resolved requires --apply')
     if args.apply:

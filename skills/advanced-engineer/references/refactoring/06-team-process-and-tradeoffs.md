@@ -85,7 +85,7 @@ Be conservative when a refactor crosses package, service, or public API boundari
 
 ## Code Review
 
-During implementation self-review, or a review that explicitly authorizes fixes, small refactorings can help:
+Code review is also a useful place for small live refactorings:
 
 - rename while reading
 - extract a small function while reviewing

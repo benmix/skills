@@ -1,6 +1,6 @@
 This skill takes the current conversation context and codebase understanding and produces a spec. Do NOT interview the user; just synthesize what you already know.
 
-Reuse existing tracker configuration. If the requested tracker operation lacks configuration, read [project setup](../setup-matt-pocock-skills/GUIDE.md); draft locally when remote publishing is not authorized or available.
+The issue tracker and triage label vocabulary should have been provided to you. If not, tell the user to run `advanced-engineer: setup-matt-pocock-skills`.
 
 ## Process
 
